@@ -3,7 +3,208 @@
 
 ---
 
-## 📊 Slide 1: Title Slide
+## � PREREQUISITE: Base Papers Explanation (BACD Framework)
+
+**When to use this**: Reference these explanations when discussing Slide 5 (Literature Review) and Slide 13 (References), or when answering questions about your theoretical foundation.
+
+### Overview of the BACD Framework
+
+Your work is built on **4 foundational papers** that collectively address modality dominance. Together, they form what we call the **"BACD Framework"**:
+- **B**lending (Gradient Blending)
+- **A**daptive (Greedy Nature / Conditional Learning Speed)
+- **C**ontrol (OGM-GE / On-the-fly Control)
+- **D**istributed scale (Cross-Modality Harmonization at Google-scale)
+
+---
+
+### 1️⃣ Gradient Blending (Wang et al., CVPR 2020)
+**Full Title**: "What Makes Training Multi-Modal Classification Networks Hard?"
+
+#### Core Problem Identified:
+Multi-modal networks often **underperform** their unimodal counterparts. Why? They overfit to the dominant modality.
+
+#### Key Insights:
+1. **Different overfitting rates**: Vision modality overfits faster than audio
+2. **Gradient imbalance**: The "easy" modality dominates gradient updates
+3. **Starvation**: The "hard" modality contributes little to the final model
+
+#### Their Solution:
+**Gradient Blending** - compute an optimal blend of gradients based on each modality's overfitting behavior:
+```
+L_total = α(t)·L_vision + β(t)·L_audio
+```
+Where α and β are computed based on validation performance.
+
+#### How to Explain in Your Presentation:
+> "The 2020 CVPR paper by Wang et al. was the first to systematically analyze why multimodal training is hard. They discovered that it's not a data problem - it's an **optimization problem**. Different modalities learn at different speeds. Vision, being spatially structured, is easy for CNNs to learn. Audio, being temporally complex, takes longer. The optimizer naturally follows the steepest gradients, which means vision dominates. Their solution was Gradient Blending - dynamically re-weighting loss terms based on overfitting behavior."
+
+#### Why It Matters to Your Work:
+- **Inspiration**: You adopted their overfitting-based approach
+- **Limitation they had**: Their blending is static (computed periodically, not real-time adaptive)
+- **Your improvement**: MFC is fully adaptive and parameter-free
+
+#### Statistics to Mention:
+- **400+ citations** - highly influential
+- **CVPR 2020** - top-tier computer vision venue
+- **First systematic analysis** of the problem
+
+---
+
+### 2️⃣ Characterizing the Greedy Nature (Wu et al., ICML 2022)
+**Full Title**: "Characterizing and Overcoming the Greedy Nature of Learning in Multi-modal Deep Neural Networks"
+
+#### Core Problem Identified:
+Multi-modal networks exhibit **"greedy learning"** - they predominantly rely on one modality while under-fitting others, which **hurts generalization**.
+
+#### Key Insights:
+1. **Modality Laziness**: The formal term for this phenomenon
+2. **Path of least resistance**: Models naturally over-rely on the easier modality
+3. **Generalization impact**: This isn't just a training inconvenience - it actively degrades test performance
+
+#### Their Solution:
+**Conditional Learning Speed (CLS)** balancing:
+- CLS(A|B) = How fast the model learns from modality A given modality B
+- Regularizer to equalize CLS across modalities
+- Forces "fair" learning speeds
+
+#### How to Explain in Your Presentation:
+> "Wu et al.'s ICML 2022 paper gave us the vocabulary to describe this problem. They coined the term **'Modality Laziness'** and proved that it's not just annoying - it actively hurts generalization. Think of it this way: if your model cheats by only using vision during training, it never learns the subtle audio cues that might be critical on test data. They introduced the Conditional Learning Speed metric to measure how fast each modality learns, and proposed balancing these speeds through regularization."
+
+#### Why It Matters to Your Work:
+- **Conceptual framework**: You adopted the "fairness" framing
+- **Their metric (CLS)**: Complex to compute
+- **Your metric (OGR)**: Simpler, more interpretable
+
+#### Statistics to Mention:
+- **181 citations** - significant impact
+- **ICML 2022** - top-tier machine learning venue
+- **Tested on**: Colored MNIST, ModelNet40, Hand Gesture datasets
+
+---
+
+### 3️⃣ OGM-GE (Peng et al., CVPR 2022 Oral)
+**Full Title**: "Balanced Multimodal Learning via On-the-fly Gradient Modulation"
+
+#### Core Problem Identified:
+The dominant modality **suppresses** the training of other modalities. Static loss weighting doesn't work - you need **dynamic, on-the-fly intervention**.
+
+#### Key Insights:
+1. **Convergence rate mismatch**: Different modalities converge at different rates
+2. **Generalization drops**: Dominant modality can cause overfitting
+3. **Need for adaptive control**: Static methods fail
+
+#### Their Solution:
+**OGM-GE** (On-the-fly Gradient Modulation with Generalization Enhancement):
+1. **OGM**: Dynamically adjust each modality's gradient contribution
+2. **GE**: Inject Gaussian noise to the dominant modality's gradient to slow it down
+
+Mathematical formulation:
+```
+g_vision' = g_vision + ε·N(0, σ²)  // Add noise to slow dominant
+g_audio' = λ·g_audio              // Amplify weak
+```
+
+#### How to Explain in Your Presentation:
+> "Peng et al.'s CVPR 2022 Oral paper - and being an Oral means it's in the top 5% of submissions - showed that you need dynamic intervention. They proposed OGM-GE: On-the-fly Gradient Modulation with Generalization Enhancement. The key idea? Inject Gaussian noise into the dominant modality's gradients to slow it down, like applying brakes to a runaway car. This prevents the vision modality from racing ahead and starving the audio modality."
+
+#### Why It Matters to Your Work:
+- **Proof of concept**: Dynamic intervention works
+- **Their approach**: Slow down the dominant (noise injection)
+- **Your approach**: Boost the weak AND regulate the dominant (dual strategy)
+- **Your advantage**: OGR provides interpretability; theirs is more of a "black box"
+
+#### Statistics to Mention:
+- **100+ citations** in just 2 years
+- **CVPR 2022 Oral** - top 5% of submissions
+- **Proven effectiveness** on audio-visual tasks
+
+---
+
+### 4️⃣ Cross-Modality Gradient Harmonization (Google Research, NeurIPS 2022)
+**Full Title**: "Scaling Multimodal Pre-Training via Cross-Modality Gradient Harmonization"
+
+#### Core Problem Identified:
+At **billion-sample scale**, semantic misalignment causes **gradient conflicts** between modalities, leading to biases and poor convergence.
+
+#### Key Insights:
+1. **Gradient conflicts**: At scale, gradients from different modalities often point in opposite directions
+2. **Data quality signal**: Gradient conflict indicates noisy or misaligned data
+3. **Curriculum learning**: Use conflict as a filter
+
+#### Their Solution:
+1. **Cross-Modality Gradient Realignment**: Align gradient directions across modalities
+2. **Gradient-based Curriculum Learning**: Filter out samples with high gradient conflict
+
+Mathematical formulation:
+```
+cos_sim(∇L_vision, ∇L_audio) < threshold → discard sample
+```
+
+#### How to Explain in Your Presentation:
+> "Google's NeurIPS 2022 paper proved that this problem doesn't go away at scale - in fact, it gets worse. When training on HowTo100M and YouTube8M with billions of samples, they found that gradients from different modalities often conflict - they point in opposite directions. Their solution was twofold: realign the gradient directions, and use gradient conflict as a curriculum signal to filter out noisy samples. This showed that modality dominance is a fundamental problem, not something you can just 'scale away'."
+
+#### Why It Matters to Your Work:
+- **Validation**: The problem exists at all scales (not just small datasets)
+- **Industrial proof**: Google deployed this at production scale
+- **Your focus**: You're tackling the same problem but with a more interpretable, lightweight approach suitable for research and smaller-scale applications
+
+#### Statistics to Mention:
+- **NeurIPS 2022** - top-tier ML venue
+- **Billion-sample scale** - HowTo100M, YouTube8M
+- **Google Research** - industrial validation
+
+---
+
+## 🔗 How These Papers Connect to Your Work
+
+### The Evolution Story:
+Tell this narrative during your presentation (especially useful for connecting Slide 5 to Slide 7):
+
+> "Let me show you how these papers build on each other, and where my work fits in:
+> 
+> 1. **2020 - Gradient Blending**: 'The problem is overfitting to the dominant modality'
+> 2. **2022 - Greedy Nature**: 'Let's formalize this as modality laziness and prove it hurts generalization'
+> 3. **2022 - OGM-GE**: 'We need dynamic, on-the-fly intervention with noise injection'
+> 4. **2022 - Google**: 'This problem persists even at billion-sample scale'
+> 
+> **My contribution**: All of these approaches either require manual tuning or are computationally expensive. My Modality Fairness Controller provides adaptive, parameter-free balancing with a simple, interpretable metric - the OGR ratio. It's the next logical step in this evolution."
+
+### Quick Comparison Table (Memorize This):
+
+| Paper | Approach | Limitation | Your Improvement |
+|:------|:---------|:-----------|:-----------------|
+| Gradient Blending | Overfitting-based weighting | Static, periodic updates | Real-time adaptive |
+| Greedy Nature | CLS balancing | Complex metric | Simple OGR metric |
+| OGM-GE | Noise injection | Slows dominant only | Dual: boost weak + regulate dominant |
+| Google Harmonization | Gradient alignment | Requires massive scale | Works on standard benchmarks |
+
+---
+
+## 🎤 When to Reference Each Paper
+
+### During Slide 5 (Literature Review):
+- **Brief mention**: Just say the titles and venues
+- **Transition**: "These models focus on scale and unification, but don't fully solve optimization imbalance"
+
+### During Slide 9 (Key Contributions):
+- **Comparison**: "Unlike Gradient Blending which is static, we're dynamic..."
+- **Differentiation**: "OGM-GE slows the dominant, we boost the weak AND regulate the dominant..."
+
+### During Slide 13 (References):
+- **Synthesis**: "My work builds on these four papers as foundational pillars..."
+- **Positioning**: "My contribution is a more interpretable, parameter-free approach..."
+
+### During Q&A:
+If asked "How is this different from OGM-GE?" (most likely question):
+> "Great question. OGM-GE injects Gaussian noise to slow down the dominant modality. That works, but it's a bit of a black box - you don't know exactly why it's working. My approach is different in two ways: First, I use a dual strategy - I boost the weak modality's learning rate AND regulate the dominant. Second, my OGR metric is interpretable - you can plot it, visualize it, and understand exactly what's happening. It's the ratio of train to validation accuracy. High OGR? Overfitting. Low OGR? Generalizing well. It's simple, but powerful."
+
+---
+
+**Good luck with your presentation! You've got this! 🚀**
+
+---
+
+## �📊 Slide 1: Title Slide
 
 **Title**: Adaptive Gradient Harmonization: Mitigating Modality Dominance in Unified Representation Learning  
 **Presenter**: Lakshya
