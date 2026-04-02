@@ -1,0 +1,48 @@
+\begin{thebibliography}{1}
+
+\bibitem{imagebind}
+R.~Girdhar, A.~El-Nouby, Z.~Liu, M.~Singh, K.~V. Alwala, A.~Joulin, and
+  I.~Misra, ``{ImageBind}: One embedding space to bind them all,'' in {\em
+  Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern
+  Recognition (CVPR)}, 2023.
+
+\bibitem{unifiedio2}
+J.~Lu, C.~Clark, S.~Lee, Z.~Zhang, S.~Khosla, R.~Marten, D.~Hoiem, and
+  A.~Kembhavi, ``{Unified-IO 2}: Scaling autoregressive multimodal models with
+  vision, language, audio, and action,'' {\em arXiv preprint arXiv:2312.17172},
+  2023.
+
+\bibitem{greedynature}
+N.~Wu, S.~Jastrzebski, K.~Cho, and K.~J. Geras, ``Characterizing and overcoming
+  the greedy nature of learning in multi-modal deep neural networks,'' in {\em
+  Proceedings of the 39th International Conference on Machine Learning (ICML)},
+  pp.~24043--24055, 2022.
+
+\bibitem{gradientblending}
+W.~Wang, D.~Tran, and M.~Feiszli, ``What makes training multi-modal
+  classification networks hard?,'' in {\em Proceedings of the IEEE/CVF
+  Conference on Computer Vision and Pattern Recognition (CVPR)},
+  pp.~12695--12705, 2020.
+
+\bibitem{ogmge}
+Y.~Peng, Z.~Qi, Y.~Zhuo, and Y.~Liu, ``Balanced multimodal learning via
+  on-the-fly gradient modulation,'' in {\em Proceedings of the IEEE/CVF
+  Conference on Computer Vision and Pattern Recognition (CVPR)}, 2022.
+\newblock Oral Presentation.
+
+\bibitem{crossmodality}
+J.~Yu, Z.~Gong, Y.~Wang, H.~Ye, E.~X. Wang, and Z.~Fan, ``Scaling multimodal
+  pre-training via cross-modality gradient harmonization,'' in {\em Advances in
+  Neural Information Processing Systems (NeurIPS)}, 2022.
+
+\bibitem{metatransformer}
+Y.~Zhang, K.~Gong, K.~Zhang, H.~Li, Y.~Qiao, W.~Ouyang, and X.~Yue,
+  ``{Meta-Transformer}: A unified framework for multimodal learning,'' {\em
+  arXiv preprint arXiv:2307.10802}, 2023.
+
+\bibitem{missingmodality}
+R.~Wu, H.~Dong, X.~Liu, and Z.~Liu, ``Deep multimodal learning with missing
+  modality: A survey,'' {\em ACM Computing Surveys}, vol.~56, no.~3, pp.~1--37,
+  2024.
+
+\end{thebibliography}
