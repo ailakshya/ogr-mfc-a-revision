@@ -1,0 +1,440 @@
+ave mfc_j 0 gamma=1.0
+ave mfc_j 0 gamma=2.0
+ave mfc_j 0 gamma=3.0
+ave mfc_og 0 alpha=0.3 gamma=1.0
+ave mfc_og 0 alpha=0.3 gamma=3.0
+ave mfc_og 0 alpha=0.8 gamma=1.0
+ave mfc_og 0 alpha=0.8 gamma=3.0
+ave mfc_j 1 gamma=1.0
+ave mfc_j 1 gamma=2.0
+ave mfc_j 1 gamma=3.0
+ave mfc_og 1 alpha=0.3 gamma=1.0
+ave mfc_og 1 alpha=0.3 gamma=3.0
+ave mfc_og 1 alpha=0.8 gamma=1.0
+ave mfc_og 1 alpha=0.8 gamma=3.0
+ave mfc_j 2 gamma=1.0
+ave mfc_j 2 gamma=2.0
+ave mfc_j 2 gamma=3.0
+ave mfc_og 2 alpha=0.3 gamma=1.0
+ave mfc_og 2 alpha=0.3 gamma=3.0
+ave mfc_og 2 alpha=0.8 gamma=1.0
+ave mfc_og 2 alpha=0.8 gamma=3.0
+ave mfc_j 3 gamma=1.0
+ave mfc_j 3 gamma=2.0
+ave mfc_j 3 gamma=3.0
+ave mfc_og 3 alpha=0.3 gamma=1.0
+ave mfc_og 3 alpha=0.3 gamma=3.0
+ave mfc_og 3 alpha=0.8 gamma=1.0
+ave mfc_og 3 alpha=0.8 gamma=3.0
+ave mfc_j 4 gamma=1.0
+ave mfc_j 4 gamma=2.0
+ave mfc_j 4 gamma=3.0
+ave mfc_og 4 alpha=0.3 gamma=1.0
+ave mfc_og 4 alpha=0.3 gamma=3.0
+ave mfc_og 4 alpha=0.8 gamma=1.0
+ave mfc_og 4 alpha=0.8 gamma=3.0
+ave mfc_j 5 gamma=1.0
+ave mfc_j 5 gamma=2.0
+ave mfc_j 5 gamma=3.0
+ave mfc_og 5 alpha=0.3 gamma=1.0
+ave mfc_og 5 alpha=0.3 gamma=3.0
+ave mfc_og 5 alpha=0.8 gamma=1.0
+ave mfc_og 5 alpha=0.8 gamma=3.0
+ave mfc_j 6 gamma=1.0
+ave mfc_j 6 gamma=2.0
+ave mfc_j 6 gamma=3.0
+ave mfc_og 6 alpha=0.3 gamma=1.0
+ave mfc_og 6 alpha=0.3 gamma=3.0
+ave mfc_og 6 alpha=0.8 gamma=1.0
+ave mfc_og 6 alpha=0.8 gamma=3.0
+ave mfc_j 7 gamma=1.0
+ave mfc_j 7 gamma=2.0
+ave mfc_j 7 gamma=3.0
+ave mfc_og 7 alpha=0.3 gamma=1.0
+ave mfc_og 7 alpha=0.3 gamma=3.0
+ave mfc_og 7 alpha=0.8 gamma=1.0
+ave mfc_og 7 alpha=0.8 gamma=3.0
+ave mfc_j 8 gamma=1.0
+ave mfc_j 8 gamma=2.0
+ave mfc_j 8 gamma=3.0
+ave mfc_og 8 alpha=0.3 gamma=1.0
+ave mfc_og 8 alpha=0.3 gamma=3.0
+ave mfc_og 8 alpha=0.8 gamma=1.0
+ave mfc_og 8 alpha=0.8 gamma=3.0
+ave mfc_j 9 gamma=1.0
+ave mfc_j 9 gamma=2.0
+ave mfc_j 9 gamma=3.0
+ave mfc_og 9 alpha=0.3 gamma=1.0
+ave mfc_og 9 alpha=0.3 gamma=3.0
+ave mfc_og 9 alpha=0.8 gamma=1.0
+ave mfc_og 9 alpha=0.8 gamma=3.0
+crema_av mfc_j 0 gamma=1.0
+crema_av mfc_j 0 gamma=2.0
+crema_av mfc_j 0 gamma=3.0
+crema_av mfc_og 0 alpha=0.3 gamma=1.0
+crema_av mfc_og 0 alpha=0.3 gamma=3.0
+crema_av mfc_og 0 alpha=0.8 gamma=1.0
+crema_av mfc_og 0 alpha=0.8 gamma=3.0
+crema_av mfc_j 1 gamma=1.0
+crema_av mfc_j 1 gamma=2.0
+crema_av mfc_j 1 gamma=3.0
+crema_av mfc_og 1 alpha=0.3 gamma=1.0
+crema_av mfc_og 1 alpha=0.3 gamma=3.0
+crema_av mfc_og 1 alpha=0.8 gamma=1.0
+crema_av mfc_og 1 alpha=0.8 gamma=3.0
+crema_av mfc_j 2 gamma=1.0
+crema_av mfc_j 2 gamma=2.0
+crema_av mfc_j 2 gamma=3.0
+crema_av mfc_og 2 alpha=0.3 gamma=1.0
+crema_av mfc_og 2 alpha=0.3 gamma=3.0
+crema_av mfc_og 2 alpha=0.8 gamma=1.0
+crema_av mfc_og 2 alpha=0.8 gamma=3.0
+crema_av mfc_j 3 gamma=1.0
+crema_av mfc_j 3 gamma=2.0
+crema_av mfc_j 3 gamma=3.0
+crema_av mfc_og 3 alpha=0.3 gamma=1.0
+crema_av mfc_og 3 alpha=0.3 gamma=3.0
+crema_av mfc_og 3 alpha=0.8 gamma=1.0
+crema_av mfc_og 3 alpha=0.8 gamma=3.0
+crema_av mfc_j 4 gamma=1.0
+crema_av mfc_j 4 gamma=2.0
+crema_av mfc_j 4 gamma=3.0
+crema_av mfc_og 4 alpha=0.3 gamma=1.0
+crema_av mfc_og 4 alpha=0.3 gamma=3.0
+crema_av mfc_og 4 alpha=0.8 gamma=1.0
+crema_av mfc_og 4 alpha=0.8 gamma=3.0
+crema_av mfc_j 5 gamma=1.0
+crema_av mfc_j 5 gamma=2.0
+crema_av mfc_j 5 gamma=3.0
+crema_av mfc_og 5 alpha=0.3 gamma=1.0
+crema_av mfc_og 5 alpha=0.3 gamma=3.0
+crema_av mfc_og 5 alpha=0.8 gamma=1.0
+crema_av mfc_og 5 alpha=0.8 gamma=3.0
+crema_av mfc_j 6 gamma=1.0
+crema_av mfc_j 6 gamma=2.0
+crema_av mfc_j 6 gamma=3.0
+crema_av mfc_og 6 alpha=0.3 gamma=1.0
+crema_av mfc_og 6 alpha=0.3 gamma=3.0
+crema_av mfc_og 6 alpha=0.8 gamma=1.0
+crema_av mfc_og 6 alpha=0.8 gamma=3.0
+crema_av mfc_j 7 gamma=1.0
+crema_av mfc_j 7 gamma=2.0
+crema_av mfc_j 7 gamma=3.0
+crema_av mfc_og 7 alpha=0.3 gamma=1.0
+crema_av mfc_og 7 alpha=0.3 gamma=3.0
+crema_av mfc_og 7 alpha=0.8 gamma=1.0
+crema_av mfc_og 7 alpha=0.8 gamma=3.0
+crema_av mfc_j 8 gamma=1.0
+crema_av mfc_j 8 gamma=2.0
+crema_av mfc_j 8 gamma=3.0
+crema_av mfc_og 8 alpha=0.3 gamma=1.0
+crema_av mfc_og 8 alpha=0.3 gamma=3.0
+crema_av mfc_og 8 alpha=0.8 gamma=1.0
+crema_av mfc_og 8 alpha=0.8 gamma=3.0
+crema_av mfc_j 9 gamma=1.0
+crema_av mfc_j 9 gamma=2.0
+crema_av mfc_j 9 gamma=3.0
+crema_av mfc_og 9 alpha=0.3 gamma=1.0
+crema_av mfc_og 9 alpha=0.3 gamma=3.0
+crema_av mfc_og 9 alpha=0.8 gamma=1.0
+crema_av mfc_og 9 alpha=0.8 gamma=3.0
+synthetic mfc_j 0 gamma=1.0
+synthetic mfc_j 0 gamma=2.0
+synthetic mfc_j 0 gamma=3.0
+synthetic mfc_og 0 alpha=0.3 gamma=1.0
+synthetic mfc_og 0 alpha=0.3 gamma=3.0
+synthetic mfc_og 0 alpha=0.8 gamma=1.0
+synthetic mfc_og 0 alpha=0.8 gamma=3.0
+synthetic mfc_j 1 gamma=1.0
+synthetic mfc_j 1 gamma=2.0
+synthetic mfc_j 1 gamma=3.0
+synthetic mfc_og 1 alpha=0.3 gamma=1.0
+synthetic mfc_og 1 alpha=0.3 gamma=3.0
+synthetic mfc_og 1 alpha=0.8 gamma=1.0
+synthetic mfc_og 1 alpha=0.8 gamma=3.0
+synthetic mfc_j 2 gamma=1.0
+synthetic mfc_j 2 gamma=2.0
+synthetic mfc_j 2 gamma=3.0
+synthetic mfc_og 2 alpha=0.3 gamma=1.0
+synthetic mfc_og 2 alpha=0.3 gamma=3.0
+synthetic mfc_og 2 alpha=0.8 gamma=1.0
+synthetic mfc_og 2 alpha=0.8 gamma=3.0
+synthetic mfc_j 3 gamma=1.0
+synthetic mfc_j 3 gamma=2.0
+synthetic mfc_j 3 gamma=3.0
+synthetic mfc_og 3 alpha=0.3 gamma=1.0
+synthetic mfc_og 3 alpha=0.3 gamma=3.0
+synthetic mfc_og 3 alpha=0.8 gamma=1.0
+synthetic mfc_og 3 alpha=0.8 gamma=3.0
+synthetic mfc_j 4 gamma=1.0
+synthetic mfc_j 4 gamma=2.0
+synthetic mfc_j 4 gamma=3.0
+synthetic mfc_og 4 alpha=0.3 gamma=1.0
+synthetic mfc_og 4 alpha=0.3 gamma=3.0
+synthetic mfc_og 4 alpha=0.8 gamma=1.0
+synthetic mfc_og 4 alpha=0.8 gamma=3.0
+synthetic mfc_j 5 gamma=1.0
+synthetic mfc_j 5 gamma=2.0
+synthetic mfc_j 5 gamma=3.0
+synthetic mfc_og 5 alpha=0.3 gamma=1.0
+synthetic mfc_og 5 alpha=0.3 gamma=3.0
+synthetic mfc_og 5 alpha=0.8 gamma=1.0
+synthetic mfc_og 5 alpha=0.8 gamma=3.0
+synthetic mfc_j 6 gamma=1.0
+synthetic mfc_j 6 gamma=2.0
+synthetic mfc_j 6 gamma=3.0
+synthetic mfc_og 6 alpha=0.3 gamma=1.0
+synthetic mfc_og 6 alpha=0.3 gamma=3.0
+synthetic mfc_og 6 alpha=0.8 gamma=1.0
+synthetic mfc_og 6 alpha=0.8 gamma=3.0
+synthetic mfc_j 7 gamma=1.0
+synthetic mfc_j 7 gamma=2.0
+synthetic mfc_j 7 gamma=3.0
+synthetic mfc_og 7 alpha=0.3 gamma=1.0
+synthetic mfc_og 7 alpha=0.3 gamma=3.0
+synthetic mfc_og 7 alpha=0.8 gamma=1.0
+synthetic mfc_og 7 alpha=0.8 gamma=3.0
+synthetic mfc_j 8 gamma=1.0
+synthetic mfc_j 8 gamma=2.0
+synthetic mfc_j 8 gamma=3.0
+synthetic mfc_og 8 alpha=0.3 gamma=1.0
+synthetic mfc_og 8 alpha=0.3 gamma=3.0
+synthetic mfc_og 8 alpha=0.8 gamma=1.0
+synthetic mfc_og 8 alpha=0.8 gamma=3.0
+synthetic mfc_j 9 gamma=1.0
+synthetic mfc_j 9 gamma=2.0
+synthetic mfc_j 9 gamma=3.0
+synthetic mfc_og 9 alpha=0.3 gamma=1.0
+synthetic mfc_og 9 alpha=0.3 gamma=3.0
+synthetic mfc_og 9 alpha=0.8 gamma=1.0
+synthetic mfc_og 9 alpha=0.8 gamma=3.0
+crema_spec mfc_j 0 gamma=1.0
+crema_spec mfc_j 0 gamma=2.0
+crema_spec mfc_j 0 gamma=3.0
+crema_spec mfc_og 0 alpha=0.3 gamma=1.0
+crema_spec mfc_og 0 alpha=0.3 gamma=3.0
+crema_spec mfc_og 0 alpha=0.8 gamma=1.0
+crema_spec mfc_og 0 alpha=0.8 gamma=3.0
+crema_spec mfc_j 1 gamma=1.0
+crema_spec mfc_j 1 gamma=2.0
+crema_spec mfc_j 1 gamma=3.0
+crema_spec mfc_og 1 alpha=0.3 gamma=1.0
+crema_spec mfc_og 1 alpha=0.3 gamma=3.0
+crema_spec mfc_og 1 alpha=0.8 gamma=1.0
+crema_spec mfc_og 1 alpha=0.8 gamma=3.0
+crema_spec mfc_j 2 gamma=1.0
+crema_spec mfc_j 2 gamma=2.0
+crema_spec mfc_j 2 gamma=3.0
+crema_spec mfc_og 2 alpha=0.3 gamma=1.0
+crema_spec mfc_og 2 alpha=0.3 gamma=3.0
+crema_spec mfc_og 2 alpha=0.8 gamma=1.0
+crema_spec mfc_og 2 alpha=0.8 gamma=3.0
+crema_spec mfc_j 3 gamma=1.0
+crema_spec mfc_j 3 gamma=2.0
+crema_spec mfc_j 3 gamma=3.0
+crema_spec mfc_og 3 alpha=0.3 gamma=1.0
+crema_spec mfc_og 3 alpha=0.3 gamma=3.0
+crema_spec mfc_og 3 alpha=0.8 gamma=1.0
+crema_spec mfc_og 3 alpha=0.8 gamma=3.0
+crema_spec mfc_j 4 gamma=1.0
+crema_spec mfc_j 4 gamma=2.0
+crema_spec mfc_j 4 gamma=3.0
+crema_spec mfc_og 4 alpha=0.3 gamma=1.0
+crema_spec mfc_og 4 alpha=0.3 gamma=3.0
+crema_spec mfc_og 4 alpha=0.8 gamma=1.0
+crema_spec mfc_og 4 alpha=0.8 gamma=3.0
+crema_spec mfc_j 5 gamma=1.0
+crema_spec mfc_j 5 gamma=2.0
+crema_spec mfc_j 5 gamma=3.0
+crema_spec mfc_og 5 alpha=0.3 gamma=1.0
+crema_spec mfc_og 5 alpha=0.3 gamma=3.0
+crema_spec mfc_og 5 alpha=0.8 gamma=1.0
+crema_spec mfc_og 5 alpha=0.8 gamma=3.0
+crema_spec mfc_j 6 gamma=1.0
+crema_spec mfc_j 6 gamma=2.0
+crema_spec mfc_j 6 gamma=3.0
+crema_spec mfc_og 6 alpha=0.3 gamma=1.0
+crema_spec mfc_og 6 alpha=0.3 gamma=3.0
+crema_spec mfc_og 6 alpha=0.8 gamma=1.0
+crema_spec mfc_og 6 alpha=0.8 gamma=3.0
+crema_spec mfc_j 7 gamma=1.0
+crema_spec mfc_j 7 gamma=2.0
+crema_spec mfc_j 7 gamma=3.0
+crema_spec mfc_og 7 alpha=0.3 gamma=1.0
+crema_spec mfc_og 7 alpha=0.3 gamma=3.0
+crema_spec mfc_og 7 alpha=0.8 gamma=1.0
+crema_spec mfc_og 7 alpha=0.8 gamma=3.0
+crema_spec mfc_j 8 gamma=1.0
+crema_spec mfc_j 8 gamma=2.0
+crema_spec mfc_j 8 gamma=3.0
+crema_spec mfc_og 8 alpha=0.3 gamma=1.0
+crema_spec mfc_og 8 alpha=0.3 gamma=3.0
+crema_spec mfc_og 8 alpha=0.8 gamma=1.0
+crema_spec mfc_og 8 alpha=0.8 gamma=3.0
+crema_spec mfc_j 9 gamma=1.0
+crema_spec mfc_j 9 gamma=2.0
+crema_spec mfc_j 9 gamma=3.0
+crema_spec mfc_og 9 alpha=0.3 gamma=1.0
+crema_spec mfc_og 9 alpha=0.3 gamma=3.0
+crema_spec mfc_og 9 alpha=0.8 gamma=1.0
+crema_spec mfc_og 9 alpha=0.8 gamma=3.0
+synthetic baseline 0
+synthetic grad_blend 0
+synthetic mfc_a 0
+synthetic mfc_a 0 gamma=2.0
+synthetic mfc_a 0 gamma=3.0
+synthetic ogm_ge 0 alpha=0.1
+synthetic ogm_ge 0 alpha=0.3
+synthetic ogm_ge 0 alpha=0.8
+synthetic baseline 1
+synthetic grad_blend 1
+synthetic mfc_a 1
+synthetic mfc_a 1 gamma=2.0
+synthetic mfc_a 1 gamma=3.0
+synthetic ogm_ge 1 alpha=0.1
+synthetic ogm_ge 1 alpha=0.3
+synthetic ogm_ge 1 alpha=0.8
+synthetic baseline 2
+synthetic grad_blend 2
+synthetic mfc_a 2
+synthetic mfc_a 2 gamma=2.0
+synthetic mfc_a 2 gamma=3.0
+synthetic ogm_ge 2 alpha=0.1
+synthetic ogm_ge 2 alpha=0.3
+synthetic ogm_ge 2 alpha=0.8
+synthetic baseline 3
+synthetic grad_blend 3
+synthetic mfc_a 3
+synthetic mfc_a 3 gamma=2.0
+synthetic mfc_a 3 gamma=3.0
+synthetic ogm_ge 3 alpha=0.1
+synthetic ogm_ge 3 alpha=0.3
+synthetic ogm_ge 3 alpha=0.8
+synthetic baseline 4
+synthetic grad_blend 4
+synthetic mfc_a 4
+synthetic mfc_a 4 gamma=2.0
+synthetic mfc_a 4 gamma=3.0
+synthetic ogm_ge 4 alpha=0.1
+synthetic ogm_ge 4 alpha=0.3
+synthetic ogm_ge 4 alpha=0.8
+synthetic baseline 5
+synthetic grad_blend 5
+synthetic mfc_a 5
+synthetic mfc_a 5 gamma=2.0
+synthetic mfc_a 5 gamma=3.0
+synthetic ogm_ge 5 alpha=0.1
+synthetic ogm_ge 5 alpha=0.3
+synthetic ogm_ge 5 alpha=0.8
+synthetic baseline 6
+synthetic grad_blend 6
+synthetic mfc_a 6
+synthetic mfc_a 6 gamma=2.0
+synthetic mfc_a 6 gamma=3.0
+synthetic ogm_ge 6 alpha=0.1
+synthetic ogm_ge 6 alpha=0.3
+synthetic ogm_ge 6 alpha=0.8
+synthetic baseline 7
+synthetic grad_blend 7
+synthetic mfc_a 7
+synthetic mfc_a 7 gamma=2.0
+synthetic mfc_a 7 gamma=3.0
+synthetic ogm_ge 7 alpha=0.1
+synthetic ogm_ge 7 alpha=0.3
+synthetic ogm_ge 7 alpha=0.8
+synthetic baseline 8
+synthetic grad_blend 8
+synthetic mfc_a 8
+synthetic mfc_a 8 gamma=2.0
+synthetic mfc_a 8 gamma=3.0
+synthetic ogm_ge 8 alpha=0.1
+synthetic ogm_ge 8 alpha=0.3
+synthetic ogm_ge 8 alpha=0.8
+synthetic baseline 9
+synthetic grad_blend 9
+synthetic mfc_a 9
+synthetic mfc_a 9 gamma=2.0
+synthetic mfc_a 9 gamma=3.0
+synthetic ogm_ge 9 alpha=0.1
+synthetic ogm_ge 9 alpha=0.3
+synthetic ogm_ge 9 alpha=0.8
+crema_spec baseline 0
+crema_spec grad_blend 0
+crema_spec mfc_a 0
+crema_spec mfc_a 0 gamma=2.0
+crema_spec mfc_a 0 gamma=3.0
+crema_spec ogm_ge 0 alpha=0.1
+crema_spec ogm_ge 0 alpha=0.3
+crema_spec ogm_ge 0 alpha=0.8
+crema_spec baseline 1
+crema_spec grad_blend 1
+crema_spec mfc_a 1
+crema_spec mfc_a 1 gamma=2.0
+crema_spec mfc_a 1 gamma=3.0
+crema_spec ogm_ge 1 alpha=0.1
+crema_spec ogm_ge 1 alpha=0.3
+crema_spec ogm_ge 1 alpha=0.8
+crema_spec baseline 2
+crema_spec grad_blend 2
+crema_spec mfc_a 2
+crema_spec mfc_a 2 gamma=2.0
+crema_spec mfc_a 2 gamma=3.0
+crema_spec ogm_ge 2 alpha=0.1
+crema_spec ogm_ge 2 alpha=0.3
+crema_spec ogm_ge 2 alpha=0.8
+crema_spec baseline 3
+crema_spec grad_blend 3
+crema_spec mfc_a 3
+crema_spec mfc_a 3 gamma=2.0
+crema_spec mfc_a 3 gamma=3.0
+crema_spec ogm_ge 3 alpha=0.1
+crema_spec ogm_ge 3 alpha=0.3
+crema_spec ogm_ge 3 alpha=0.8
+crema_spec baseline 4
+crema_spec grad_blend 4
+crema_spec mfc_a 4
+crema_spec mfc_a 4 gamma=2.0
+crema_spec mfc_a 4 gamma=3.0
+crema_spec ogm_ge 4 alpha=0.1
+crema_spec ogm_ge 4 alpha=0.3
+crema_spec ogm_ge 4 alpha=0.8
+crema_spec baseline 5
+crema_spec grad_blend 5
+crema_spec mfc_a 5
+crema_spec mfc_a 5 gamma=2.0
+crema_spec mfc_a 5 gamma=3.0
+crema_spec ogm_ge 5 alpha=0.1
+crema_spec ogm_ge 5 alpha=0.3
+crema_spec ogm_ge 5 alpha=0.8
+crema_spec baseline 6
+crema_spec grad_blend 6
+crema_spec mfc_a 6
+crema_spec mfc_a 6 gamma=2.0
+crema_spec mfc_a 6 gamma=3.0
+crema_spec ogm_ge 6 alpha=0.1
+crema_spec ogm_ge 6 alpha=0.3
+crema_spec ogm_ge 6 alpha=0.8
+crema_spec baseline 7
+crema_spec grad_blend 7
+crema_spec mfc_a 7
+crema_spec mfc_a 7 gamma=2.0
+crema_spec mfc_a 7 gamma=3.0
+crema_spec ogm_ge 7 alpha=0.1
+crema_spec ogm_ge 7 alpha=0.3
+crema_spec ogm_ge 7 alpha=0.8
+crema_spec baseline 8
+crema_spec grad_blend 8
+crema_spec mfc_a 8
+crema_spec mfc_a 8 gamma=2.0
+crema_spec mfc_a 8 gamma=3.0
+crema_spec ogm_ge 8 alpha=0.1
+crema_spec ogm_ge 8 alpha=0.3
+crema_spec ogm_ge 8 alpha=0.8
+crema_spec baseline 9
+crema_spec grad_blend 9
+crema_spec mfc_a 9
+crema_spec mfc_a 9 gamma=2.0
+crema_spec mfc_a 9 gamma=3.0
+crema_spec ogm_ge 9 alpha=0.1
+crema_spec ogm_ge 9 alpha=0.3
+crema_spec ogm_ge 9 alpha=0.8

@@ -20,6 +20,7 @@ raw per-seed logs and regenerated with one command.
 | `experiments/data/` | Extracted features (`*.npz`, stored with Git LFS) |
 | `experiments/results/` | 1,120 per-seed JSON logs of the main grid (4 datasets × methods/ablations × 10 seeds) |
 | `experiments/results_v2/` | 160 reruns with per-modality gradient-norm logging and multi-severity degradations |
+| `experiments/results_v4/` | 440 runs of the follow-up variants MFC-J / MFC-OG and same-machine references (workstation) |
 | `experiments/results_v3/` | 160 reruns with JPEG-compression degradations; memory measurements in `out/memory.json` |
 | `experiments/out/` | Generated tables (`tables/*.tex`), figures (`figs/*.png`) and full numeric summaries (`summary.md`, `summary_v2.md`) |
 | `experiments/grid*.txt` | The exact job lists that produced every log |
@@ -79,13 +80,14 @@ reproduce the reported results exactly. Expected output ends with `ALL CHECKS PA
 | Table 4 (AVE) | `out/tables/main_ave.tex` | `aggregate.py` | `results/ave/*` |
 | Table 5 (synthetic) | `out/tables/main_synthetic.tex` | `aggregate.py` | `results/synthetic/*` |
 | Table 6 (spectrogram views) | `out/tables/main_crema_spec.tex` | `aggregate.py` | `results/crema_spec/*` |
-| Table 7 (component ablation) | `out/tables/ablation_joint.tex` | `aggregate.py` | `results/{crema_av,ave,synthetic}/{baseline,static__*,mfc_a*}` |
-| Table 8 (sensitivity) | `out/tables/sensitivity.tex` | `aggregate.py` | `results/*/mfc_a__{gamma,window,ema,warmup,clip}=*` |
-| Table 9 (capacity) | `out/tables/capacity.tex` | `aggregate.py` | `results/synthetic/{baseline,mfc_a}__hv=*` |
-| Table 10 (graded degradations, AVE) | `out/tables/severity_ave.tex` | `aggregate_v2.py` | `results_v2/ave/*` |
-| Table 11 (JPEG compression) | `out/tables/jpeg_joint.tex` | `aggregate_v3.py` | `results_v3/{crema_av,ave}/*` |
+| Table 7 (follow-up variants MFC-J, MFC-OG) | `out/tables/variants.tex` | `analyze_v4.py` | `results_v4/*` and real-data references in `results/` |
+| Table 8 (component ablation) | `out/tables/ablation_joint.tex` | `aggregate.py` | `results/{crema_av,ave,synthetic}/{baseline,static__*,mfc_a*}` |
+| Table 9 (sensitivity) | `out/tables/sensitivity.tex` | `aggregate.py` | `results/*/mfc_a__{gamma,window,ema,warmup,clip}=*` |
+| Table 10 (capacity) | `out/tables/capacity.tex` | `aggregate.py` | `results/synthetic/{baseline,mfc_a}__hv=*` |
+| Table 11 (graded degradations, AVE) | `out/tables/severity_ave.tex` | `aggregate_v2.py` | `results_v2/ave/*` |
+| Table 12 (JPEG compression) | `out/tables/jpeg_joint.tex` | `aggregate_v3.py` | `results_v3/{crema_av,ave}/*` |
 | Memory figures quoted in the cost section | `out/tables/memory.tex`, `out/memory.json` | `measure_memory.py` | fresh measurement runs |
-| Table 12 (cost) | `out/tables/cost.tex` | `aggregate.py` | `time` and `flops` fields of `results/{synthetic,crema_av}/*` |
+| Table 13 (cost) | `out/tables/cost.tex` | `aggregate.py` | `time` and `flops` fields of `results/{synthetic,crema_av}/*` |
 | Figures 1–3 (training dynamics) | `out/figs/dynamics_{crema_av,ave,synthetic}.png` | `aggregate.py` | per-epoch `log` rows: `tune_acc, ogr_v, ogr_a, lam_v, lam_a` |
 | Figure 4 (gradient norms, AVE) | `out/figs/gradnorm_ave.png` | `aggregate_v2.py` | per-epoch `gj_v, gj_a, gu_v, gu_a` in `results_v2/ave/*` |
 | Figure 5 (robustness curves) | `out/figs/robustness.png` | `aggregate.py` | `robustness` field of `results/*/*` |

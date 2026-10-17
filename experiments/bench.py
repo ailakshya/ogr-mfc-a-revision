@@ -450,7 +450,10 @@ def run(dataset, method, seed, **kw):
         ctl = Static(*w)
     elif method == "mfc_t":
         ctl = MFCT(**kw)
-    elif method == "mfc_a":
+    elif method in ("mfc_a", "mfc_j", "mfc_og"):
+        # mfc_j : MFC-A weights also scale the joint-loss gradient entering the fusion layer from each encoder
+        # mfc_og: MFC-A plus OGM-GE gradient modulation, applied only when the more confident modality is also
+        #         the one with the higher smoothed OGR (i.e. its confidence comes from memorisation)
         if "clip" in kw and isinstance(kw["clip"], str):
             kw["clip"] = tuple(float(c) for c in kw["clip"].split(","))
         ctl = MFCA(**kw)
@@ -469,6 +472,7 @@ def run(dataset, method, seed, **kw):
         new.epoch(evaluate(model, D["train"]), evaluate(model, D["ctrl"]))   # Theta(0) losses
         t["monitor"] += time.perf_counter() - t0
     mlog = []
+    last_sig = {}
 
     for ep in range(cfg["epochs"]):
         if method == "pmr":
@@ -529,9 +533,13 @@ def run(dataset, method, seed, **kw):
                     for p in params:
                         p.grad = comb[off:off + p.numel()].view_as(p).clone(); off += p.numel()
                 tm += time.perf_counter() - ts
+            elif method == "mfc_j":
+                sg = lambda z, c: c * z + (1 - c) * z.detach()         # value z, gradient c*dz
+                lj = F.cross_entropy(model.fuse(torch.cat([sg(zv, lam_v), sg(za, lam_a)], 1)), y[b])
+                (lj + lam_v * lv + lam_a * la).backward()
             else:
                 (lj + lam_v * lv + lam_a * la).backward()
-            if method == "ogm_ge":
+            if method == "ogm_ge" or (method == "mfc_og" and last_sig):
                 ts = time.perf_counter()
                 with torch.no_grad():
                     W = model.fuse.weight
@@ -546,6 +554,12 @@ def run(dataset, method, seed, **kw):
                         cv_ = 1 - math.tanh(alpha * (r - 1))
                     else:
                         ca_ = 1 - math.tanh(alpha * (1 / max(r, 1e-8) - 1))
+                    if method == "mfc_og":                 # gate: modulate only an over-fitting dominant modality
+                        v_overfits = last_sig["sig_v"] > last_sig["sig_a"]
+                        if r > 1 and not v_overfits:
+                            cv_ = 1.0
+                        if r <= 1 and v_overfits:
+                            ca_ = 1.0
                     for params, c in ((enc_v, cv_), (enc_a, ca_)):
                         for p in params:
                             if p.grad is not None:
@@ -565,7 +579,7 @@ def run(dataset, method, seed, **kw):
         cv = evaluate(model, D["ctrl"])
         s.update(cv_lv=cv["lv"], cv_la=cv["la"], cv_acc=cv["acc"])
         t2 = time.perf_counter()
-        if method in ("mfc_a", "mfc_t"):
+        if method in ("mfc_a", "mfc_t", "mfc_j", "mfc_og"):
             t["monitor"] += (t2 - t1) + (t1 - t0 if ctl.needs_train_pass else 0.0)
         if method == "olm":
             t["monitor"] += t2 - t0
@@ -580,6 +594,7 @@ def run(dataset, method, seed, **kw):
 
         t0 = time.perf_counter()
         info = ctl.update(ep, s)
+        last_sig = info if ep + 1 >= getattr(ctl, "warm", 0) else {}
         t["ctrl"] += time.perf_counter() - t0
 
         t0 = time.perf_counter()
@@ -604,7 +619,7 @@ def run(dataset, method, seed, **kw):
     n_cv, n_tu = len(D["ctrl"][2]), len(D["tune"][2])
     flops = dict(train=3 * F1 * n_tr * cfg["epochs"], select=F1 * n_tu * cfg["epochs"],
                  monitor=0, method=0, ctrl_ops=0)
-    if method in ("mfc_a", "mfc_t"):
+    if method in ("mfc_a", "mfc_t", "mfc_j", "mfc_og"):
         flops["monitor"] = F1 * ((0 if getattr(ctl, "running", False) else n_tr) + n_cv) * cfg["epochs"]
         flops["ctrl_ops"] = (4 * ctl.W + 12) * cfg["epochs"]
     if method == "grad_blend":

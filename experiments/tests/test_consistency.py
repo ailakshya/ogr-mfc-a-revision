@@ -14,11 +14,11 @@ PY = sys.executable
 
 # tables that are printed in the manuscript (others are released extras)
 IN_PAPER = ["main_crema_av", "main_ave", "main_synthetic", "main_crema_spec", "ablation_joint",
-            "sensitivity", "capacity", "cost", "severity_ave", "jpeg_joint"]
+            "sensitivity", "capacity", "cost", "severity_ave", "jpeg_joint", "variants"]
 
 
 def regenerate():
-    for script in ("aggregate.py", "aggregate_v2.py", "aggregate_v3.py"):
+    for script in ("aggregate.py", "aggregate_v2.py", "aggregate_v3.py", "analyze_v4.py"):
         subprocess.run([PY, os.path.join(EXP, script)], cwd=EXP, check=True, stdout=subprocess.DEVNULL)
 
 
@@ -35,7 +35,7 @@ def check_tables():
 def check_grids():
     jobs = set()
     for g in glob.glob(os.path.join(EXP, "grid*.txt")):
-        if g.endswith("grid_v2.txt"):
+        if g.endswith(("grid_v2.txt", "grid_v4.txt")):
             continue
         for l in open(g):
             p = l.split()
