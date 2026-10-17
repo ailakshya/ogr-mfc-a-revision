@@ -33,18 +33,21 @@ def check_tables():
 
 
 def check_grids():
-    jobs = set()
+    """Every job of every grid file has its per-seed log (grid_vN.txt -> results_vN/, others -> results/)."""
+    n, absent = 0, []
     for g in glob.glob(os.path.join(EXP, "grid*.txt")):
-        if g.endswith(("grid_v2.txt", "grid_v4.txt")):
-            continue
+        v = os.path.basename(g)[len("grid"):-len(".txt")]
+        res = os.path.join(EXP, "results" + (v if v in ("_v2", "_v4", "_v5") else ""))
         for l in open(g):
             p = l.split()
-            if p and not l.startswith("#"):
-                kw = sorted(x for x in p[3:])
-                jobs.add((p[0], p[1] + "".join("__" + x for x in kw), int(p[2])))
-    absent = [j for j in jobs if not os.path.exists(os.path.join(EXP, "results", j[0], j[1], f"seed{j[2]}.json"))]
+            if not p or l.startswith("#"):
+                continue
+            tag = p[1] + "".join("__" + x for x in sorted(p[3:]))
+            n += 1
+            if not os.path.exists(os.path.join(res, p[0], tag, f"seed{p[2]}.json")):
+                absent.append((os.path.basename(g), p[0], tag, p[2]))
     assert not absent, f"{len(absent)} grid jobs have no log, e.g. {absent[:3]}"
-    print(f"logs: all {len(jobs)} grid jobs have a per-seed log")
+    print(f"logs: all {n} grid jobs (all grid files) have a per-seed log")
 
 
 def check_reference_implementation():
