@@ -21,6 +21,7 @@ raw per-seed logs and regenerated with one command.
 | `experiments/results/` | 1,120 per-seed JSON logs of the main grid (4 datasets × methods/ablations × 10 seeds) |
 | `experiments/results_v2/` | 160 reruns with per-modality gradient-norm logging and multi-severity degradations |
 | `experiments/results_v4/` | 440 runs of the follow-up variants MFC-J / MFC-OG and same-machine references (workstation) |
+| `experiments/results_v5/` | 480 runs with the weight bounds widened to [0, 2] (`analyze_v5.py`, `out/summary_v5.md`) |
 | `experiments/results_v3/` | 160 reruns with JPEG-compression degradations; memory measurements in `out/memory.json` |
 | `experiments/out/` | Generated tables (`tables/*.tex`), figures (`figs/*.png`) and full numeric summaries (`summary.md`, `summary_v2.md`) |
 | `experiments/grid*.txt` | The exact job lists that produced every log |

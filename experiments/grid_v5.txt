@@ -1,0 +1,480 @@
+crema_av mfc_a 0 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 0 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 0 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 0 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 0 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 0 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 1 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 1 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 1 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 1 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 1 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 1 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 2 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 2 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 2 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 2 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 2 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 2 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 4 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 4 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 4 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 4 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 4 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 4 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 5 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 5 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 5 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 5 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 5 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 5 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 6 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 6 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 6 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 6 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 6 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 6 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 7 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 7 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 7 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 7 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 7 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 7 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_av mfc_a 9 clip=0.0,2.0 gamma=1.0
+crema_av mfc_j 9 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_av mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_av mfc_a 9 clip=0.0,2.0 gamma=3.0
+crema_av mfc_j 9 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_av mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_av mfc_a 9 clip=0.0,2.0 gamma=5.0
+crema_av mfc_j 9 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_av mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 0 clip=0.0,2.0 gamma=1.0
+ave mfc_j 0 clip=0.0,2.0 gamma=1.0
+ave mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 0 clip=0.0,2.0 gamma=3.0
+ave mfc_j 0 clip=0.0,2.0 gamma=3.0
+ave mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 0 clip=0.0,2.0 gamma=5.0
+ave mfc_j 0 clip=0.0,2.0 gamma=5.0
+ave mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 1 clip=0.0,2.0 gamma=1.0
+ave mfc_j 1 clip=0.0,2.0 gamma=1.0
+ave mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 1 clip=0.0,2.0 gamma=3.0
+ave mfc_j 1 clip=0.0,2.0 gamma=3.0
+ave mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 1 clip=0.0,2.0 gamma=5.0
+ave mfc_j 1 clip=0.0,2.0 gamma=5.0
+ave mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 2 clip=0.0,2.0 gamma=1.0
+ave mfc_j 2 clip=0.0,2.0 gamma=1.0
+ave mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 2 clip=0.0,2.0 gamma=3.0
+ave mfc_j 2 clip=0.0,2.0 gamma=3.0
+ave mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 2 clip=0.0,2.0 gamma=5.0
+ave mfc_j 2 clip=0.0,2.0 gamma=5.0
+ave mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 3 clip=0.0,2.0 gamma=1.0
+ave mfc_j 3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 3 clip=0.0,2.0 gamma=3.0
+ave mfc_j 3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 3 clip=0.0,2.0 gamma=5.0
+ave mfc_j 3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 4 clip=0.0,2.0 gamma=1.0
+ave mfc_j 4 clip=0.0,2.0 gamma=1.0
+ave mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 4 clip=0.0,2.0 gamma=3.0
+ave mfc_j 4 clip=0.0,2.0 gamma=3.0
+ave mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 4 clip=0.0,2.0 gamma=5.0
+ave mfc_j 4 clip=0.0,2.0 gamma=5.0
+ave mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 5 clip=0.0,2.0 gamma=1.0
+ave mfc_j 5 clip=0.0,2.0 gamma=1.0
+ave mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 5 clip=0.0,2.0 gamma=3.0
+ave mfc_j 5 clip=0.0,2.0 gamma=3.0
+ave mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 5 clip=0.0,2.0 gamma=5.0
+ave mfc_j 5 clip=0.0,2.0 gamma=5.0
+ave mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 6 clip=0.0,2.0 gamma=1.0
+ave mfc_j 6 clip=0.0,2.0 gamma=1.0
+ave mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 6 clip=0.0,2.0 gamma=3.0
+ave mfc_j 6 clip=0.0,2.0 gamma=3.0
+ave mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 6 clip=0.0,2.0 gamma=5.0
+ave mfc_j 6 clip=0.0,2.0 gamma=5.0
+ave mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 7 clip=0.0,2.0 gamma=1.0
+ave mfc_j 7 clip=0.0,2.0 gamma=1.0
+ave mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 7 clip=0.0,2.0 gamma=3.0
+ave mfc_j 7 clip=0.0,2.0 gamma=3.0
+ave mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 7 clip=0.0,2.0 gamma=5.0
+ave mfc_j 7 clip=0.0,2.0 gamma=5.0
+ave mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 8 clip=0.0,2.0 gamma=1.0
+ave mfc_j 8 clip=0.0,2.0 gamma=1.0
+ave mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 8 clip=0.0,2.0 gamma=3.0
+ave mfc_j 8 clip=0.0,2.0 gamma=3.0
+ave mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 8 clip=0.0,2.0 gamma=5.0
+ave mfc_j 8 clip=0.0,2.0 gamma=5.0
+ave mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=5.0
+ave mfc_a 9 clip=0.0,2.0 gamma=1.0
+ave mfc_j 9 clip=0.0,2.0 gamma=1.0
+ave mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=1.0
+ave mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=1.0
+ave mfc_a 9 clip=0.0,2.0 gamma=3.0
+ave mfc_j 9 clip=0.0,2.0 gamma=3.0
+ave mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=3.0
+ave mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=3.0
+ave mfc_a 9 clip=0.0,2.0 gamma=5.0
+ave mfc_j 9 clip=0.0,2.0 gamma=5.0
+ave mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=5.0
+ave mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 0 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 0 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 0 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 0 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 0 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 0 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 1 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 1 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 1 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 1 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 1 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 1 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 2 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 2 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 2 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 2 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 2 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 2 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 4 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 4 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 4 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 4 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 4 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 4 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 5 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 5 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 5 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 5 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 5 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 5 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 6 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 6 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 6 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 6 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 6 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 6 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 7 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 7 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 7 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 7 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 7 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 7 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=5.0
+synthetic mfc_a 9 clip=0.0,2.0 gamma=1.0
+synthetic mfc_j 9 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=1.0
+synthetic mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=1.0
+synthetic mfc_a 9 clip=0.0,2.0 gamma=3.0
+synthetic mfc_j 9 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=3.0
+synthetic mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=3.0
+synthetic mfc_a 9 clip=0.0,2.0 gamma=5.0
+synthetic mfc_j 9 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=5.0
+synthetic mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 0 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 0 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 0 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 0 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 0 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 0 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 0 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 0 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 1 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 1 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 1 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 1 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 1 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 1 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 1 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 1 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 2 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 2 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 2 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 2 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 2 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 2 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 2 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 2 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 3 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 3 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 4 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 4 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 4 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 4 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 4 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 4 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 4 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 4 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 5 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 5 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 5 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 5 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 5 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 5 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 5 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 5 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 6 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 6 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 6 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 6 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 6 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 6 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 6 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 6 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 7 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 7 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 7 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 7 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 7 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 7 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 7 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 7 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 8 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 8 alpha=0.8 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_a 9 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_j 9 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=1.0
+crema_spec mfc_a 9 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_j 9 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=3.0
+crema_spec mfc_a 9 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_j 9 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 9 alpha=0.3 clip=0.0,2.0 gamma=5.0
+crema_spec mfc_og 9 alpha=0.8 clip=0.0,2.0 gamma=5.0
