@@ -20,6 +20,7 @@ raw per-seed logs and regenerated with one command.
 | `experiments/data/` | Extracted features (`*.npz`, stored with Git LFS) |
 | `experiments/results/` | 1,120 per-seed JSON logs of the main grid (4 datasets × methods/ablations × 10 seeds) |
 | `experiments/results_v2/` | 160 reruns with per-modality gradient-norm logging and multi-severity degradations |
+| `experiments/results_v3/` | 160 reruns with JPEG-compression degradations; memory measurements in `out/memory.json` |
 | `experiments/out/` | Generated tables (`tables/*.tex`), figures (`figs/*.png`) and full numeric summaries (`summary.md`, `summary_v2.md`) |
 | `experiments/grid*.txt` | The exact job lists that produced every log |
 | `docs/` | Revision checklist mapping each reviewer comment to the change made |
@@ -82,7 +83,9 @@ reproduce the reported results exactly. Expected output ends with `ALL CHECKS PA
 | Table 8 (sensitivity) | `out/tables/sensitivity.tex` | `aggregate.py` | `results/*/mfc_a__{gamma,window,ema,warmup,clip}=*` |
 | Table 9 (capacity) | `out/tables/capacity.tex` | `aggregate.py` | `results/synthetic/{baseline,mfc_a}__hv=*` |
 | Table 10 (graded degradations, AVE) | `out/tables/severity_ave.tex` | `aggregate_v2.py` | `results_v2/ave/*` |
-| Table 11 (cost) | `out/tables/cost.tex` | `aggregate.py` | `time` and `flops` fields of `results/{synthetic,crema_av}/*` |
+| Table 11 (JPEG compression) | `out/tables/jpeg_joint.tex` | `aggregate_v3.py` | `results_v3/{crema_av,ave}/*` |
+| Memory figures quoted in the cost section | `out/tables/memory.tex`, `out/memory.json` | `measure_memory.py` | fresh measurement runs |
+| Table 12 (cost) | `out/tables/cost.tex` | `aggregate.py` | `time` and `flops` fields of `results/{synthetic,crema_av}/*` |
 | Figures 1–3 (training dynamics) | `out/figs/dynamics_{crema_av,ave,synthetic}.png` | `aggregate.py` | per-epoch `log` rows: `tune_acc, ogr_v, ogr_a, lam_v, lam_a` |
 | Figure 4 (gradient norms, AVE) | `out/figs/gradnorm_ave.png` | `aggregate_v2.py` | per-epoch `gj_v, gj_a, gu_v, gu_a` in `results_v2/ave/*` |
 | Figure 5 (robustness curves) | `out/figs/robustness.png` | `aggregate.py` | `robustness` field of `results/*/*` |
@@ -125,7 +128,10 @@ JOBS=20 .venv/bin/python experiments/bench.py --grid experiments/grid.txt
 .venv/bin/python experiments/aggregate.py && .venv/bin/python experiments/aggregate_v2.py
 ```
 
-Training runs use single-threaded CPU PyTorch and are bit-for-bit deterministic on the same machine.
+Training runs use single-threaded CPU PyTorch and are bit-for-bit deterministic on the same machine, but
+floating-point results differ slightly between CPUs. The synthetic and spectrogram-view logs were produced on an
+Apple-silicon laptop and the AVE and CREMA-D audio–video logs on the x86 workstation; rerun each on the matching
+kind of machine to reproduce the logged numbers exactly (all paired comparisons in the paper are same-machine).
 The `run_*.sh` and `finish_*.sh` helpers contain the paths used on the authors' workstation.
 
 ## Honest summary of the results

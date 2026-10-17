@@ -50,7 +50,7 @@ We thank the three reviewers for their careful and constructive reports. Their c
 \chg Related work, ``Multimodal fusion and visual representation''.
 
 \rc{3. Please strengthen the related work on optimization and evolutionary learning \ldots\ ``Time efficiency in optimization with a Bayesian-Evolutionary algorithm'' \ldots}
-\resp Added in a new subsection. Following that work's argument that efficiency should be judged beyond the number of evaluations, we now report wall-clock time and FLOPs for every component of every method (Table~11).
+\resp Added in a new subsection. Following that work's argument that efficiency should be judged beyond the number of evaluations, we now report wall-clock time and FLOPs for every component of every method (Table~12).
 \chg Related work, new subsection ``Adaptive and evolutionary optimisation''; Results, ``Computational cost''.
 
 \rc{4. Please clarify the definition of OGR \ldots\ explain why this ratio is a better indicator of modality overfitting than the conventional generalization gap. A theoretical or empirical justification would strengthen the proposed metric.}
@@ -66,7 +66,7 @@ We thank the three reviewers for their careful and constructive reports. Their c
 \chg Method, Algorithm~1 and paragraph ``Threshold variant (MFC-T)''.
 
 \rc{7. Please discuss robustness under difficult visual conditions \ldots\ SUSTechGAN \ldots}
-\resp On real video (AVE and CREMA-D) we now evaluate, besides additive noise, three pixel-level degradations applied to the frames before encoding (Gaussian blur, random occlusion and low light), each at three severity levels on AVE (new Table~10), and a missing-video condition. We state the outcome plainly: MFC-A is 1--2 points more robust than the baseline (significant for strong blur and mild/moderate low light), but OGM-GE is clearly more robust on AVE, so we no longer claim a general robustness advantage. We discuss SUSTechGAN, which synthesises rain and night driving images to improve detection, as a complementary, generative approach to adverse conditions and list such data as future work.
+\resp On real video (AVE and CREMA-D) we now evaluate, besides additive noise, three pixel-level degradations applied to the frames before encoding (Gaussian blur, random occlusion and low light), each at three severity levels on AVE (new Table~10), JPEG compression of the frames at qualities 30, 15 and 5 on both real datasets (new Table~11), and a missing-video condition. We state the outcome plainly: MFC-A is 1--2 points more robust than the baseline (significant for strong blur and mild/moderate low light), but OGM-GE is clearly more robust on AVE, so we no longer claim a general robustness advantage. We discuss SUSTechGAN, which synthesises rain and night driving images to improve detection, as a complementary, generative approach to adverse conditions and list such data as future work.
 \chg Related work, ``Robustness under adverse visual conditions''; Experimental setup, ``Metrics''; Tables~3--4; Results, ``Robustness to visual degradation''; Limitations (v).
 
 \rc{8. Please explain the choice of hyperparameters \ldots\ OGR window, EMA factor, warm-up period, and weight clipping range \ldots\ whether they are robust across datasets.}
@@ -90,8 +90,8 @@ We thank the three reviewers for their careful and constructive reports. Their c
 \chg Experimental setup, ``Metrics and statistics''; all result tables.
 
 \rc{13. Please clarify the meaning of ``zero additional FLOPs.''}
-\resp We agree that the claim was misleading because it counted only the controller arithmetic. It has been removed. Table~11 now reports three components separately: controller arithmetic (960 scalar operations per run, a few ms), monitoring passes (about 39\% of baseline training FLOPs and 6--18\% wall-clock time, because the controller needs inference passes over the training and controller splits) and method-specific work for the baselines. We also introduce a running-loss variant that avoids the extra training-set pass (7.5--7.9\% extra FLOPs and 1.8--3.6\% extra time).
-\chg Method, ``Cost and complexity''; Results, ``Computational cost'', Table~11.
+\resp We agree that the claim was misleading because it counted only the controller arithmetic. It has been removed. We now also measure memory: MFC-A's extra state is 1.27\,KB (0.06\% of the parameters, gradients and optimiser state of the CREMA-D model), its traced heap grows by at most 0.005\,MB, and its peak resident memory stays within the baseline's run-to-run spread on all four datasets; only MMPareto shows a measurable increase (1.7--2.7\,MB). Table~12 now reports three components separately: controller arithmetic (960 scalar operations per run, a few ms), monitoring passes (about 39\% of baseline training FLOPs and 6--18\% wall-clock time, because the controller needs inference passes over the training and controller splits) and method-specific work for the baselines. We also introduce a running-loss variant that avoids the extra training-set pass (7.5--7.9\% extra FLOPs and 1.8--3.6\% extra time).
+\chg Method, ``Cost and complexity''; Results, ``Computational cost'', Table~12.
 
 \rc{14. Please recheck the complexity analysis \ldots\ precise explanation of the additional computation caused by validation-loss evaluation and OGR calculation.}
 \resp The analysis now states: training $T(3FN_{tr}+FN_{tune})$; monitoring $TF(N_{tr}+N_{cv})$ (or $TFN_{cv}$ for the running variant); controller $O(TMW)$ scalar operations; memory $O(MW)$. The total is $O(TF(N_{tr}+N_{cv}+N_{tune}))$, the same order as standard training with a larger constant.

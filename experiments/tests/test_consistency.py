@@ -14,11 +14,11 @@ PY = sys.executable
 
 # tables that are printed in the manuscript (others are released extras)
 IN_PAPER = ["main_crema_av", "main_ave", "main_synthetic", "main_crema_spec", "ablation_joint",
-            "sensitivity", "capacity", "cost", "severity_ave"]
+            "sensitivity", "capacity", "cost", "severity_ave", "jpeg_joint"]
 
 
 def regenerate():
-    for script in ("aggregate.py", "aggregate_v2.py"):
+    for script in ("aggregate.py", "aggregate_v2.py", "aggregate_v3.py"):
         subprocess.run([PY, os.path.join(EXP, script)], cwd=EXP, check=True, stdout=subprocess.DEVNULL)
 
 
@@ -70,8 +70,8 @@ def check_reference_implementation():
 
 def check_determinism():
     n = bad = 0
-    for f in glob.glob(os.path.join(EXP, "results_v2", "*", "*", "seed*.json")):
-        rel = os.path.relpath(f, os.path.join(EXP, "results_v2"))
+    for f in glob.glob(os.path.join(EXP, "results_v[23]", "*", "*", "seed*.json")):
+        rel = os.path.relpath(f, os.path.dirname(os.path.dirname(os.path.dirname(f))))
         a, b = json.load(open(f)), json.load(open(os.path.join(EXP, "results", rel)))
         n += 1
         bad += any(a[k] != b[k] for k in ("test_acc", "ogr_gap")) or \
