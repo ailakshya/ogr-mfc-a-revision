@@ -1,0 +1,780 @@
+crema_spec agm 0 alpha=0.1
+crema_spec agm 0 alpha=0.5
+crema_spec agm 0 alpha=1.0
+crema_spec agm 1 alpha=0.1
+crema_spec agm 1 alpha=0.5
+crema_spec agm 1 alpha=1.0
+crema_spec agm 2 alpha=0.1
+crema_spec agm 2 alpha=0.5
+crema_spec agm 2 alpha=1.0
+crema_spec agm 3 alpha=0.1
+crema_spec agm 3 alpha=0.5
+crema_spec agm 3 alpha=1.0
+crema_spec agm 4 alpha=0.1
+crema_spec agm 4 alpha=0.5
+crema_spec agm 4 alpha=1.0
+crema_spec agm 5 alpha=0.1
+crema_spec agm 5 alpha=0.5
+crema_spec agm 5 alpha=1.0
+crema_spec agm 6 alpha=0.1
+crema_spec agm 6 alpha=0.5
+crema_spec agm 6 alpha=1.0
+crema_spec agm 7 alpha=0.1
+crema_spec agm 7 alpha=0.5
+crema_spec agm 7 alpha=1.0
+crema_spec agm 8 alpha=0.1
+crema_spec agm 8 alpha=0.5
+crema_spec agm 8 alpha=1.0
+crema_spec agm 9 alpha=0.1
+crema_spec agm 9 alpha=0.5
+crema_spec agm 9 alpha=1.0
+crema_spec baseline 0
+crema_spec baseline 1
+crema_spec baseline 2
+crema_spec baseline 3
+crema_spec baseline 4
+crema_spec baseline 5
+crema_spec baseline 6
+crema_spec baseline 7
+crema_spec baseline 8
+crema_spec baseline 9
+crema_spec grad_blend 0
+crema_spec grad_blend 1
+crema_spec grad_blend 2
+crema_spec grad_blend 3
+crema_spec grad_blend 4
+crema_spec grad_blend 5
+crema_spec grad_blend 6
+crema_spec grad_blend 7
+crema_spec grad_blend 8
+crema_spec grad_blend 9
+crema_spec mfc_a 0
+crema_spec mfc_a 0 clip=0.1,5.0
+crema_spec mfc_a 0 clip=0.5,1.5
+crema_spec mfc_a 0 ema=0.0
+crema_spec mfc_a 0 ema=0.5
+crema_spec mfc_a 0 ema=0.9
+crema_spec mfc_a 0 gamma=2.0
+crema_spec mfc_a 0 gamma=3.0
+crema_spec mfc_a 0 mode=amplify
+crema_spec mfc_a 0 mode=throttle
+crema_spec mfc_a 0 running=True
+crema_spec mfc_a 0 signal=gap
+crema_spec mfc_a 0 warmup=0
+crema_spec mfc_a 0 warmup=5
+crema_spec mfc_a 0 window=1
+crema_spec mfc_a 0 window=10
+crema_spec mfc_a 0 window=3
+crema_spec mfc_a 1
+crema_spec mfc_a 1 clip=0.1,5.0
+crema_spec mfc_a 1 clip=0.5,1.5
+crema_spec mfc_a 1 ema=0.0
+crema_spec mfc_a 1 ema=0.5
+crema_spec mfc_a 1 ema=0.9
+crema_spec mfc_a 1 gamma=2.0
+crema_spec mfc_a 1 gamma=3.0
+crema_spec mfc_a 1 mode=amplify
+crema_spec mfc_a 1 mode=throttle
+crema_spec mfc_a 1 running=True
+crema_spec mfc_a 1 signal=gap
+crema_spec mfc_a 1 warmup=0
+crema_spec mfc_a 1 warmup=5
+crema_spec mfc_a 1 window=1
+crema_spec mfc_a 1 window=10
+crema_spec mfc_a 1 window=3
+crema_spec mfc_a 2
+crema_spec mfc_a 2 clip=0.1,5.0
+crema_spec mfc_a 2 clip=0.5,1.5
+crema_spec mfc_a 2 ema=0.0
+crema_spec mfc_a 2 ema=0.5
+crema_spec mfc_a 2 ema=0.9
+crema_spec mfc_a 2 gamma=2.0
+crema_spec mfc_a 2 gamma=3.0
+crema_spec mfc_a 2 mode=amplify
+crema_spec mfc_a 2 mode=throttle
+crema_spec mfc_a 2 running=True
+crema_spec mfc_a 2 signal=gap
+crema_spec mfc_a 2 warmup=0
+crema_spec mfc_a 2 warmup=5
+crema_spec mfc_a 2 window=1
+crema_spec mfc_a 2 window=10
+crema_spec mfc_a 2 window=3
+crema_spec mfc_a 3
+crema_spec mfc_a 3 clip=0.1,5.0
+crema_spec mfc_a 3 clip=0.5,1.5
+crema_spec mfc_a 3 ema=0.0
+crema_spec mfc_a 3 ema=0.5
+crema_spec mfc_a 3 ema=0.9
+crema_spec mfc_a 3 gamma=2.0
+crema_spec mfc_a 3 gamma=3.0
+crema_spec mfc_a 3 mode=amplify
+crema_spec mfc_a 3 mode=throttle
+crema_spec mfc_a 3 running=True
+crema_spec mfc_a 3 signal=gap
+crema_spec mfc_a 3 warmup=0
+crema_spec mfc_a 3 warmup=5
+crema_spec mfc_a 3 window=1
+crema_spec mfc_a 3 window=10
+crema_spec mfc_a 3 window=3
+crema_spec mfc_a 4
+crema_spec mfc_a 4 clip=0.1,5.0
+crema_spec mfc_a 4 clip=0.5,1.5
+crema_spec mfc_a 4 ema=0.0
+crema_spec mfc_a 4 ema=0.5
+crema_spec mfc_a 4 ema=0.9
+crema_spec mfc_a 4 gamma=2.0
+crema_spec mfc_a 4 gamma=3.0
+crema_spec mfc_a 4 mode=amplify
+crema_spec mfc_a 4 mode=throttle
+crema_spec mfc_a 4 running=True
+crema_spec mfc_a 4 signal=gap
+crema_spec mfc_a 4 warmup=0
+crema_spec mfc_a 4 warmup=5
+crema_spec mfc_a 4 window=1
+crema_spec mfc_a 4 window=10
+crema_spec mfc_a 4 window=3
+crema_spec mfc_a 5
+crema_spec mfc_a 5 clip=0.1,5.0
+crema_spec mfc_a 5 clip=0.5,1.5
+crema_spec mfc_a 5 ema=0.0
+crema_spec mfc_a 5 ema=0.5
+crema_spec mfc_a 5 ema=0.9
+crema_spec mfc_a 5 gamma=2.0
+crema_spec mfc_a 5 gamma=3.0
+crema_spec mfc_a 5 mode=amplify
+crema_spec mfc_a 5 mode=throttle
+crema_spec mfc_a 5 running=True
+crema_spec mfc_a 5 signal=gap
+crema_spec mfc_a 5 warmup=0
+crema_spec mfc_a 5 warmup=5
+crema_spec mfc_a 5 window=1
+crema_spec mfc_a 5 window=10
+crema_spec mfc_a 5 window=3
+crema_spec mfc_a 6
+crema_spec mfc_a 6 clip=0.1,5.0
+crema_spec mfc_a 6 clip=0.5,1.5
+crema_spec mfc_a 6 ema=0.0
+crema_spec mfc_a 6 ema=0.5
+crema_spec mfc_a 6 ema=0.9
+crema_spec mfc_a 6 gamma=2.0
+crema_spec mfc_a 6 gamma=3.0
+crema_spec mfc_a 6 mode=amplify
+crema_spec mfc_a 6 mode=throttle
+crema_spec mfc_a 6 running=True
+crema_spec mfc_a 6 signal=gap
+crema_spec mfc_a 6 warmup=0
+crema_spec mfc_a 6 warmup=5
+crema_spec mfc_a 6 window=1
+crema_spec mfc_a 6 window=10
+crema_spec mfc_a 6 window=3
+crema_spec mfc_a 7
+crema_spec mfc_a 7 clip=0.1,5.0
+crema_spec mfc_a 7 clip=0.5,1.5
+crema_spec mfc_a 7 ema=0.0
+crema_spec mfc_a 7 ema=0.5
+crema_spec mfc_a 7 ema=0.9
+crema_spec mfc_a 7 gamma=2.0
+crema_spec mfc_a 7 gamma=3.0
+crema_spec mfc_a 7 mode=amplify
+crema_spec mfc_a 7 mode=throttle
+crema_spec mfc_a 7 running=True
+crema_spec mfc_a 7 signal=gap
+crema_spec mfc_a 7 warmup=0
+crema_spec mfc_a 7 warmup=5
+crema_spec mfc_a 7 window=1
+crema_spec mfc_a 7 window=10
+crema_spec mfc_a 7 window=3
+crema_spec mfc_a 8
+crema_spec mfc_a 8 clip=0.1,5.0
+crema_spec mfc_a 8 clip=0.5,1.5
+crema_spec mfc_a 8 ema=0.0
+crema_spec mfc_a 8 ema=0.5
+crema_spec mfc_a 8 ema=0.9
+crema_spec mfc_a 8 gamma=2.0
+crema_spec mfc_a 8 gamma=3.0
+crema_spec mfc_a 8 mode=amplify
+crema_spec mfc_a 8 mode=throttle
+crema_spec mfc_a 8 running=True
+crema_spec mfc_a 8 signal=gap
+crema_spec mfc_a 8 warmup=0
+crema_spec mfc_a 8 warmup=5
+crema_spec mfc_a 8 window=1
+crema_spec mfc_a 8 window=10
+crema_spec mfc_a 8 window=3
+crema_spec mfc_a 9
+crema_spec mfc_a 9 clip=0.1,5.0
+crema_spec mfc_a 9 clip=0.5,1.5
+crema_spec mfc_a 9 ema=0.0
+crema_spec mfc_a 9 ema=0.5
+crema_spec mfc_a 9 ema=0.9
+crema_spec mfc_a 9 gamma=2.0
+crema_spec mfc_a 9 gamma=3.0
+crema_spec mfc_a 9 mode=amplify
+crema_spec mfc_a 9 mode=throttle
+crema_spec mfc_a 9 running=True
+crema_spec mfc_a 9 signal=gap
+crema_spec mfc_a 9 warmup=0
+crema_spec mfc_a 9 warmup=5
+crema_spec mfc_a 9 window=1
+crema_spec mfc_a 9 window=10
+crema_spec mfc_a 9 window=3
+crema_spec mfc_t 0
+crema_spec mfc_t 1
+crema_spec mfc_t 2
+crema_spec mfc_t 3
+crema_spec mfc_t 4
+crema_spec mfc_t 5
+crema_spec mfc_t 6
+crema_spec mfc_t 7
+crema_spec mfc_t 8
+crema_spec mfc_t 9
+crema_spec mmpareto 0
+crema_spec mmpareto 1
+crema_spec mmpareto 2
+crema_spec mmpareto 3
+crema_spec mmpareto 4
+crema_spec mmpareto 5
+crema_spec mmpareto 6
+crema_spec mmpareto 7
+crema_spec mmpareto 8
+crema_spec mmpareto 9
+crema_spec ogm_ge 0 alpha=0.1
+crema_spec ogm_ge 0 alpha=0.3
+crema_spec ogm_ge 0 alpha=0.8
+crema_spec ogm_ge 1 alpha=0.1
+crema_spec ogm_ge 1 alpha=0.3
+crema_spec ogm_ge 1 alpha=0.8
+crema_spec ogm_ge 2 alpha=0.1
+crema_spec ogm_ge 2 alpha=0.3
+crema_spec ogm_ge 2 alpha=0.8
+crema_spec ogm_ge 3 alpha=0.1
+crema_spec ogm_ge 3 alpha=0.3
+crema_spec ogm_ge 3 alpha=0.8
+crema_spec ogm_ge 4 alpha=0.1
+crema_spec ogm_ge 4 alpha=0.3
+crema_spec ogm_ge 4 alpha=0.8
+crema_spec ogm_ge 5 alpha=0.1
+crema_spec ogm_ge 5 alpha=0.3
+crema_spec ogm_ge 5 alpha=0.8
+crema_spec ogm_ge 6 alpha=0.1
+crema_spec ogm_ge 6 alpha=0.3
+crema_spec ogm_ge 6 alpha=0.8
+crema_spec ogm_ge 7 alpha=0.1
+crema_spec ogm_ge 7 alpha=0.3
+crema_spec ogm_ge 7 alpha=0.8
+crema_spec ogm_ge 8 alpha=0.1
+crema_spec ogm_ge 8 alpha=0.3
+crema_spec ogm_ge 8 alpha=0.8
+crema_spec ogm_ge 9 alpha=0.1
+crema_spec ogm_ge 9 alpha=0.3
+crema_spec ogm_ge 9 alpha=0.8
+crema_spec olm 0 eta=0.01
+crema_spec olm 0 eta=0.1
+crema_spec olm 0 eta=1.0
+crema_spec olm 1 eta=0.01
+crema_spec olm 1 eta=0.1
+crema_spec olm 1 eta=1.0
+crema_spec olm 2 eta=0.01
+crema_spec olm 2 eta=0.1
+crema_spec olm 2 eta=1.0
+crema_spec olm 3 eta=0.01
+crema_spec olm 3 eta=0.1
+crema_spec olm 3 eta=1.0
+crema_spec olm 4 eta=0.01
+crema_spec olm 4 eta=0.1
+crema_spec olm 4 eta=1.0
+crema_spec olm 5 eta=0.01
+crema_spec olm 5 eta=0.1
+crema_spec olm 5 eta=1.0
+crema_spec olm 6 eta=0.01
+crema_spec olm 6 eta=0.1
+crema_spec olm 6 eta=1.0
+crema_spec olm 7 eta=0.01
+crema_spec olm 7 eta=0.1
+crema_spec olm 7 eta=1.0
+crema_spec olm 8 eta=0.01
+crema_spec olm 8 eta=0.1
+crema_spec olm 8 eta=1.0
+crema_spec olm 9 eta=0.01
+crema_spec olm 9 eta=0.1
+crema_spec olm 9 eta=1.0
+crema_spec pmr 0 alpha=1.0 mu=0.001
+crema_spec pmr 0 alpha=1.0 mu=0.01
+crema_spec pmr 0 alpha=2.0 mu=0.001
+crema_spec pmr 0 alpha=2.0 mu=0.01
+crema_spec pmr 1 alpha=1.0 mu=0.001
+crema_spec pmr 1 alpha=1.0 mu=0.01
+crema_spec pmr 1 alpha=2.0 mu=0.001
+crema_spec pmr 1 alpha=2.0 mu=0.01
+crema_spec pmr 2 alpha=1.0 mu=0.001
+crema_spec pmr 2 alpha=1.0 mu=0.01
+crema_spec pmr 2 alpha=2.0 mu=0.001
+crema_spec pmr 2 alpha=2.0 mu=0.01
+crema_spec pmr 3 alpha=1.0 mu=0.001
+crema_spec pmr 3 alpha=1.0 mu=0.01
+crema_spec pmr 3 alpha=2.0 mu=0.001
+crema_spec pmr 3 alpha=2.0 mu=0.01
+crema_spec pmr 4 alpha=1.0 mu=0.001
+crema_spec pmr 4 alpha=1.0 mu=0.01
+crema_spec pmr 4 alpha=2.0 mu=0.001
+crema_spec pmr 4 alpha=2.0 mu=0.01
+crema_spec pmr 5 alpha=1.0 mu=0.001
+crema_spec pmr 5 alpha=1.0 mu=0.01
+crema_spec pmr 5 alpha=2.0 mu=0.001
+crema_spec pmr 5 alpha=2.0 mu=0.01
+crema_spec pmr 6 alpha=1.0 mu=0.001
+crema_spec pmr 6 alpha=1.0 mu=0.01
+crema_spec pmr 6 alpha=2.0 mu=0.001
+crema_spec pmr 6 alpha=2.0 mu=0.01
+crema_spec pmr 7 alpha=1.0 mu=0.001
+crema_spec pmr 7 alpha=1.0 mu=0.01
+crema_spec pmr 7 alpha=2.0 mu=0.001
+crema_spec pmr 7 alpha=2.0 mu=0.01
+crema_spec pmr 8 alpha=1.0 mu=0.001
+crema_spec pmr 8 alpha=1.0 mu=0.01
+crema_spec pmr 8 alpha=2.0 mu=0.001
+crema_spec pmr 8 alpha=2.0 mu=0.01
+crema_spec pmr 9 alpha=1.0 mu=0.001
+crema_spec pmr 9 alpha=1.0 mu=0.01
+crema_spec pmr 9 alpha=2.0 mu=0.001
+crema_spec pmr 9 alpha=2.0 mu=0.01
+crema_spec uncertainty 0
+crema_spec uncertainty 1
+crema_spec uncertainty 2
+crema_spec uncertainty 3
+crema_spec uncertainty 4
+crema_spec uncertainty 5
+crema_spec uncertainty 6
+crema_spec uncertainty 7
+crema_spec uncertainty 8
+crema_spec uncertainty 9
+synthetic agm 0 alpha=0.1
+synthetic agm 0 alpha=0.5
+synthetic agm 0 alpha=1.0
+synthetic agm 1 alpha=0.1
+synthetic agm 1 alpha=0.5
+synthetic agm 1 alpha=1.0
+synthetic agm 2 alpha=0.1
+synthetic agm 2 alpha=0.5
+synthetic agm 2 alpha=1.0
+synthetic agm 3 alpha=0.1
+synthetic agm 3 alpha=0.5
+synthetic agm 3 alpha=1.0
+synthetic agm 4 alpha=0.1
+synthetic agm 4 alpha=0.5
+synthetic agm 4 alpha=1.0
+synthetic agm 5 alpha=0.1
+synthetic agm 5 alpha=0.5
+synthetic agm 5 alpha=1.0
+synthetic agm 6 alpha=0.1
+synthetic agm 6 alpha=0.5
+synthetic agm 6 alpha=1.0
+synthetic agm 7 alpha=0.1
+synthetic agm 7 alpha=0.5
+synthetic agm 7 alpha=1.0
+synthetic agm 8 alpha=0.1
+synthetic agm 8 alpha=0.5
+synthetic agm 8 alpha=1.0
+synthetic agm 9 alpha=0.1
+synthetic agm 9 alpha=0.5
+synthetic agm 9 alpha=1.0
+synthetic baseline 0
+synthetic baseline 0 hv=1024
+synthetic baseline 0 hv=128
+synthetic baseline 0 hv=256
+synthetic baseline 0 hv=512
+synthetic baseline 1
+synthetic baseline 1 hv=1024
+synthetic baseline 1 hv=128
+synthetic baseline 1 hv=256
+synthetic baseline 1 hv=512
+synthetic baseline 2
+synthetic baseline 2 hv=1024
+synthetic baseline 2 hv=128
+synthetic baseline 2 hv=256
+synthetic baseline 2 hv=512
+synthetic baseline 3
+synthetic baseline 3 hv=1024
+synthetic baseline 3 hv=128
+synthetic baseline 3 hv=256
+synthetic baseline 3 hv=512
+synthetic baseline 4
+synthetic baseline 4 hv=1024
+synthetic baseline 4 hv=128
+synthetic baseline 4 hv=256
+synthetic baseline 4 hv=512
+synthetic baseline 5
+synthetic baseline 5 hv=1024
+synthetic baseline 5 hv=128
+synthetic baseline 5 hv=256
+synthetic baseline 5 hv=512
+synthetic baseline 6
+synthetic baseline 6 hv=1024
+synthetic baseline 6 hv=128
+synthetic baseline 6 hv=256
+synthetic baseline 6 hv=512
+synthetic baseline 7
+synthetic baseline 7 hv=1024
+synthetic baseline 7 hv=128
+synthetic baseline 7 hv=256
+synthetic baseline 7 hv=512
+synthetic baseline 8
+synthetic baseline 8 hv=1024
+synthetic baseline 8 hv=128
+synthetic baseline 8 hv=256
+synthetic baseline 8 hv=512
+synthetic baseline 9
+synthetic baseline 9 hv=1024
+synthetic baseline 9 hv=128
+synthetic baseline 9 hv=256
+synthetic baseline 9 hv=512
+synthetic grad_blend 0
+synthetic grad_blend 1
+synthetic grad_blend 2
+synthetic grad_blend 3
+synthetic grad_blend 4
+synthetic grad_blend 5
+synthetic grad_blend 6
+synthetic grad_blend 7
+synthetic grad_blend 8
+synthetic grad_blend 9
+synthetic mfc_a 0
+synthetic mfc_a 0 clip=0.1,5.0
+synthetic mfc_a 0 clip=0.5,1.5
+synthetic mfc_a 0 ema=0.0
+synthetic mfc_a 0 ema=0.5
+synthetic mfc_a 0 ema=0.9
+synthetic mfc_a 0 gamma=2.0
+synthetic mfc_a 0 gamma=3.0
+synthetic mfc_a 0 hv=1024
+synthetic mfc_a 0 hv=128
+synthetic mfc_a 0 hv=256
+synthetic mfc_a 0 hv=512
+synthetic mfc_a 0 mode=amplify
+synthetic mfc_a 0 mode=throttle
+synthetic mfc_a 0 running=True
+synthetic mfc_a 0 signal=gap
+synthetic mfc_a 0 warmup=0
+synthetic mfc_a 0 warmup=5
+synthetic mfc_a 0 window=1
+synthetic mfc_a 0 window=10
+synthetic mfc_a 0 window=3
+synthetic mfc_a 1
+synthetic mfc_a 1 clip=0.1,5.0
+synthetic mfc_a 1 clip=0.5,1.5
+synthetic mfc_a 1 ema=0.0
+synthetic mfc_a 1 ema=0.5
+synthetic mfc_a 1 ema=0.9
+synthetic mfc_a 1 gamma=2.0
+synthetic mfc_a 1 gamma=3.0
+synthetic mfc_a 1 hv=1024
+synthetic mfc_a 1 hv=128
+synthetic mfc_a 1 hv=256
+synthetic mfc_a 1 hv=512
+synthetic mfc_a 1 mode=amplify
+synthetic mfc_a 1 mode=throttle
+synthetic mfc_a 1 running=True
+synthetic mfc_a 1 signal=gap
+synthetic mfc_a 1 warmup=0
+synthetic mfc_a 1 warmup=5
+synthetic mfc_a 1 window=1
+synthetic mfc_a 1 window=10
+synthetic mfc_a 1 window=3
+synthetic mfc_a 2
+synthetic mfc_a 2 clip=0.1,5.0
+synthetic mfc_a 2 clip=0.5,1.5
+synthetic mfc_a 2 ema=0.0
+synthetic mfc_a 2 ema=0.5
+synthetic mfc_a 2 ema=0.9
+synthetic mfc_a 2 gamma=2.0
+synthetic mfc_a 2 gamma=3.0
+synthetic mfc_a 2 hv=1024
+synthetic mfc_a 2 hv=128
+synthetic mfc_a 2 hv=256
+synthetic mfc_a 2 hv=512
+synthetic mfc_a 2 mode=amplify
+synthetic mfc_a 2 mode=throttle
+synthetic mfc_a 2 running=True
+synthetic mfc_a 2 signal=gap
+synthetic mfc_a 2 warmup=0
+synthetic mfc_a 2 warmup=5
+synthetic mfc_a 2 window=1
+synthetic mfc_a 2 window=10
+synthetic mfc_a 2 window=3
+synthetic mfc_a 3
+synthetic mfc_a 3 clip=0.1,5.0
+synthetic mfc_a 3 clip=0.5,1.5
+synthetic mfc_a 3 ema=0.0
+synthetic mfc_a 3 ema=0.5
+synthetic mfc_a 3 ema=0.9
+synthetic mfc_a 3 gamma=2.0
+synthetic mfc_a 3 gamma=3.0
+synthetic mfc_a 3 hv=1024
+synthetic mfc_a 3 hv=128
+synthetic mfc_a 3 hv=256
+synthetic mfc_a 3 hv=512
+synthetic mfc_a 3 mode=amplify
+synthetic mfc_a 3 mode=throttle
+synthetic mfc_a 3 running=True
+synthetic mfc_a 3 signal=gap
+synthetic mfc_a 3 warmup=0
+synthetic mfc_a 3 warmup=5
+synthetic mfc_a 3 window=1
+synthetic mfc_a 3 window=10
+synthetic mfc_a 3 window=3
+synthetic mfc_a 4
+synthetic mfc_a 4 clip=0.1,5.0
+synthetic mfc_a 4 clip=0.5,1.5
+synthetic mfc_a 4 ema=0.0
+synthetic mfc_a 4 ema=0.5
+synthetic mfc_a 4 ema=0.9
+synthetic mfc_a 4 gamma=2.0
+synthetic mfc_a 4 gamma=3.0
+synthetic mfc_a 4 hv=1024
+synthetic mfc_a 4 hv=128
+synthetic mfc_a 4 hv=256
+synthetic mfc_a 4 hv=512
+synthetic mfc_a 4 mode=amplify
+synthetic mfc_a 4 mode=throttle
+synthetic mfc_a 4 running=True
+synthetic mfc_a 4 signal=gap
+synthetic mfc_a 4 warmup=0
+synthetic mfc_a 4 warmup=5
+synthetic mfc_a 4 window=1
+synthetic mfc_a 4 window=10
+synthetic mfc_a 4 window=3
+synthetic mfc_a 5
+synthetic mfc_a 5 clip=0.1,5.0
+synthetic mfc_a 5 clip=0.5,1.5
+synthetic mfc_a 5 ema=0.0
+synthetic mfc_a 5 ema=0.5
+synthetic mfc_a 5 ema=0.9
+synthetic mfc_a 5 gamma=2.0
+synthetic mfc_a 5 gamma=3.0
+synthetic mfc_a 5 hv=1024
+synthetic mfc_a 5 hv=128
+synthetic mfc_a 5 hv=256
+synthetic mfc_a 5 hv=512
+synthetic mfc_a 5 mode=amplify
+synthetic mfc_a 5 mode=throttle
+synthetic mfc_a 5 running=True
+synthetic mfc_a 5 signal=gap
+synthetic mfc_a 5 warmup=0
+synthetic mfc_a 5 warmup=5
+synthetic mfc_a 5 window=1
+synthetic mfc_a 5 window=10
+synthetic mfc_a 5 window=3
+synthetic mfc_a 6
+synthetic mfc_a 6 clip=0.1,5.0
+synthetic mfc_a 6 clip=0.5,1.5
+synthetic mfc_a 6 ema=0.0
+synthetic mfc_a 6 ema=0.5
+synthetic mfc_a 6 ema=0.9
+synthetic mfc_a 6 gamma=2.0
+synthetic mfc_a 6 gamma=3.0
+synthetic mfc_a 6 hv=1024
+synthetic mfc_a 6 hv=128
+synthetic mfc_a 6 hv=256
+synthetic mfc_a 6 hv=512
+synthetic mfc_a 6 mode=amplify
+synthetic mfc_a 6 mode=throttle
+synthetic mfc_a 6 running=True
+synthetic mfc_a 6 signal=gap
+synthetic mfc_a 6 warmup=0
+synthetic mfc_a 6 warmup=5
+synthetic mfc_a 6 window=1
+synthetic mfc_a 6 window=10
+synthetic mfc_a 6 window=3
+synthetic mfc_a 7
+synthetic mfc_a 7 clip=0.1,5.0
+synthetic mfc_a 7 clip=0.5,1.5
+synthetic mfc_a 7 ema=0.0
+synthetic mfc_a 7 ema=0.5
+synthetic mfc_a 7 ema=0.9
+synthetic mfc_a 7 gamma=2.0
+synthetic mfc_a 7 gamma=3.0
+synthetic mfc_a 7 hv=1024
+synthetic mfc_a 7 hv=128
+synthetic mfc_a 7 hv=256
+synthetic mfc_a 7 hv=512
+synthetic mfc_a 7 mode=amplify
+synthetic mfc_a 7 mode=throttle
+synthetic mfc_a 7 running=True
+synthetic mfc_a 7 signal=gap
+synthetic mfc_a 7 warmup=0
+synthetic mfc_a 7 warmup=5
+synthetic mfc_a 7 window=1
+synthetic mfc_a 7 window=10
+synthetic mfc_a 7 window=3
+synthetic mfc_a 8
+synthetic mfc_a 8 clip=0.1,5.0
+synthetic mfc_a 8 clip=0.5,1.5
+synthetic mfc_a 8 ema=0.0
+synthetic mfc_a 8 ema=0.5
+synthetic mfc_a 8 ema=0.9
+synthetic mfc_a 8 gamma=2.0
+synthetic mfc_a 8 gamma=3.0
+synthetic mfc_a 8 hv=1024
+synthetic mfc_a 8 hv=128
+synthetic mfc_a 8 hv=256
+synthetic mfc_a 8 hv=512
+synthetic mfc_a 8 mode=amplify
+synthetic mfc_a 8 mode=throttle
+synthetic mfc_a 8 running=True
+synthetic mfc_a 8 signal=gap
+synthetic mfc_a 8 warmup=0
+synthetic mfc_a 8 warmup=5
+synthetic mfc_a 8 window=1
+synthetic mfc_a 8 window=10
+synthetic mfc_a 8 window=3
+synthetic mfc_a 9
+synthetic mfc_a 9 clip=0.1,5.0
+synthetic mfc_a 9 clip=0.5,1.5
+synthetic mfc_a 9 ema=0.0
+synthetic mfc_a 9 ema=0.5
+synthetic mfc_a 9 ema=0.9
+synthetic mfc_a 9 gamma=2.0
+synthetic mfc_a 9 gamma=3.0
+synthetic mfc_a 9 hv=1024
+synthetic mfc_a 9 hv=128
+synthetic mfc_a 9 hv=256
+synthetic mfc_a 9 hv=512
+synthetic mfc_a 9 mode=amplify
+synthetic mfc_a 9 mode=throttle
+synthetic mfc_a 9 running=True
+synthetic mfc_a 9 signal=gap
+synthetic mfc_a 9 warmup=0
+synthetic mfc_a 9 warmup=5
+synthetic mfc_a 9 window=1
+synthetic mfc_a 9 window=10
+synthetic mfc_a 9 window=3
+synthetic mfc_t 0
+synthetic mfc_t 1
+synthetic mfc_t 2
+synthetic mfc_t 3
+synthetic mfc_t 4
+synthetic mfc_t 5
+synthetic mfc_t 6
+synthetic mfc_t 7
+synthetic mfc_t 8
+synthetic mfc_t 9
+synthetic mmpareto 0
+synthetic mmpareto 1
+synthetic mmpareto 2
+synthetic mmpareto 3
+synthetic mmpareto 4
+synthetic mmpareto 5
+synthetic mmpareto 6
+synthetic mmpareto 7
+synthetic mmpareto 8
+synthetic mmpareto 9
+synthetic ogm_ge 0 alpha=0.1
+synthetic ogm_ge 0 alpha=0.3
+synthetic ogm_ge 0 alpha=0.8
+synthetic ogm_ge 1 alpha=0.1
+synthetic ogm_ge 1 alpha=0.3
+synthetic ogm_ge 1 alpha=0.8
+synthetic ogm_ge 2 alpha=0.1
+synthetic ogm_ge 2 alpha=0.3
+synthetic ogm_ge 2 alpha=0.8
+synthetic ogm_ge 3 alpha=0.1
+synthetic ogm_ge 3 alpha=0.3
+synthetic ogm_ge 3 alpha=0.8
+synthetic ogm_ge 4 alpha=0.1
+synthetic ogm_ge 4 alpha=0.3
+synthetic ogm_ge 4 alpha=0.8
+synthetic ogm_ge 5 alpha=0.1
+synthetic ogm_ge 5 alpha=0.3
+synthetic ogm_ge 5 alpha=0.8
+synthetic ogm_ge 6 alpha=0.1
+synthetic ogm_ge 6 alpha=0.3
+synthetic ogm_ge 6 alpha=0.8
+synthetic ogm_ge 7 alpha=0.1
+synthetic ogm_ge 7 alpha=0.3
+synthetic ogm_ge 7 alpha=0.8
+synthetic ogm_ge 8 alpha=0.1
+synthetic ogm_ge 8 alpha=0.3
+synthetic ogm_ge 8 alpha=0.8
+synthetic ogm_ge 9 alpha=0.1
+synthetic ogm_ge 9 alpha=0.3
+synthetic ogm_ge 9 alpha=0.8
+synthetic olm 0 eta=0.01
+synthetic olm 0 eta=0.1
+synthetic olm 0 eta=1.0
+synthetic olm 1 eta=0.01
+synthetic olm 1 eta=0.1
+synthetic olm 1 eta=1.0
+synthetic olm 2 eta=0.01
+synthetic olm 2 eta=0.1
+synthetic olm 2 eta=1.0
+synthetic olm 3 eta=0.01
+synthetic olm 3 eta=0.1
+synthetic olm 3 eta=1.0
+synthetic olm 4 eta=0.01
+synthetic olm 4 eta=0.1
+synthetic olm 4 eta=1.0
+synthetic olm 5 eta=0.01
+synthetic olm 5 eta=0.1
+synthetic olm 5 eta=1.0
+synthetic olm 6 eta=0.01
+synthetic olm 6 eta=0.1
+synthetic olm 6 eta=1.0
+synthetic olm 7 eta=0.01
+synthetic olm 7 eta=0.1
+synthetic olm 7 eta=1.0
+synthetic olm 8 eta=0.01
+synthetic olm 8 eta=0.1
+synthetic olm 8 eta=1.0
+synthetic olm 9 eta=0.01
+synthetic olm 9 eta=0.1
+synthetic olm 9 eta=1.0
+synthetic pmr 0 alpha=1.0 mu=0.001
+synthetic pmr 0 alpha=1.0 mu=0.01
+synthetic pmr 0 alpha=2.0 mu=0.001
+synthetic pmr 0 alpha=2.0 mu=0.01
+synthetic pmr 1 alpha=1.0 mu=0.001
+synthetic pmr 1 alpha=1.0 mu=0.01
+synthetic pmr 1 alpha=2.0 mu=0.001
+synthetic pmr 1 alpha=2.0 mu=0.01
+synthetic pmr 2 alpha=1.0 mu=0.001
+synthetic pmr 2 alpha=1.0 mu=0.01
+synthetic pmr 2 alpha=2.0 mu=0.001
+synthetic pmr 2 alpha=2.0 mu=0.01
+synthetic pmr 3 alpha=1.0 mu=0.001
+synthetic pmr 3 alpha=1.0 mu=0.01
+synthetic pmr 3 alpha=2.0 mu=0.001
+synthetic pmr 3 alpha=2.0 mu=0.01
+synthetic pmr 4 alpha=1.0 mu=0.001
+synthetic pmr 4 alpha=1.0 mu=0.01
+synthetic pmr 4 alpha=2.0 mu=0.001
+synthetic pmr 4 alpha=2.0 mu=0.01
+synthetic pmr 5 alpha=1.0 mu=0.001
+synthetic pmr 5 alpha=1.0 mu=0.01
+synthetic pmr 5 alpha=2.0 mu=0.001
+synthetic pmr 5 alpha=2.0 mu=0.01
+synthetic pmr 6 alpha=1.0 mu=0.001
+synthetic pmr 6 alpha=1.0 mu=0.01
+synthetic pmr 6 alpha=2.0 mu=0.001
+synthetic pmr 6 alpha=2.0 mu=0.01
+synthetic pmr 7 alpha=1.0 mu=0.001
+synthetic pmr 7 alpha=1.0 mu=0.01
+synthetic pmr 7 alpha=2.0 mu=0.001
+synthetic pmr 7 alpha=2.0 mu=0.01
+synthetic pmr 8 alpha=1.0 mu=0.001
+synthetic pmr 8 alpha=1.0 mu=0.01
+synthetic pmr 8 alpha=2.0 mu=0.001
+synthetic pmr 8 alpha=2.0 mu=0.01
+synthetic pmr 9 alpha=1.0 mu=0.001
+synthetic pmr 9 alpha=1.0 mu=0.01
+synthetic pmr 9 alpha=2.0 mu=0.001
+synthetic pmr 9 alpha=2.0 mu=0.01
+synthetic uncertainty 0
+synthetic uncertainty 1
+synthetic uncertainty 2
+synthetic uncertainty 3
+synthetic uncertainty 4
+synthetic uncertainty 5
+synthetic uncertainty 6
+synthetic uncertainty 7
+synthetic uncertainty 8
+synthetic uncertainty 9

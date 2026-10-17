@@ -140,7 +140,7 @@ The `run_*.sh` and `finish_*.sh` helpers contain the paths used on the authors' 
 ## Honest summary of the results
 
 MFC-A never reduced accuracy significantly. On AVE it reduced the OGR gap by 63% (p = 0.03) and improved
-robustness to noise, blur and low light over the baseline; on the synthetic benchmark it reduced the gap by 41%.
+robustness to noise, blur and low light over the baseline; on the synthetic benchmark it reduced the gap by 38%.
 On CREMA-D its effects were not significant. OGM-GE was the strongest method on AVE and Gradient Blending on
 CREMA-D. Gradient-norm logging shows that MFC-A changes the auxiliary gradients as designed (−55% to the
 overfitting video encoder, +45–66% to audio) but leaves the joint-loss gradient share almost unchanged.

@@ -1,7 +1,7 @@
 \documentclass[fleqn,10pt]{wlscirep}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL main_reviewed_version.tex   Sun Oct 18 00:22:07 2026
-%DIF ADD main.tex                    Sun Oct 18 02:12:47 2026
+%DIF ADD main.tex                    Sun Oct 18 02:33:58 2026
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{multirow}
@@ -56,7 +56,7 @@
 %DIF 34c45
 %DIF < Multi modal learning systems are likely to be stuck in one of such traps and it is known as the Modality Laziness trap whereby they over-respond to the best signal in most instances which happens to be the best signal. Visual signal and ignore the weak signals such as the Audio or Text signal. The unified models are their possible limited by this optimization bias. Although fixes such as Gradient Blending or OGM-GE currently exist with most of them being based on expensive pre-computations or noisy and unstable noise. Insertion which is incapable of following the dynamics of training. In this paper, the Modality is presented. Fairness Controller (MFC), a simple and easy to use solution. The idea behind the MFC is to look at the Overfitting-to-Generalization Ratio (OGR) of each modality and dynamically vary the level to which each modality affects the learning process. We were able to test on a controlled synthetic benchmark, and a real-world CREMA-D emotion recognition (7,442 mel spectrogram samples, 6 classes). MFC-A also reduces the difference in modality imbalance by 38.4\% at synthetic benchmark and it also enhances the gap. robustness by $+4.7\%$ at $\sigma{=}0.5$ and $+2.3\%$ at $\sigma{=}1.0$ noise. At actual CREMA-D data the MFC-A is as well as accurate as at the baseline and diminishes the OGR dispersion by 38.9 percent without incurring any overhead of noise injection.At 1024-dim model capacity, MFC-A yields a +3.1\% accuracy gain over the baseline, confirming its value grows with model size.
 %DIF -------
-Jointly trained multimodal networks tend to rely on whichever modality is easiest to fit and leave the other encoders under-trained, a failure known as modality laziness or gradient starvation. We study a simple, generalization-aware remedy. First, we define the Overfitting-to-Generalization Ratio (OGR), the ratio of a modality's held-out loss to its training loss, as a scale-invariant per-modality diagnostic. Second, we propose MFC-A, a closed-loop controller that gives each unimodal auxiliary loss a weight proportional to a power of its inverse smoothed OGR, so that a modality that starts to memorise is throttled and the others are amplified within a fixed weight budget. MFC-A runs inside a single training run and needs no auxiliary networks, gradient surgery or noise injection. We compare it with eight baselines under one protocol (ten paired seeds; disjoint training, controller, tuning and test splits; paired significance tests) on two real audio--video benchmarks, AVE and CREMA-D (actor-disjoint), complemented by a controlled synthetic benchmark and a two-view control. On AVE, MFC-A maintains accuracy (80.2 vs.\ 79.9\%) while reducing the OGR gap by 63\% ($p{=}0.03$) and improving robustness to visual noise, blur and low light ($p<0.04$). On the synthetic benchmark it maintains accuracy while reducing the gap by 41\% ($p<0.001$). On CREMA-D, whose dominant modality is audio, it identifies the overfitting video stream correctly and maintains accuracy, but its gains are not significant. Confidence-based gradient modulation (OGM-GE) on AVE and offline Gradient Blending on CREMA-D achieve larger gains at the cost of a tuned hyper-parameter or an extra probe run. A follow-up variant that uses OGR to decide when to apply such modulation matches OGM-GE on AVE with a lower imbalance gap, but no variant is best on every dataset. The controller's arithmetic is negligible; its monitoring passes add 2--18\% wall-clock time. %DIF > 
+Jointly trained multimodal networks tend to rely on whichever modality is easiest to fit and leave the other encoders under-trained, a failure known as modality laziness or gradient starvation. We study a simple, generalization-aware remedy. First, we define the Overfitting-to-Generalization Ratio (OGR), the ratio of a modality's held-out loss to its training loss, as a scale-invariant per-modality diagnostic. Second, we propose MFC-A, a closed-loop controller that gives each unimodal auxiliary loss a weight proportional to a power of its inverse smoothed OGR, so that a modality that starts to memorise is throttled and the others are amplified within a fixed weight budget. MFC-A runs inside a single training run and needs no auxiliary networks, gradient surgery or noise injection. We compare it with eight baselines under one protocol (ten paired seeds; disjoint training, controller, tuning and test splits; paired significance tests) on two real audio--video benchmarks, AVE and CREMA-D (actor-disjoint), complemented by a controlled synthetic benchmark and a two-view control. On AVE, MFC-A maintains accuracy (80.2 vs.\ 79.9\%) while reducing the OGR gap by 63\% ($p{=}0.03$) and improving robustness to visual noise, blur and low light ($p<0.04$). On the synthetic benchmark it maintains accuracy while reducing the gap by 38\% ($p<0.001$). On CREMA-D, whose dominant modality is audio, it identifies the overfitting video stream correctly and maintains accuracy, but its gains are not significant. Confidence-based gradient modulation (OGM-GE) on AVE and offline Gradient Blending on CREMA-D achieve larger gains at the cost of a tuned hyper-parameter or an extra probe run. A follow-up variant that uses OGR to decide when to apply such modulation matches OGM-GE on AVE with a lower imbalance gap, but no variant is best on every dataset. The controller's arithmetic is negligible; its monitoring passes add 2--18\% wall-clock time. %DIF > 
 %DIF -------
 \end{abstract}
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
@@ -496,7 +496,7 @@ G_m(t)=\Lcv_m(t)-\Ltr_m(t).
 \DIFadd{$c\Lcv_m/(c\Ltr_m)=\Lcv_m/\Ltr_m$ and $c\Lcv_m-c\Ltr_m=c\,G_m$.
 }\end{proof}
 
-\DIFadd{Proposition~\ref{prop:scale} matters because the two heads of an imbalanced model operate at very different loss levels. In our synthetic benchmark, after 20 epochs the visual head has $\Ltr_v\approx0.15$ and the audio head $\Ltr_a\approx1.55$ (Fig.~\ref{fig:dyn_syn}). An identical raw gap of $0.3$ then means that the visual head's held-out loss is three times its training loss, while the audio head's is only 19\% above it. The raw gap ranks the two modalities as equally overfitting, whereas OGR identifies the visual head as the one that is memorising. We also test this empirically by replacing OGR with the raw gap inside the controller (signal ablation, Table~\ref{tab:ablation}).
+\DIFadd{Proposition~\ref{prop:scale} matters because the two heads of an imbalanced model operate at very different loss levels. In our synthetic benchmark, after 20 epochs the visual head has $\Ltr_v\approx0.15$ and the audio head $\Ltr_a\approx1.56$ (Fig.~\ref{fig:dyn_syn}). An identical raw gap of $0.3$ then means that the visual head's held-out loss is three times its training loss, while the audio head's is only 19\% above it. The raw gap ranks the two modalities as equally overfitting, whereas OGR identifies the visual head as the one that is memorising. We also test this empirically by replacing OGR with the raw gap inside the controller (signal ablation, Table~\ref{tab:ablation}).
 }
 
 \subsection*{\DIFadd{MFC-A: inverse-OGR closed-loop weighting}}
@@ -728,7 +728,7 @@ estimates each modality's contribution from the responses of the fused model wit
 builds per-modality class prototypes from a fixed tenth of the training set, adds a prototypical cross-entropy weighted by a continuous imbalance coefficient to accelerate the slower modality, and applies a prototypical entropy regulariser to the dominant modality during the first quarter of training; $\alpha\in\{1,2\}$ and $\mu\in\{10^{-3},10^{-2}\}$, the values stated in the paper. }\textbf{\DIFadd{OLM}}\DIFadd{\mbox{%DIFAUXCMD
 \cite{zong2024balancing} }\hskip0pt%DIFAUXCMD
 learns online weights for the two modality shares of the fused logits during training, driven by the unimodal losses on $\mathcal{D}_{\mathrm{cv}}$ (late-fusion variant, without the transformer fusion block; because the published loss is minimised by all-zero weights, we normalise it to preserve the total magnitude and clamp the weights to $[0.1,10]$); $\eta\in\{0.01,0.1,1\}$. All three use the shared objective and have their hyper-parameters selected on $\mathcal{D}_{\mathrm{tune}}$; every deviation from the original papers is documented in the released code. }\textbf{\DIFadd{MFC-T}} \DIFadd{is the threshold variant described above.
-MFC-A uses $W{=}5$, $\beta{=}0.7$, $T_w{=}3$ and $[\lambda_{\min},\lambda_{\max}]=[0.2,1.8]$ on all datasets; these values were fixed before the present experiments. $\gamma$ is chosen per dataset by the rule above, which yields $\gamma{=}3$ (AVE), $\gamma{=}2$ (CREMA-D audio--video), $\gamma{=}3$ (synthetic) and $\gamma{=}2$ (spectrogram views). The plain law ($\gamma{=}1$) is reported in every table as well.
+MFC-A uses $W{=}5$, $\beta{=}0.7$, $T_w{=}3$ and $[\lambda_{\min},\lambda_{\max}]=[0.2,1.8]$ on all datasets; these values were fixed before the present experiments. $\gamma$ is chosen per dataset by the rule above, which yields $\gamma{=}3$ (AVE), $\gamma{=}2$ (CREMA-D audio--video), $\gamma{=}3$ (synthetic) and $\gamma{=}3$ (spectrogram views). The plain law ($\gamma{=}1$) is reported in every table as well.
 }\DIFaddend 
 
 \DIFdelbegin %DIFDELCMD < \begin{figure}[tbp]
@@ -784,7 +784,7 @@ MFC-A uses $W{=}5$, $\beta{=}0.7$, $T_w{=}3$ and $[\lambda_{\min},\lambda_{\max}
 }\DIFaddend 
 
 \DIFdelbegin \DIFdel{These results give several significant trends. The }\textbf{\DIFdel{Baseline}} %DIFAUXCMD
-\DIFdel{has the highest peak accuracy }\DIFdelend \DIFaddbegin \begin{table*}[t]
+\DIFdel{has the highest peak accuracy (83.3\%)but only due to the ability to freely overfit vision, i.e.its OGR Gap balloons to 7.89 so the vision encoder is memorizing training data at almost 8$\times$ the rate audio is generalizing. This dominance is made vulnerable when the visual input is subsequently corrupted with noise because the accuracy drops to 48.2\%. }\DIFdelend \DIFaddbegin \begin{table*}[t]
 \caption{\textbf{CREMA-D audio--video, actor-disjoint test set} (10 seeds, mean\pmm std). Stream 1 is video and stream 2 is audio. ``Acc$_v$'' and ``Acc$_a$'' are the unimodal-head accuracies. Robustness columns degrade the video stream only. MFC-A uses the $\gamma$ selected without test data; $^{*}$: paired $t$-test $p<0.05$ against it. Bold: best mean.}
 \label{tab:main_av}
 \centering
@@ -807,8 +807,9 @@ MFC-A ($\gamma$=1) & 49.3$\pm$5.4 & 32.1$\pm$3.6 & 47.4$\pm$4.8$^{*}$ & 2.98$\pm
 \bottomrule
 \end{tabular}
 \end{table*}
+\DIFaddend 
 
-\begin{table*}[t]
+\DIFdelbegin \DIFdel{In fact, Gradient Blending negatively affects clean accuracy (82.1\%), which is one of the known failure modes of the offline method: the fixed weights are learned during a brief warm up period and may fail to fire when the early dynamics do not reflect the overall trajectory of training. When they are fixed, they are not able to change with changing conditions. }\DIFdelend \DIFaddbegin \begin{table*}[t]
 \caption{\textbf{AVE, official test set} (402 clips, 28 classes; 10 seeds, mean\pmm std). Stream 1 is video and stream 2 is audio; robustness columns degrade the video stream only. MFC-A uses the $\gamma$ selected without test data; $^{*}$: paired $t$-test $p<0.05$ against it. Bold: best mean.}
 \label{tab:main_ave}
 \centering
@@ -831,8 +832,9 @@ MFC-A ($\gamma$=1) & 80.2$\pm$1.6 & 74.3$\pm$0.9 & 49.2$\pm$4.7 & 14.47$\pm$8.48
 \bottomrule
 \end{tabular}
 \end{table*}
+\DIFaddend 
 
-\begin{table*}[t]
+\DIFdelbegin \DIFdel{OGM-GE has the smallest OGR balance (difference of 1.05)through a vigorous throttling of vision using noise injection. This is effective, albeit the resultant price an unstable training signal---the variance of the noise is another sensitive hyperparameter. }\DIFdelend \DIFaddbegin \begin{table*}[t]
 \caption{\textbf{Synthetic benchmark, test set} (10 seeds, mean\pmm std). Stream 1 is the easy (``visual-like'') stream; robustness adds Gaussian noise to it. MFC-A uses the $\gamma$ selected without test data; $^{*}$: paired $t$-test $p<0.05$ against it. Bold: best mean.}
 \label{tab:main_syn}
 \centering
@@ -840,22 +842,24 @@ MFC-A ($\gamma$=1) & 80.2$\pm$1.6 & 74.3$\pm$0.9 & 49.2$\pm$4.7 & 14.47$\pm$8.48
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
 \textbf{Method} & \textbf{Acc} & \textbf{Acc$_v$} & \textbf{Acc$_a$} & \textbf{OGR gap}$\downarrow$ & \textbf{Rob@0.5} & \textbf{Rob@1.0} \\ \midrule
-Baseline & 84.1$\pm$1.1 & 83.7$\pm$1.2 & 28.7$\pm$1.8$^{*}$ & 6.01$\pm$1.36$^{*}$ & 70.8$\pm$1.7 & 48.8$\pm$2.1$^{*}$ \\
-Gradient Blending & 84.2$\pm$0.8 & 83.5$\pm$1.0 & 29.3$\pm$1.1 & 3.91$\pm$1.45 & \textbf{71.5$\pm$1.8} & 49.2$\pm$2.2 \\
-Uncertainty weighting & 82.7$\pm$1.1$^{*}$ & 82.0$\pm$1.2$^{*}$ & 25.8$\pm$2.0$^{*}$ & 4.48$\pm$1.37 & 69.8$\pm$1.4$^{*}$ & 48.3$\pm$1.8 \\
-MMPareto & 83.8$\pm$1.2 & 83.4$\pm$1.4 & 28.6$\pm$1.8$^{*}$ & 5.92$\pm$1.64$^{*}$ & 70.8$\pm$1.4 & 49.0$\pm$2.5 \\
-OGM-GE ($\alpha$=0.1) & 82.7$\pm$1.1$^{*}$ & 82.3$\pm$1.0$^{*}$ & 27.8$\pm$1.4$^{*}$ & \textbf{3.28$\pm$0.55} & 69.8$\pm$1.5$^{*}$ & 49.0$\pm$2.7$^{*}$ \\
-AGM ($\alpha$=0.1) & 84.0$\pm$0.8 & 83.4$\pm$1.2 & 28.1$\pm$2.0$^{*}$ & 4.98$\pm$2.25$^{*}$ & 71.3$\pm$1.4 & 49.2$\pm$1.9 \\
-PMR ($\alpha$=2.0, $\mu$=0.001) & 84.0$\pm$1.5 & 83.7$\pm$1.3 & 28.3$\pm$1.5$^{*}$ & 5.40$\pm$2.17$^{*}$ & 70.3$\pm$1.8$^{*}$ & 48.8$\pm$2.4$^{*}$ \\
-OLM ($\eta$=1.0) & 82.2$\pm$1.8$^{*}$ & 82.5$\pm$1.8$^{*}$ & 27.7$\pm$1.9$^{*}$ & 3.86$\pm$1.50 & 68.5$\pm$1.1$^{*}$ & 48.1$\pm$2.2$^{*}$ \\
-MFC-T (threshold) & 84.4$\pm$1.3 & \textbf{83.9$\pm$1.1} & \textbf{30.1$\pm$1.7} & 6.34$\pm$1.69$^{*}$ & 70.7$\pm$1.8 & 49.3$\pm$2.3 \\
-MFC-A ($\gamma$=1) & \textbf{84.5$\pm$1.7} & 83.8$\pm$1.6 & 29.4$\pm$1.1 & 5.11$\pm$1.12$^{*}$ & \textbf{71.5$\pm$1.5} & 49.3$\pm$2.0 \\
-\textbf{MFC-A} ($\gamma$=3, selected) & 84.3$\pm$1.3 & 83.7$\pm$1.3 & 29.6$\pm$1.4 & 3.56$\pm$0.60 & 71.3$\pm$1.4 & \textbf{49.7$\pm$2.9} \\
+Baseline & 84.1$\pm$1.3 & 83.7$\pm$1.3 & 28.7$\pm$1.7$^{*}$ & 6.03$\pm$1.39$^{*}$ & 70.7$\pm$1.7 & 48.9$\pm$2.1 \\
+Gradient Blending & 84.0$\pm$0.9 & 83.4$\pm$0.9 & 29.8$\pm$1.5 & 4.23$\pm$1.18 & \textbf{71.4$\pm$1.2} & \textbf{49.9$\pm$2.0} \\
+Uncertainty weighting & 82.7$\pm$1.5$^{*}$ & 81.7$\pm$1.3$^{*}$ & 25.5$\pm$1.6$^{*}$ & 4.57$\pm$0.92$^{*}$ & 70.0$\pm$1.3$^{*}$ & 48.3$\pm$2.5 \\
+MMPareto & 84.1$\pm$1.4 & 83.4$\pm$1.3 & 28.7$\pm$1.9$^{*}$ & 6.00$\pm$1.85$^{*}$ & 70.7$\pm$1.5 & 49.4$\pm$2.5 \\
+OGM-GE ($\alpha$=0.1) & 82.7$\pm$1.2$^{*}$ & 82.4$\pm$1.1$^{*}$ & 28.0$\pm$1.4$^{*}$ & \textbf{3.29$\pm$0.56$^{*}$} & 69.8$\pm$1.7 & 49.2$\pm$2.1 \\
+AGM ($\alpha$=0.1) & 83.9$\pm$0.9 & 83.3$\pm$1.4 & 28.1$\pm$2.1$^{*}$ & 5.39$\pm$2.17$^{*}$ & 71.1$\pm$1.5 & 49.1$\pm$2.0 \\
+PMR ($\alpha$=2.0, $\mu$=0.001) & 84.1$\pm$1.6 & 83.6$\pm$1.6 & 28.8$\pm$1.6 & 5.46$\pm$1.24$^{*}$ & 70.7$\pm$1.3 & 49.2$\pm$2.4 \\
+OLM ($\eta$=1.0) & 82.5$\pm$1.9$^{*}$ & 82.6$\pm$1.6$^{*}$ & 28.5$\pm$1.5$^{*}$ & 3.95$\pm$1.17 & 69.0$\pm$1.6$^{*}$ & 47.7$\pm$2.2$^{*}$ \\
+MFC-T (threshold) & \textbf{84.5$\pm$1.1} & \textbf{84.2$\pm$0.8$^{*}$} & \textbf{30.4$\pm$1.4} & 6.90$\pm$1.27$^{*}$ & 71.0$\pm$1.9 & 49.2$\pm$2.3 \\
+MFC-A ($\gamma$=1) & \textbf{84.5$\pm$1.8} & 83.7$\pm$1.9 & 29.3$\pm$1.2$^{*}$ & 4.75$\pm$0.98$^{*}$ & 71.2$\pm$1.4 & 49.4$\pm$2.1 \\
+\textbf{MFC-A} ($\gamma$=3, selected) & 84.4$\pm$1.3 & 83.7$\pm$1.3 & 30.0$\pm$1.6 & 3.74$\pm$0.61 & 71.0$\pm$1.2 & 49.6$\pm$2.7 \\
 \bottomrule
 \end{tabular}
 \end{table*}
+\DIFaddend 
 
-\begin{table*}[t]
+\DIFdelbegin \DIFdel{The Modality Fairness Controller lays down upon a sensible compromise.
+It has a 38.4\% decrease in its OGR Gap (4.86)even without any auxiliary computation, or noise . More to the point, its visual degradation robustness (50.5\%)is equivalent to OGM-GE (49.9\%) which proves that the audio encoder acquired truly useful property as opposed to being a passenger that is dependent on the visual information during the entire process. }\DIFdelend \DIFaddbegin \begin{table*}[t]
 \caption{\textbf{CREMA-D two spectrogram views (control), test set} (10 seeds, mean\pmm std). Stream 1 is the PCA view and stream 2 the band-statistics view; both come from the same spectrogram. MFC-A uses the $\gamma$ selected without test data; $^{*}$: paired $t$-test $p<0.05$ against it. Bold: best mean.}
 \label{tab:main_spec}
 \centering
@@ -863,33 +867,21 @@ MFC-A ($\gamma$=1) & \textbf{84.5$\pm$1.7} & 83.8$\pm$1.6 & 29.4$\pm$1.1 & 5.11$
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
 \textbf{Method} & \textbf{Acc} & \textbf{Acc$_v$} & \textbf{Acc$_a$} & \textbf{OGR gap}$\downarrow$ & \textbf{Rob@0.5} & \textbf{Rob@1.0} \\ \midrule
-Baseline & 49.1$\pm$1.8 & 47.1$\pm$1.6 & 45.3$\pm$2.1 & 1.63$\pm$0.96 & 44.0$\pm$1.4 & 35.8$\pm$1.5 \\
-Gradient Blending & \textbf{50.9$\pm$1.2$^{*}$} & 45.4$\pm$2.0$^{*}$ & \textbf{46.2$\pm$1.6$^{*}$} & \textbf{0.55$\pm$0.26$^{*}$} & \textbf{46.6$\pm$1.8$^{*}$} & \textbf{39.9$\pm$1.8$^{*}$} \\
-Uncertainty weighting & 49.0$\pm$1.5 & 46.7$\pm$1.5 & 44.7$\pm$1.9 & 1.29$\pm$0.70 & 44.3$\pm$1.2 & 35.9$\pm$2.0 \\
-MMPareto & 49.3$\pm$1.9 & 47.1$\pm$1.6 & 44.8$\pm$2.1 & 1.36$\pm$0.65 & 43.9$\pm$1.2 & 36.2$\pm$1.4 \\
-OGM-GE ($\alpha$=0.8) & 50.3$\pm$1.4 & 47.3$\pm$1.5 & 46.0$\pm$1.7 & 0.99$\pm$0.22 & 45.3$\pm$0.9$^{*}$ & 37.9$\pm$1.9$^{*}$ \\
-AGM ($\alpha$=0.5) & 49.4$\pm$2.1 & 47.0$\pm$1.5 & 44.7$\pm$2.1 & 1.26$\pm$0.72 & 44.0$\pm$1.1 & 36.1$\pm$1.7 \\
-PMR ($\alpha$=1.0, $\mu$=0.001) & 48.9$\pm$2.0 & 47.4$\pm$1.7 & 44.9$\pm$2.6 & 1.51$\pm$0.84 & 43.7$\pm$1.2 & 36.0$\pm$2.0 \\
-OLM ($\eta$=1.0) & 48.9$\pm$1.5 & 46.8$\pm$1.7 & 44.6$\pm$1.9 & 1.19$\pm$0.76 & 43.8$\pm$1.4 & 36.4$\pm$2.2 \\
-MFC-T (threshold) & 49.6$\pm$1.4 & \textbf{47.5$\pm$1.2} & 44.5$\pm$1.3 & 1.56$\pm$0.69 & 44.1$\pm$1.3 & 36.0$\pm$1.6 \\
-MFC-A ($\gamma$=1) & 49.3$\pm$1.8 & 47.3$\pm$1.6 & 44.9$\pm$1.9 & 1.32$\pm$0.63 & 44.3$\pm$1.1 & 36.2$\pm$1.7 \\
-\textbf{MFC-A} ($\gamma$=2, selected) & 49.3$\pm$1.4 & 47.0$\pm$1.6 & 44.7$\pm$2.1 & 1.25$\pm$0.61 & 44.3$\pm$1.2 & 35.9$\pm$1.6 \\
+Baseline & 49.1$\pm$1.9 & 47.2$\pm$1.5 & 44.6$\pm$1.6 & 1.21$\pm$0.70 & 44.2$\pm$1.3 & 35.9$\pm$1.8 \\
+Gradient Blending & \textbf{50.7$\pm$1.2$^{*}$} & 45.5$\pm$1.7$^{*}$ & \textbf{46.4$\pm$1.8$^{*}$} & \textbf{0.51$\pm$0.29$^{*}$} & \textbf{46.2$\pm$1.6$^{*}$} & \textbf{39.8$\pm$2.3$^{*}$} \\
+Uncertainty weighting & 48.7$\pm$1.4 & 46.6$\pm$1.5 & 44.4$\pm$2.0 & 1.25$\pm$0.78 & 44.4$\pm$1.3 & 35.8$\pm$1.8 \\
+MMPareto & 49.0$\pm$1.3 & 47.0$\pm$1.2 & 44.7$\pm$1.9 & 1.50$\pm$0.85 & 44.0$\pm$1.3 & 35.9$\pm$1.6 \\
+OGM-GE ($\alpha$=0.8) & 50.0$\pm$1.4$^{*}$ & 47.4$\pm$1.4 & 46.1$\pm$1.8$^{*}$ & 0.98$\pm$0.26 & 45.3$\pm$1.0$^{*}$ & 37.9$\pm$2.0$^{*}$ \\
+AGM ($\alpha$=0.5) & 49.8$\pm$1.3 & 47.5$\pm$1.3 & 45.5$\pm$2.2 & 1.71$\pm$0.59$^{*}$ & 43.9$\pm$1.4 & 35.6$\pm$1.4 \\
+PMR ($\alpha$=1.0, $\mu$=0.001) & 49.2$\pm$1.6 & 47.5$\pm$1.8 & 44.5$\pm$2.5 & 1.66$\pm$0.88$^{*}$ & 44.0$\pm$1.3 & 35.6$\pm$1.9 \\
+OLM ($\eta$=1.0) & 49.2$\pm$1.5 & \textbf{47.6$\pm$1.7} & 44.8$\pm$1.7 & 1.10$\pm$0.50 & 43.7$\pm$1.7 & 36.2$\pm$2.2 \\
+MFC-T (threshold) & 49.7$\pm$1.7 & 47.4$\pm$1.8 & 45.4$\pm$2.1$^{*}$ & 1.63$\pm$0.69$^{*}$ & 44.2$\pm$1.5 & 35.8$\pm$1.4$^{*}$ \\
+MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 & 44.1$\pm$1.0 & 36.3$\pm$1.6 \\
+\textbf{MFC-A} ($\gamma$=3, selected) & 49.1$\pm$1.5 & 47.2$\pm$1.7 & 44.5$\pm$2.1 & 1.12$\pm$0.58 & 44.0$\pm$1.5 & 36.5$\pm$1.6 \\
 \bottomrule
 \end{tabular}
 \end{table*}
-
-\emph{\DIFadd{Recent balancing methods (AGM, PMR, OLM; Tables~\ref{tab:main_av}--\ref{tab:main_spec}).}} \DIFadd{AGM and PMR are statistically indistinguishable from MFC-A in accuracy on every dataset (all $p>0.09$), and MFC-A has the smaller OGR gap on all datasets except the spectrogram control, where the gaps are equal; on AVE, MFC-A is also more robust to feature noise than both ($p<0.05$). OLM behaves very differently across datasets. On CREMA-D audio--video it is second only to Gradient Blending in accuracy (51.7\% vs.\ 52.1\%; $+2.9$ over MFC-A, $p{=}0.02$) and in robustness to feature noise ($+3.6$ over MFC-A, $p<0.001$), but on AVE it is 2.0 points less accurate than MFC-A }\DIFaddend (\DIFdelbegin \DIFdel{83.3\%)but only due to the ability to freely overfit vision, i.e.its OGR Gap balloons to 7.89 so the vision encoder is memorizing training data at almost 8$\times$ the rate audio is generalizing. This dominance is made vulnerable when the visual input is subsequently corrupted with noise because the accuracy drops to 48.2\%. }\DIFdelend \DIFaddbegin \DIFadd{$p{=}0.003$) and 7.5 points less robust to blur ($p<0.001$), and on the synthetic benchmark it is 2.1 points less accurate ($p<0.001$). No balancing method is uniformly best.
-}\DIFaddend 
-
-\DIFdelbegin \DIFdel{In fact, Gradient Blending negatively affects clean accuracy (82.1\%), which is one of the known failure modes of }\DIFdelend \DIFaddbegin \emph{\DIFadd{Synthetic benchmark (Table~\ref{tab:main_syn}).}} \DIFadd{With a strong, known imbalance (the hard stream's head reaches only about 29\% against 16.7\% chance), MFC-A with the selected $\gamma{=}3$ meets the goal of balancing without loss of accuracy: its accuracy is unchanged (84.3 vs.\ 84.1\%, $p{=}0.47$), the OGR gap falls by 41\% (6.01 to 3.56, $p<0.001$), the hard stream's head improves (29.6 vs.\ 28.7\%), and robustness at $\sigma{=}1$ rises by 0.9 points ($p{=}0.04$). The plain law ($\gamma{=}1$) moves in }\DIFaddend the \DIFdelbegin \DIFdel{offline method: the fixed weights are learned during a brief warm up period and may fail to fire when the early dynamics do not reflect the overall trajectory of training. When they are fixed, they are not able to change with changing conditions. }%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{same direction but more weakly (gap 5.11, $p{=}0.06$). }\DIFaddend OGM-GE \DIFdelbegin \DIFdel{has the smallest OGR balance (difference of 1.05)through a vigorous throttling of vision using noise injection. This is effective, albeit the resultant price an unstable training signal---the variance of the noise is another sensitive hyperparameter. }%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdel{The Modality Fairness Controller lays down upon a sensible compromise.
-It has a 38.4\% decrease in its OGR Gap (4.86)even without any auxiliary computation, or noise . More to the point, its visual degradation robustness }\DIFdelend \DIFaddbegin \DIFadd{reaches a slightly lower gap (3.28) at its selected $\alpha$ but costs 1.6 accuracy points relative to MFC-A }\DIFaddend (\DIFdelbegin \DIFdel{50.5\%)is equivalent to OGM-GE (49.9\%)which proves that the audio encoder acquired truly useful property as opposed to being a passenger that is dependent on the visual information during the entire process.}\DIFdelend \DIFaddbegin \DIFadd{$p{=}0.001$), and $\alpha{=}0.8$ costs 6 points while driving the gap to 0.82; a small OGR gap can thus be bought with accuracy and is not a goal by itself. Gradient Blending reaches a similar gap (3.91) and accuracy (84.2\%). Uncertainty weighting lowers the hard stream's head accuracy to 25.8\%, consistent with its tendency to down-weight high-loss objectives.
-}\DIFaddend 
+\DIFaddend 
 
 \DIFdelbegin %DIFDELCMD < \begin{figure*}[tbp]
 %DIFDELCMD <     \centering
@@ -897,19 +889,21 @@ It has a 38.4\% decrease in its OGR Gap (4.86)even without any auxiliary computa
 %DIFDELCMD <     \caption{\textbf{Training Curves.} Top-left: validation accuracy over 30 epochs. Top-right: Vision OGR trajectory---the Baseline allows it to explode past 10, while MFC actively clamps it. Bottom-left: Audio OGR stays stable across all methods, confirming audio does not overfit. Bottom-right: MFC's dynamic weights ($\lambda_v$ drops from 1.22 to 0.39 as vision overfits; $\lambda_a$ rises to 1.55 to compensate).}
 %DIFDELCMD <     \label{fig:accuracy}
 %DIFDELCMD < \end{figure*}
-%DIFDELCMD < 
-
 %DIFDELCMD < %%%
-\subsection{\DIFdel{Training Dynamics}}
+\DIFdelend \DIFaddbegin \emph{\DIFadd{Recent balancing methods (AGM, PMR, OLM; Tables~\ref{tab:main_av}--\ref{tab:main_spec}).}} \DIFadd{AGM and PMR are statistically indistinguishable from MFC-A in accuracy on every dataset (all $p>0.09$), and MFC-A has the smaller OGR gap on all four datasets (significantly so on the synthetic and spectrogram data, $p<0.04$); on AVE, MFC-A is also more robust to feature noise than both ($p<0.05$). OLM behaves very differently across datasets. On CREMA-D audio--video it is second only to Gradient Blending in accuracy (51.7\% vs.\ 52.1\%; $+2.9$ over MFC-A, $p{=}0.02$) and in robustness to feature noise ($+3.6$ over MFC-A, $p<0.001$), but on AVE it is 2.0 points less accurate than MFC-A ($p{=}0.003$) and 7.5 points less robust to blur ($p<0.001$), and on the synthetic benchmark it is 1.8 points less accurate ($p{=}0.005$). No balancing method is uniformly best.
+}\DIFaddend 
+
+\DIFdelbegin \subsection{\DIFdel{Training Dynamics}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdel{Figure~\ref{fig:accuracy} tells the full training story epoch by epoch.}%DIFDELCMD < 
+\DIFdel{Figure~\ref{fig:accuracy} tells the full training story epoch by epoch.}\DIFdelend \DIFaddbegin \emph{\DIFadd{Synthetic benchmark (Table~\ref{tab:main_syn}).}} \DIFadd{With a strong, known imbalance (the hard stream's head reaches only about 29\% against 16.7\% chance), MFC-A with the selected $\gamma{=}3$ balances training without loss of accuracy: its accuracy is unchanged (84.4 vs.\ 84.1\%, $p{=}0.18$), the OGR gap falls by 38\% (6.03 to 3.74, $p<0.001$) and the hard stream's head improves (30.0 vs.\ 28.7\%, $p<0.001$); robustness at $\sigma{=}1$ rises by 0.7 points, which is not significant ($p{=}0.07$). The plain law ($\gamma{=}1$) moves in the same direction but more weakly (gap 4.75, $p{=}0.01$). OGM-GE reaches a slightly lower gap (3.29) at its selected $\alpha$ but costs 1.7 accuracy points relative to MFC-A ($p{=}0.002$), and $\alpha{=}0.8$ costs about 6 points while driving the gap below 1; a small OGR gap can thus be bought with accuracy and is not a goal by itself. Gradient Blending reaches a similar gap (4.23) and accuracy (84.0\%). Uncertainty weighting lowers the hard stream's head accuracy to 25.5\%, consistent with its tendency to down-weight high-loss objectives.
+}\DIFaddend 
 
-%DIFDELCMD < \begin{itemize}
+\DIFdelbegin %DIFDELCMD < \begin{itemize}
 %DIFDELCMD <     \item %%%
 \textbf{\DIFdel{Epochs 1--7 (Warm-up):}} %DIFAUXCMD
 \DIFdel{The speeds of learning are similar in all the methods. Vision OGR remains close at 1.0 to all methods, i.e. vision is generalizing in a clean manner. The MFC identifies that the two modalities are underfitting, }\DIFdelend \DIFaddbegin \emph{\DIFadd{Spectrogram-view control (Table~\ref{tab:main_spec}).}} \DIFadd{When both streams come from the same signal and are of similar strength (unimodal heads at 47 }\DIFaddend and \DIFdelbegin \DIFdel{it increases both weights ($\lambda_v$, $\lambda_a$ increases in value until it reaches about 1.2) .
-}\DIFdelend \DIFaddbegin \DIFadd{45\%), imbalance is mild (baseline gap 1.63), and MFC-A ($\gamma{=}2$) stays close to the baseline (accuracy 49.3 vs.\ 49.1\%, gap 1.25). Gradient Blending is the best method here: it improves accuracy by 1.5 points ($p{=}0.03$) and robustness at $\sigma{=}1$ by 4.0 points ($p<0.001$) over MFC-A. Its offline weights put almost all auxiliary weight on the band-statistics view ($\lambda_v\approx0.14$), a reallocation that MFC-A's ratio-based law does not reach when the OGRs of the two views are similar.
+}\DIFdelend \DIFaddbegin \DIFadd{45\%), imbalance is mild (baseline gap 1.21), and MFC-A ($\gamma{=}3$) stays close to the baseline (accuracy 49.2 vs.\ 49.1\%, gap 1.12). Gradient Blending is the best method here: it improves accuracy by 1.5 points ($p{=}0.008$) and robustness at $\sigma{=}1$ by 3.3 points ($p{=}0.002$) over MFC-A. Its offline weights put almost all auxiliary weight on the band-statistics view ($\lambda_v\approx0.14$), a reallocation that MFC-A's ratio-based law does not reach when the OGRs of the two views are similar.
 }\DIFaddend 
 
 \DIFdelbegin %DIFDELCMD < \item %%%
@@ -1086,24 +1080,25 @@ MFC-OG & \textbf{82.5$^{*}$} & \textbf{1.42$^{*}$} & \textbf{79.7$^{*}$} & 50.0 
 & \multicolumn{3}{c}{\textbf{CREMA-D audio--video}} & \multicolumn{3}{c}{\textbf{AVE}} & \multicolumn{3}{c}{\textbf{Synthetic}} \\
 \cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
 \textbf{Variant} & \textbf{Acc} & \textbf{OGR gap}$\downarrow$ & \textbf{Rob@1.0} & \textbf{Acc} & \textbf{OGR gap}$\downarrow$ & \textbf{Rob@1.0} & \textbf{Acc} & \textbf{OGR gap}$\downarrow$ & \textbf{Rob@1.0} \\ \midrule
-Baseline (no control) & 49.7$\pm$5.8 & 3.73$\pm$3.60 & 43.4$\pm$3.3 & 79.9$\pm$1.8 & 25.87$\pm$22.28 & 74.9$\pm$1.2 & 84.1$\pm$1.1 & 6.01$\pm$1.36 & 48.8$\pm$2.1 \\
-Static weights ($\bar\lambda$ of MFC-A) & 49.6$\pm$5.1 & 2.36$\pm$1.78 & 44.6$\pm$3.2 & 81.0$\pm$1.3 & 7.89$\pm$6.91 & 76.4$\pm$1.6 & 84.0$\pm$1.4 & 4.62$\pm$1.18 & 49.8$\pm$2.9 \\
-Raw gap signal instead of OGR & 48.9$\pm$5.7 & 3.63$\pm$2.70 & 43.1$\pm$3.9 & 79.5$\pm$1.7 & 23.51$\pm$19.32 & 73.8$\pm$1.4 & 84.4$\pm$1.6 & 5.96$\pm$1.16 & 48.7$\pm$2.2 \\
-Throttle rule only ($\lambda\le1$) & 49.7$\pm$6.0 & 3.36$\pm$2.12 & 43.4$\pm$3.0 & 80.2$\pm$1.2 & 12.66$\pm$8.66 & 75.2$\pm$1.1 & 84.1$\pm$1.4 & 5.06$\pm$1.11 & 49.8$\pm$2.3 \\
-Amplify rule only ($\lambda\ge1$) & 49.2$\pm$5.4 & 4.30$\pm$3.49 & 43.3$\pm$3.6 & 79.4$\pm$1.7 & 26.18$\pm$21.67 & 74.0$\pm$1.4 & 84.0$\pm$1.9 & 5.69$\pm$1.37 & 49.0$\pm$2.2 \\
-No warm-up & 48.9$\pm$5.7 & 3.28$\pm$2.35 & 43.4$\pm$3.3 & 79.9$\pm$1.5 & 14.11$\pm$9.07 & 74.7$\pm$1.3 & 84.6$\pm$1.3 & 4.71$\pm$1.06 & 49.9$\pm$2.3 \\
-No EMA & 50.1$\pm$6.1 & 2.56$\pm$1.55 & 43.9$\pm$3.2 & 80.1$\pm$1.1 & 12.10$\pm$7.90 & 75.0$\pm$1.4 & 84.4$\pm$1.5 & 4.81$\pm$1.05 & 49.5$\pm$2.2 \\
-No window ($W{=}1$) & 49.6$\pm$5.5 & 3.75$\pm$2.80 & 43.6$\pm$3.3 & 80.3$\pm$1.4 & 10.54$\pm$5.89 & 74.8$\pm$1.2 & 84.6$\pm$1.4 & 4.87$\pm$1.21 & 49.5$\pm$2.1 \\
-Running train loss (no extra pass) & 49.3$\pm$5.5 & 3.13$\pm$2.26 & 43.7$\pm$3.0 & 79.9$\pm$2.0 & 17.75$\pm$11.37 & 74.4$\pm$1.6 & 84.0$\pm$1.3 & 5.70$\pm$1.54 & 49.4$\pm$2.8 \\
-\textbf{MFC-A (full)} & 49.3$\pm$5.4 & 2.98$\pm$2.38 & 43.8$\pm$3.3 & 80.2$\pm$1.6 & 14.47$\pm$8.48 & 74.8$\pm$1.8 & 84.5$\pm$1.7 & 5.11$\pm$1.12 & 49.3$\pm$2.0 \\
+Baseline (no control) & 49.7$\pm$5.8 & 3.73$\pm$3.60 & 43.4$\pm$3.3 & 79.9$\pm$1.8 & 25.87$\pm$22.28 & 74.9$\pm$1.2 & 84.1$\pm$1.3 & 6.03$\pm$1.39 & 48.9$\pm$2.1 \\
+Static weights ($\bar\lambda$ of MFC-A) & 49.6$\pm$5.1 & 2.36$\pm$1.78 & 44.6$\pm$3.2 & 81.0$\pm$1.3 & 7.89$\pm$6.91 & 76.4$\pm$1.6 & 84.2$\pm$1.6 & 4.43$\pm$1.13 & 49.5$\pm$2.6 \\
+Raw gap signal instead of OGR & 48.9$\pm$5.7 & 3.63$\pm$2.70 & 43.1$\pm$3.9 & 79.5$\pm$1.7 & 23.51$\pm$19.32 & 73.8$\pm$1.4 & 84.4$\pm$1.6 & 5.82$\pm$1.15 & 48.7$\pm$2.2 \\
+Throttle rule only ($\lambda\le1$) & 49.7$\pm$6.0 & 3.36$\pm$2.12 & 43.4$\pm$3.0 & 80.2$\pm$1.2 & 12.66$\pm$8.66 & 75.2$\pm$1.1 & 84.2$\pm$1.4 & 5.32$\pm$1.12 & 49.3$\pm$2.4 \\
+Amplify rule only ($\lambda\ge1$) & 49.2$\pm$5.4 & 4.30$\pm$3.49 & 43.3$\pm$3.6 & 79.4$\pm$1.7 & 26.18$\pm$21.67 & 74.0$\pm$1.4 & 83.6$\pm$1.7 & 5.48$\pm$1.72 & 49.0$\pm$2.5 \\
+No warm-up & 48.9$\pm$5.7 & 3.28$\pm$2.35 & 43.4$\pm$3.3 & 79.9$\pm$1.5 & 14.11$\pm$9.07 & 74.7$\pm$1.3 & 84.6$\pm$1.3 & 4.51$\pm$0.90 & 49.9$\pm$2.4 \\
+No EMA & 50.1$\pm$6.1 & 2.56$\pm$1.55 & 43.9$\pm$3.2 & 80.1$\pm$1.1 & 12.10$\pm$7.90 & 75.0$\pm$1.4 & 84.2$\pm$1.6 & 4.80$\pm$0.97 & 49.5$\pm$2.2 \\
+No window ($W{=}1$) & 49.6$\pm$5.5 & 3.75$\pm$2.80 & 43.6$\pm$3.3 & 80.3$\pm$1.4 & 10.54$\pm$5.89 & 74.8$\pm$1.2 & 84.5$\pm$1.3 & 5.09$\pm$1.32 & 49.4$\pm$2.1 \\
+Running train loss (no extra pass) & 49.3$\pm$5.5 & 3.13$\pm$2.26 & 43.7$\pm$3.0 & 79.9$\pm$2.0 & 17.75$\pm$11.37 & 74.4$\pm$1.6 & 84.0$\pm$1.5 & 5.69$\pm$1.45 & 49.3$\pm$2.7 \\
+\textbf{MFC-A (full)} & 49.3$\pm$5.4 & 2.98$\pm$2.38 & 43.8$\pm$3.3 & 80.2$\pm$1.6 & 14.47$\pm$8.48 & 74.8$\pm$1.8 & 84.5$\pm$1.8 & 4.75$\pm$0.98 & 49.4$\pm$2.1 \\
 \bottomrule
 \end{tabular}
 \end{table*}
 \DIFaddend 
 
-\DIFdelbegin \DIFdel{A model which really is learning each of the two modalities should gracefully degrade as one of them fails. In order to test this }\DIFdelend \DIFaddbegin \DIFadd{The ablation uses the plain law ($\gamma{=}1$) so that each component is isolated. Four observations stand out. (i) }\emph{\DIFadd{OGR vs.\ raw gap.}} \DIFadd{Replacing OGR with the raw gap weakens balancing on all three datasets with unequal loss scales (AVE 23.5 vs.\ 14.5}\DIFaddend , \DIFdelbegin \DIFdel{we added more }\DIFdelend \DIFaddbegin \DIFadd{$p{=}0.05$; CREMA-D 3.63 vs.\ 2.98; synthetic 5.96 vs.\ 5.11) and significantly lowers the hard stream's head accuracy on the synthetic data ($p{=}0.025$). On the spectrogram control, where the two views have similar loss scales, the two signals behave alike (1.23 vs.\ 1.32). This is what Proposition~\ref{prop:scale} predicts: normalisation matters when the loss scales of the modalities differ. (ii) }\emph{\DIFadd{Throttle vs.\ amplify.}} \DIFadd{Throttling alone retains essentially the full effect (AVE gap 12.7, synthetic 5.06), whereas amplifying alone is weaker and on AVE and CREMA-D does not reduce the gap at all (26.2 }\DIFaddend and \DIFdelbegin \DIFdel{more Gaussian noise ($\sigma \in \{0, 0.5, 1.0, 2.0, 3.0\}$)to the visual input at evaluation time, which simulated the degradation of sensors in the real world, e.g. a foggy camera, motion blur, or partial occlusion. The audio input was kept clean. Table~\ref{tab:robustness} and Figure~\ref{fig:robustness} present the results. }%DIFDELCMD < 
+\DIFdelbegin \DIFdel{A model which really is learning each of the two modalities should gracefully degrade as one of them fails. In order to test this }\DIFdelend \DIFaddbegin \DIFadd{The ablation uses the plain law ($\gamma{=}1$) so that each component is isolated. Four observations stand out. (i) }\emph{\DIFadd{OGR vs.\ raw gap.}} \DIFadd{Replacing OGR with the raw gap weakens balancing on all three datasets with unequal loss scales (AVE 23.5 vs.\ 14.5}\DIFaddend , \DIFdelbegin \DIFdel{we added more }\DIFdelend \DIFaddbegin \DIFadd{$p{=}0.05$; CREMA-D 3.63 vs.\ 2.98; synthetic 5.82 vs.\ 4.75, $p{=}0.04$). On the spectrogram control, where the two views have similar loss scales, the difference is small and not significant (1.50 vs.\ 1.35). This is what Proposition~\ref{prop:scale} predicts: normalisation matters when the loss scales of the modalities differ. (ii) }\emph{\DIFadd{Throttle vs.\ amplify.}} \DIFadd{Throttling alone retains most of the effect (AVE gap 12.7 vs.\ 14.5 for the full law, synthetic 5.32 vs.\ 4.75, neither difference significant), whereas amplifying alone is weaker and on AVE and CREMA-D does not reduce the gap at all (26.2 }\DIFaddend and \DIFdelbegin \DIFdel{more Gaussian noise ($\sigma \in \{0, 0.5, 1.0, 2.0, 3.0\}$)to the visual input at evaluation time, which simulated the degradation of sensors in the real world, e.g. a foggy camera, motion blur, or partial occlusion. The audio input was kept clean. Table~\ref{tab:robustness} and Figure~\ref{fig:robustness} present the results. }\DIFdelend \DIFaddbegin \DIFadd{4.30, versus 25.9 and 3.73 for the baseline). The active ingredient is therefore the reduction of the overfitting modality's auxiliary weight. (iii) }\emph{\DIFadd{Dynamic vs.\ static.}} \DIFadd{Fixing $\lambda$ at MFC-A's average allocation from the start gives similar or better balance (AVE 7.9, CREMA-D 2.36, synthetic 4.43) and on AVE slightly better robustness ($p{=}0.007$), with the same accuracy. The value of the closed loop is that it }\emph{\DIFadd{finds}} \DIFadd{this allocation within a single run, whereas a static schedule has to be known in advance or estimated from extra runs, as in Gradient Blending. (iv) }\emph{\DIFadd{Smoothing.}} \DIFadd{Removing warm-up, EMA or the window changes no metric significantly, and the running-loss variant performs comparably on audio--video at a fraction of the monitoring cost (on the synthetic data its weak-head accuracy is 0.8 points lower, $p{=}0.04$).
+}\DIFaddend 
 
-%DIFDELCMD < \begin{table}[h]
+\DIFdelbegin %DIFDELCMD < \begin{table}[h]
 %DIFDELCMD < \caption{\textbf{Robustness to Visual Noise.} Accuracy (on the held-out validation set) as Gaussian noise of increasing standard deviation $\sigma$ is added to the visual input at test time. Clean audio is always available. The MFC and OGM-GE both achieve notably better resilience than the Baseline at moderate noise levels ($\sigma \leq 1.0$), confirming that their audio encoders have learned genuinely useful features rather than remaining dormant.}
 %DIFDELCMD < \label{tab:robustness}
 %DIFDELCMD < \centering
@@ -1117,29 +1112,12 @@ Running train loss (no extra pass) & 49.3$\pm$5.5 & 3.13$\pm$2.26 & 43.7$\pm$3.0
 %DIFDELCMD < \bottomrule
 %DIFDELCMD < \end{tabular}
 %DIFDELCMD < \end{table}
-%DIFDELCMD < 
-
 %DIFDELCMD < %%%
-\DIFdel{The most important comparison here is }\DIFdelend \DIFaddbegin \DIFadd{4.30, versus 25.9 and 3.73 for the baseline). The active ingredient is therefore the reduction of the overfitting modality's auxiliary weight. (iii) }\emph{\DIFadd{Dynamic vs.\ static.}} \DIFadd{Fixing $\lambda$ at MFC-A's average allocation from the start gives similar or better balance (AVE 7.9, CREMA-D 2.36, synthetic 4.62) and on AVE slightly better robustness ($p{=}0.007$), with the same accuracy. The value of the closed loop is that it }\emph{\DIFadd{finds}} \DIFadd{this allocation within a single run, whereas a static schedule has to be known in advance or estimated from extra runs, as in Gradient Blending. (iv) }\emph{\DIFadd{Smoothing.}} \DIFadd{Removing warm-up, EMA or the window changes no metric significantly, and }\DIFaddend the \DIFdelbegin \textbf{\DIFdel{Baseline vs.\ MFC at $\sigma = 1.0$}}%DIFAUXCMD
-\DIFdel{: the Baseline accuracy of 83.3\% declines to 48.2\% (a decline of 35), whereas the MFC declines to 50.5\% (a decline of only 2.3 points). This loophole is present as the throttling of vision gradients by the MFC caused the audio encoder to become a self-developing discriminative feature instead of riding on the free vision. At the point that vision is no longer reliable, these audio features become a life-line to the model. }\DIFdelend \DIFaddbegin \DIFadd{running-loss variant performs comparably on audio--video at a fraction of the monitoring cost.
+\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Sensitivity to hyper-parameters}}
+\DIFadd{Table~\ref{tab:sens} varies one hyper-parameter at a time around the default ($W{=}5$, $\beta{=}0.7$, $T_w{=}3$, $[0.2,1.8]$) on all four datasets, reporting the tune-split accuracy that would be used for selection together with test accuracy and OGR gap. For the smoothing and timing hyper-parameters ($W$, $\beta$, $T_w$, clipping), test accuracy stays within 0.7 points of the default on every dataset; the only significant change is a longer warm-up on the synthetic benchmark ($-0.7$ points, $p{=}0.01$). The OGR gap varies more (for example, a longer warm-up lowers it on audio--video, 2.05 vs.\ 2.98, $p{=}0.17$), but without a consistent pattern across datasets. The control strength $\gamma$ has the largest effect: on the synthetic benchmark the gap falls monotonically from 4.75 ($\gamma{=}1$) through 4.14 to 3.74 ($\gamma{=}3$) at constant accuracy. Under the plain law, $\lambda$ never leaves $[0.2,1.8]$, so the clipping range acts only as a safety bound (practically identical results for $[0.1,5.0]$); with $\gamma\ge2$ the lower bound becomes active on the synthetic and audio--video data. The smoothing defaults were not fine-tuned, and the same values are used on every dataset.
 }\DIFaddend 
 
-\DIFdelbegin \DIFdel{At extremely high noise ($\sigma \geq 2.0$ and above) }\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Sensitivity to hyper-parameters}}
-\DIFadd{Table~\ref{tab:sens} varies one hyper-parameter at a time around the default ($W{=}5$, $\beta{=}0.7$}\DIFaddend , \DIFdelbegin \DIFdel{the various approaches tend to approach the same (low) accuracy}\DIFdelend \DIFaddbegin \DIFadd{$T_w{=}3$}\DIFaddend , \DIFdelbegin \DIFdel{since it is difficult even a well-trained audio-only model to deal with the intrinsic challenge of the task at such a noise level. This is supposed and does not invalidate the main finding at practicable noise levels. }%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdel{The interesting trend observed in Gradient Blending is that it drops the most on clean data, but slightly picks itself up at $\sigma = 1.0$ compared to the Baseline. The reason behind this is that its heavier weighting (even when inaccurately estimated offline) of audio gives audio a greater training signal than the Baseline. Nevertheless, the increase is not regular and is at the expense of clean data accuracy.
-}\DIFdelend \DIFaddbegin \DIFadd{$[0.2,1.8]$) on all four datasets, reporting the tune-split accuracy that would be used for selection together with test accuracy and OGR gap. For the smoothing and timing hyper-parameters ($W$, $\beta$, $T_w$, clipping), test accuracy stays within 0.6 points of the default on every dataset, and no change is significant. The OGR gap varies more (for example, a longer warm-up lowers it on audio--video, 2.05 vs.\ 2.98, $p{=}0.17$), but without a consistent pattern across datasets. The control strength $\gamma$ has the largest effect: on the synthetic benchmark the gap falls monotonically from 5.11 ($\gamma{=}1$) to 3.56 ($\gamma{=}3$) at constant accuracy. Under the plain law, $\lambda$ never leaves $[0.2,1.8]$, so the clipping range acts only as a safety bound (practically identical results for $[0.1,5.0]$); with $\gamma\ge2$ the lower bound becomes active on the synthetic and audio--video data. The smoothing defaults were not fine-tuned, and the same values are used on every dataset.
-}\DIFaddend 
-
-\DIFdelbegin %DIFDELCMD < \begin{figure*}[tbp]
-%DIFDELCMD <     \centering
-%DIFDELCMD <     \includegraphics[width=0.82\textwidth]{images/benchmark_summary_bars.png}
-%DIFDELCMD <     \caption{\textbf{Benchmark Summary.} Left: Best validation accuracy per method. Centre: OGR Gap (lower = more balanced training). Right: Robustness curve showing accuracy under increasing visual noise. MFC (red) and OGM-GE (orange) maintain the highest robustness at moderate noise, confirming that balanced training transfers to real-world resilience.}
-%DIFDELCMD <     \label{fig:robustness}
-%DIFDELCMD < \end{figure*}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{table*}[t]
+\DIFdelbegin \DIFdel{The most important comparison here is }\DIFdelend \DIFaddbegin \begin{table*}[t]
 \caption{\textbf{Sensitivity of MFC-A} (10 seeds, means; standard deviations are in the released logs). Tune: accuracy on $\mathcal{D}_{\mathrm{tune}}$ (used for selection). Test: accuracy on $\mathcal{D}_{\mathrm{te}}$. Gap: test OGR gap.}
 \label{tab:sens}
 \centering
@@ -1150,53 +1128,34 @@ Running train loss (no extra pass) & 49.3$\pm$5.5 & 3.13$\pm$2.26 & 43.7$\pm$3.0
 & \multicolumn{3}{c}{\textbf{CREMA-D audio--video}} & \multicolumn{3}{c}{\textbf{AVE}} & \multicolumn{3}{c}{\textbf{Synthetic}} & \multicolumn{3}{c}{\textbf{Spectrogram views}} \\
 \cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}\cmidrule(lr){11-13}
 \textbf{Setting} & Tune & Test & Gap & Tune & Test & Gap & Tune & Test & Gap & Tune & Test & Gap \\ \midrule
-$\gamma$=1 (default law) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 85.8 & 84.5 & 5.11 & 52.3 & 49.3 & 1.32 \\
-$\gamma$=2 & 51.8 & 48.8 & 2.90 & 84.4 & 80.4 & 11.16 & 85.9 & 84.5 & 4.25 & 52.3 & 49.3 & 1.25 \\
-$\gamma$=3 & 51.2 & 50.1 & 2.16 & 84.2 & 80.2 & 9.50 & 85.8 & 84.3 & 3.56 & 52.3 & 49.1 & 1.34 \\
-$W$=3 & 51.6 & 49.9 & 2.85 & 84.2 & 80.3 & 12.12 & 85.9 & 84.3 & 5.23 & 52.3 & 49.5 & 1.65 \\
-$W$=5 (default) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 85.8 & 84.5 & 5.11 & 52.3 & 49.3 & 1.32 \\
-$W$=10 & 51.4 & 49.5 & 3.38 & 84.3 & 80.0 & 17.73 & 85.7 & 84.4 & 5.39 & 52.4 & 49.3 & 1.28 \\
-EMA 0.5 & 51.6 & 49.5 & 3.48 & 84.2 & 80.3 & 11.99 & 86.0 & 84.8 & 5.05 & 52.4 & 48.9 & 1.42 \\
-EMA 0.7 (default) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 85.8 & 84.5 & 5.11 & 52.3 & 49.3 & 1.32 \\
-EMA 0.9 & 52.0 & 49.5 & 3.31 & 84.0 & 79.9 & 19.58 & 85.8 & 84.7 & 6.00 & 52.4 & 49.1 & 1.27 \\
-Warm-up 0 & 51.6 & 48.9 & 3.28 & 84.2 & 79.9 & 14.11 & 86.1 & 84.6 & 4.71 & 52.2 & 49.2 & 1.41 \\
-Warm-up 3 (default) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 85.8 & 84.5 & 5.11 & 52.3 & 49.3 & 1.32 \\
-Warm-up 5 & 51.3 & 49.8 & 2.05 & 84.3 & 80.2 & 15.09 & 85.7 & 84.0 & 4.57 & 52.2 & 49.3 & 1.23 \\
-Clip [0.5,1.5] & 51.5 & 49.4 & 2.96 & 84.1 & 80.1 & 15.29 & 85.6 & 84.2 & 5.20 & 52.3 & 49.3 & 1.32 \\
-Clip [0.2,1.8] (default) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 85.8 & 84.5 & 5.11 & 52.3 & 49.3 & 1.32 \\
-Clip [0.1,5.0] & 51.4 & 49.3 & 2.98 & 84.1 & 80.2 & 14.47 & 85.8 & 84.5 & 5.11 & 52.3 & 49.3 & 1.32 \\
+$\gamma$=1 (default law) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 86.0 & 84.5 & 4.75 & 52.0 & 48.8 & 1.35 \\
+$\gamma$=2 & 51.8 & 48.8 & 2.90 & 84.4 & 80.4 & 11.16 & 86.0 & 84.7 & 4.14 & 52.2 & 48.6 & 1.29 \\
+$\gamma$=3 & 51.2 & 50.1 & 2.16 & 84.2 & 80.2 & 9.50 & 85.7 & 84.4 & 3.74 & 52.3 & 49.1 & 1.12 \\
+$W$=3 & 51.6 & 49.9 & 2.85 & 84.2 & 80.3 & 12.12 & 85.9 & 83.9 & 4.89 & 52.3 & 48.8 & 1.48 \\
+$W$=5 (default) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 86.0 & 84.5 & 4.75 & 52.0 & 48.8 & 1.35 \\
+$W$=10 & 51.4 & 49.5 & 3.38 & 84.3 & 80.0 & 17.73 & 86.0 & 84.2 & 5.18 & 52.4 & 48.6 & 1.48 \\
+EMA 0.5 & 51.6 & 49.5 & 3.48 & 84.2 & 80.3 & 11.99 & 86.2 & 84.6 & 4.94 & 52.4 & 48.9 & 1.41 \\
+EMA 0.7 (default) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 86.0 & 84.5 & 4.75 & 52.0 & 48.8 & 1.35 \\
+EMA 0.9 & 52.0 & 49.5 & 3.31 & 84.0 & 79.9 & 19.58 & 85.9 & 84.2 & 5.77 & 52.5 & 48.7 & 1.35 \\
+Warm-up 0 & 51.6 & 48.9 & 3.28 & 84.2 & 79.9 & 14.11 & 86.0 & 84.6 & 4.51 & 52.2 & 49.4 & 1.32 \\
+Warm-up 3 (default) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 86.0 & 84.5 & 4.75 & 52.0 & 48.8 & 1.35 \\
+Warm-up 5 & 51.3 & 49.8 & 2.05 & 84.3 & 80.2 & 15.09 & 85.7 & 83.8 & 4.43 & 52.2 & 49.1 & 1.22 \\
+Clip [0.5,1.5] & 51.5 & 49.4 & 2.96 & 84.1 & 80.1 & 15.29 & 85.9 & 84.5 & 4.90 & 52.0 & 48.8 & 1.35 \\
+Clip [0.2,1.8] (default) & 51.4 & 49.3 & 2.98 & 84.2 & 80.2 & 14.47 & 86.0 & 84.5 & 4.75 & 52.0 & 48.8 & 1.35 \\
+Clip [0.1,5.0] & 51.4 & 49.3 & 2.98 & 84.1 & 80.2 & 14.47 & 86.0 & 84.5 & 4.75 & 52.0 & 48.8 & 1.35 \\
 \bottomrule
 \end{tabular}
 \end{table*}
-\DIFaddend 
 
-\DIFdelbegin \subsection{\DIFdel{Real-World Validation: CREMA-D Corpus}}
-%DIFAUXCMD
-\addtocounter{subsection}{-1}%DIFAUXCMD
-%DIFDELCMD < 
+\subsection*{\DIFadd{Effect of encoder capacity}}
+\DIFadd{Table~\ref{tab:capacity} widens the first-stream encoder of }\DIFaddend the \DIFdelbegin \textbf{\DIFdel{Baseline vs.\ MFC at $\sigma = 1.0$}}%DIFAUXCMD
+\DIFdel{: the Baseline accuracy of 83.3\% declines to 48.2\% (a decline of 35}\DIFdelend \DIFaddbegin \DIFadd{synthetic model from 128 to 1024 hidden units (plain law, $\gamma{=}1$). A wider dominant encoder memorises faster: the baseline's OGR gap grows from 6.0 to 108.6. MFC-A's relative advantage grows accordingly: it reduces the gap by 21\% at 128 units ($p{=}0.01$}\DIFaddend ), \DIFdelbegin \DIFdel{whereas the MFC declines to 50.5\% (a decline of only 2.3 points). This loophole is present as the throttling of vision gradients by the MFC caused the audio encoder to become a self-developing discriminative feature instead of riding on the free vision. At the point that vision is no longer reliable, these audio features become a life-line to the model. }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{In order to test MFC on real multimodal data beyond synthetic tests, we tested MFC on }\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Effect of encoder capacity}}
-\DIFadd{Table~\ref{tab:capacity} widens the first-stream encoder of }\DIFaddend the \DIFdelbegin \DIFdel{CREMA-D corpus~\mbox{%DIFAUXCMD
-\cite{cao2014crema}}\hskip0pt%DIFAUXCMD
----7, 442 mel spectrogram images of 91 actors of 6 emotion categories (Anger, Disgust, Fear, Happy, Neutral, Sad). Each spectrogram is used to create two asymmetric streams of features which are used to create realistic modality imbalance:
-}\DIFdelend \DIFaddbegin \DIFadd{synthetic model from 128 to 1024 hidden units (plain law, $\gamma{=}1$). A wider dominant encoder memorises faster: the baseline's OGR gap grows from 6.0 to 93.6. MFC-A's relative advantage grows accordingly: it reduces the gap by 15\% at 128 units, by 35\% at 256 ($p{=}0.015$), by 52\% at 512 ($p{=}0.002$) and by 55\% at 1024 units (93.6 to 41.7, $p{=}0.008$), and robustness at $\sigma{=}1$ improves significantly for widths of 256 and above (+0.6 to +1.1 points). Accuracy differences remain within $\pm0.8$ points and are not significant at any width. The first submission reported a +3.1-point accuracy gain at 1024 units from a single run; with ten seeds this gain is +0.76 points ($p{=}0.09$), and we withdraw the earlier claim.
-}\DIFaddend 
-
-\DIFdelbegin %DIFDELCMD < \begin{itemize}
-\begin{itemize}%DIFAUXCMD
-%DIFDELCMD <     \item %%%
-\item%DIFAUXCMD
-\textbf{\DIFdel{Spatial (visual) modality}}%DIFAUXCMD
-\DIFdel{: PCA features of 64 dimensions of the entire $224\times224$ spectrogram. These represent spatial texture throughout the globe and constitute higher-text stream. }%DIFDELCMD < \item %%%
-\item%DIFAUXCMD
-\textbf{\DIFdel{Band-stats (audio proxy) modality}}%DIFAUXCMD
-\DIFdel{: Hand-made statistics (mean, std, max)48-dim (per 16 mel bands). Such coarser features are less discriminative by nature, which forms natural dominance of modalities.
+\DIFdel{At extremely high noise ($\sigma \geq 2.0$ and above) }\DIFdelend \DIFaddbegin \DIFadd{by 38\% at 256 ($p{=}0.01$), by 51\% at 512 ($p{=}0.003$) and by 60\% at 1024 units (108.6 to 43.5}\DIFaddend , \DIFaddbegin \DIFadd{$p{=}0.003$). Robustness at $\sigma{=}1$ improves by 0.5--1.5 points, significantly only at 256 units ($+1.5$, $p{=}0.001$). Accuracy differences remain within $\pm0.5$ points and are not significant at any width. The first submission reported a +3.1-point accuracy gain at 1024 units from a single run; with ten seeds this gain is +0.46 points ($p{=}0.16$), and we withdraw the earlier claim.
 }
-\end{itemize}%DIFAUXCMD
-%DIFDELCMD < \end{itemize}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{table}[t]
+
+\begin{table}[t]
 \caption{\textbf{Capacity study} (synthetic, 10 seeds). Width of the first-stream hidden layer. $\Delta$: MFC-A minus baseline (paired $p$-value in parentheses).}
 \label{tab:capacity}
 \centering
@@ -1205,42 +1164,27 @@ Clip [0.1,5.0] & 51.4 & 49.3 & 2.98 & 84.1 & 80.2 & 14.47 & 85.8 & 84.5 & 5.11 &
 \begin{tabular}{@{}lcccccc@{}}
 \toprule
 \textbf{Width} & \textbf{Base Acc} & \textbf{MFC-A Acc} & \textbf{$\Delta$Acc ($p$)} & \textbf{Base gap} & \textbf{MFC-A gap} & \textbf{$\Delta$Rob@1 ($p$)} \\ \midrule
-128 & 84.1$\pm$1.1 & 84.5$\pm$1.7 & +0.32 (0.35) & 6.01$\pm$1.36 & 5.11$\pm$1.12 & +0.48 (0.18) \\
-256 & 84.9$\pm$1.1 & 85.5$\pm$0.8 & +0.62 (0.07) & 19.93$\pm$7.75 & 12.94$\pm$3.95 & +1.06 (0.02) \\
-512 & 84.8$\pm$0.9 & 85.2$\pm$1.2 & +0.36 (0.17) & 60.98$\pm$24.41 & 29.09$\pm$5.53 & +0.56 (0.02) \\
-1024 & 82.9$\pm$1.8 & 83.6$\pm$1.5 & +0.76 (0.09) & 93.56$\pm$57.97 & 41.66$\pm$13.88 & +0.66 (0.05) \\
+128 & 84.1$\pm$1.3 & 84.5$\pm$1.8 & +0.43 (0.13) & 6.03$\pm$1.39 & 4.75$\pm$0.98 & +0.54 (0.19) \\
+256 & 85.1$\pm$0.9 & 85.4$\pm$0.9 & +0.26 (0.46) & 20.62$\pm$7.95 & 12.86$\pm$3.93 & +1.49 (0.00) \\
+512 & 84.8$\pm$1.6 & 85.2$\pm$1.2 & +0.38 (0.29) & 54.58$\pm$25.06 & 26.73$\pm$6.58 & +0.58 (0.09) \\
+1024 & 83.2$\pm$1.6 & 83.7$\pm$1.5 & +0.46 (0.16) & 108.57$\pm$57.50 & 43.52$\pm$13.12 & +0.56 (0.06) \\
 \bottomrule
 \end{tabular}
 \end{table}
-\DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \begin{table}[h]
-%DIFDELCMD < \caption{Real-Data Benchmark: CREMA-D Emotion Recognition. MFC achieves the highest test accuracy and the best robustness at $\sigma{=}1.0$. OGM-GE achieves the lowest OGR gap (5.91) through aggressive noise injection but suffers a $-$3.1\% accuracy penalty---confirming the over-correction problem. MFC reduces the OGR gap by 38.9\% over the Baseline with no accuracy cost.}
-%DIFDELCMD < \label{tab:crema}
-%DIFDELCMD < \centering
-%DIFDELCMD < \begin{tabular}{@{}lcccc@{}}
-%DIFDELCMD < \toprule
-%DIFDELCMD < \textbf{Method} & \textbf{Test Acc} & \textbf{OGR Gap} $\downarrow$ & \textbf{Rob.\ ($\sigma{=}0.5$)} & \textbf{Rob.\ ($\sigma{=}1.0$)} $\uparrow$ \\ \midrule
-%DIFDELCMD < Baseline                             & 51.1\% & 36.32 & 46.5\% & 35.6\% \\
-%DIFDELCMD < OGM-GE \cite{peng2022balanced}                 & 48.0\% & \textbf{5.91}  & 45.3\% & 34.2\% \\
-%DIFDELCMD < \textbf{Proposed(MFC)}                  & \textbf{51.3\%} & 22.19 & 44.5\% & \textbf{37.6\%} \\
-%DIFDELCMD < \bottomrule
-%DIFDELCMD < \end{tabular}
-%DIFDELCMD < \end{table}
-%DIFDELCMD < 
+\subsection*{\DIFadd{Robustness to visual degradation}}
+\DIFadd{Figure~\ref{fig:rob} shows accuracy as the first stream is increasingly corrupted. On the synthetic benchmark, differences between methods at $\sigma{=}1$ are within about one point, and MFC-A's gain over the baseline ($+0.7$) is not significant ($p{=}0.07$). On AVE, MFC-A improves robustness to feature noise, blur and low light significantly over the baseline, but OGM-GE improves it much more. On audio--video CREMA-D only Gradient Blending improves robustness to feature noise ($+3.9$ points at $\sigma{=}1$). On CREMA-D }\DIFaddend the \DIFdelbegin \DIFdel{various approaches tend to approach the same (low) accuracy, since it is difficult even a well-trained audio-only model to deal with the intrinsic challenge of the task at such a noise level.This }\DIFdelend \DIFaddbegin \DIFadd{pixel-level degradations are more damaging than removing the video altogether: blur and occlusion reduce every method to 23--28\%, whereas replacing the video features by their mean (``No video'') leaves 44\%. On vision-dominant AVE the opposite holds: removing the video is the most damaging condition (27--36\%), because the audio stream alone is weak. Corrupted frames produce out-of-distribution features that actively mislead the fusion head, and no loss-weighting method, MFC-A included, protects against this. Handling such inputs requires detecting or gating the corrupted modality, or training with adverse-condition data\mbox{%DIFAUXCMD
+\cite{lan2025sustechgan}}\hskip0pt%DIFAUXCMD
+, which is complementary to balancing. Table~\ref{tab:severity} grades the three pixel-level degradations on AVE at three severities. MFC-A }\DIFaddend is \DIFdelbegin \DIFdel{supposed and does not invalidate the main finding at practicable noise levels. }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{The CREMA-D outcomes support the main argument. The noise injection of }\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Robustness to visual degradation}}
-\DIFadd{Figure~\ref{fig:rob} shows accuracy as the first stream is increasingly corrupted. On the synthetic benchmark, MFC-A ($\gamma{=}3$) is the most robust method at $\sigma{=}1$ (49.7\%, $+0.9$ over the baseline, $p{=}0.04$), although differences between methods are within about one point. On AVE, MFC-A improves robustness to feature noise, blur and low light significantly over the baseline, but }\DIFaddend OGM-GE \DIFdelbegin \DIFdel{has very good balance (OGR gap: 5.91) at }\DIFdelend \DIFaddbegin \DIFadd{improves it much more. On audio--video CREMA-D only Gradient Blending improves robustness to feature noise ($+3.9$ points at $\sigma{=}1$). On CREMA-D }\DIFaddend the \DIFdelbegin \DIFdel{cost of the useful gradients of the predominating spatial modality, damaging accuracy by $-3.1\%$. MFC then discovers the Pareto optimum point: matching the Baseline performance (accuracy $+0.18\%$), but narrowing the OGR difference by 38.9\% and increasing robustness at $\sigma{=}1.0$ by $+$2.0\% confirming that the throttle-and-amplify mechanism forces the band-stats encoder to develop genuinely independent discriminative features. }\DIFdelend \DIFaddbegin \DIFadd{pixel-level degradations are more damaging than removing the video altogether: blur and occlusion reduce every method to 23--28\%, whereas replacing the video features by their mean (``No video'') leaves 44\%. On vision-dominant AVE the opposite holds: removing the video is the most damaging condition (27--36\%), because the audio stream alone is weak. Corrupted frames produce out-of-distribution features that actively mislead the fusion head, and no loss-weighting method, MFC-A included, protects against this. Handling such inputs requires detecting or gating the corrupted modality, or training with adverse-condition data\mbox{%DIFAUXCMD
-\cite{lan2025sustechgan}}\hskip0pt%DIFAUXCMD
-, which is complementary to balancing. Table~\ref{tab:severity} grades the three pixel-level degradations on AVE at three severities. MFC-A is 1--2 points above the baseline at every severity (significant for blur s3 and low light s1--s2) but below OGM-GE everywhere, with the gap widening with severity (blur s3: $-9.7$ points, $p<10^{-4}$), and Gradient Blending is also better at most severities. On CREMA-D (tables released with the code) no method differs significantly from MFC-A at the highest severity. JPEG compression (Table~\ref{tab:jpeg}) shows the same pattern: MFC-A is not significantly more robust than the baseline at any quality level except a $+0.9$-point gain at quality 30 on AVE ($p{=}0.049$), whereas OGM-GE gains $+3.7$, $+5.4$ and $+11.6$ points over the baseline on AVE at qualities 30, 15 and 5 (all $p<0.001$) and Gradient Blending is the most robust method on CREMA-D at qualities 30 and 15. We therefore do not claim a robustness advantage for MFC-A over the strongest baselines. At $\sigma\ge2$ all methods converge towards the accuracy that the second stream supports on its own, as expected when the first stream carries almost no information.
-}\DIFaddend 
+\DIFdel{The interesting trend observed in Gradient Blending is that it drops the most on clean data, but slightly picks itself up at $\sigma = 1.0$ compared to the Baseline. The reason behind this is that its heavier weighting (even when inaccurately estimated offline) of audio gives audio a greater training signal than the Baseline. Nevertheless, the increase is not regular and is at the expense of clean data accuracy}\DIFdelend \DIFaddbegin \DIFadd{1--2 points above the baseline at every severity (significant for blur s3 and low light s1--s2) but below OGM-GE everywhere, with the gap widening with severity (blur s3: $-9.7$ points, $p<10^{-4}$), and Gradient Blending is also better at most severities. On CREMA-D (tables released with the code) no method differs significantly from MFC-A at the highest severity. JPEG compression (Table~\ref{tab:jpeg}) shows the same pattern: MFC-A is not significantly more robust than the baseline at any quality level except a $+0.9$-point gain at quality 30 on AVE ($p{=}0.049$), whereas OGM-GE gains $+3.7$, $+5.4$ and $+11.6$ points over the baseline on AVE at qualities 30, 15 and 5 (all $p<0.001$) and Gradient Blending is the most robust method on CREMA-D at qualities 30 and 15. We therefore do not claim a robustness advantage for MFC-A over the strongest baselines. At $\sigma\ge2$ all methods converge towards the accuracy that the second stream supports on its own, as expected when the first stream carries almost no information}\DIFaddend .
 
 \DIFdelbegin %DIFDELCMD < \begin{figure*}[tbp]
 %DIFDELCMD <     \centering
-%DIFDELCMD <     \includegraphics[width=0.85\textwidth]{images/crema_benchmark.png}
-%DIFDELCMD <     \caption{\textbf{CREMA-D Benchmark.} Top: validation curves and per-modality OGR trajectories. Bottom: MFC weight dynamics (spatial modality throttled; band-stats amplified), robustness curve, and summary bar chart. Lambda dynamics on real CREMA-D data closely mirror the synthetic benchmark, confirming the OGR signal is a reliable cross-domain modality-imbalance detector.}
-%DIFDELCMD <     \label{fig:crema}
+%DIFDELCMD <     \includegraphics[width=0.82\textwidth]{images/benchmark_summary_bars.png}
+%DIFDELCMD <     \caption{\textbf{Benchmark Summary.} Left: Best validation accuracy per method. Centre: OGR Gap (lower = more balanced training). Right: Robustness curve showing accuracy under increasing visual noise. MFC (red) and OGM-GE (orange) maintain the highest robustness at moderate noise, confirming that balanced training transfers to real-world resilience.}
+%DIFDELCMD <     \label{fig:robustness}
 %DIFDELCMD < \end{figure*}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \begin{table*}[t]
@@ -1267,13 +1211,10 @@ MFC-A ($\gamma$=1) & 72.1$\pm$1.6 & 52.9$\pm$2.6 & 40.2$\pm$4.7 & 76.5$\pm$1.0 &
 \end{table*}
 \DIFaddend 
 
-\DIFdelbegin \section{\DIFdel{Discussion}}
-%DIFAUXCMD
-\addtocounter{section}{-1}%DIFAUXCMD
-\subsection{\DIFdel{Complexity Analysis}}
+\DIFdelbegin \subsection{\DIFdel{Real-World Validation: CREMA-D Corpus}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdel{In Table\ref{tab:complexity}, we estimate Proposed approach in comparison to standard baselines in terms of asymptotic complexity. The MFC needs a small history buffer of size $H$ (Window size) of each modality. OGR computation is $O(1)$ per epoch. Gradient Blending on the contrary uses $M+1$ models (M the number of modalities) to completely converge and estimate the best weights offline. }\DIFdelend \DIFaddbegin \begin{table*}[t]
+\DIFdelend \DIFaddbegin \begin{table*}[t]
 \caption{\textbf{Robustness to JPEG compression of the video frames} (test accuracy, 10 seeds, mean\pmm std). Each frame is JPEG-encoded and decoded (Pillow, libjpeg, 4:2:0 chroma subsampling) before encoding by ResNet-18. OGM-GE uses the $\alpha$ selected per dataset (0.3 on CREMA-D, 0.8 on AVE). $^{*}$: paired $t$-test $p<0.05$ against the selected MFC-A. Bold: best mean per column.}
 \label{tab:jpeg}
 \centering
@@ -1296,41 +1237,33 @@ MFC-A ($\gamma$=1) & 35.4$\pm$3.2 & 33.7$\pm$4.1 & 22.7$\pm$4.3 & 77.0$\pm$1.7 &
 \end{table*}
 \DIFaddend 
 
-\DIFdelbegin %DIFDELCMD < \begin{table}[h]
-%DIFDELCMD < \caption{\textbf{Computational Complexity Comparison.} $N$: Samples, $E$: Epochs, $M$: Modalities, $H$: History Window. Proposed method maintains the linear time complexity of naive training.}
-%DIFDELCMD < \label{tab:complexity}
-%DIFDELCMD < \centering
-%DIFDELCMD < \begin{tabularx}{\columnwidth}{@{}Xcc@{}}
-%DIFDELCMD < \toprule
-%DIFDELCMD < \textbf{Algorithm} & \textbf{Time} & \textbf{Space} \\ \midrule
-%DIFDELCMD < Naive Joint Training & $O(N \cdot E)$ & $O(\theta)$ \\
-%DIFDELCMD < Gradient Blending & $O(N \cdot E \cdot M)$ & $O(\theta \cdot M)$ \\
-%DIFDELCMD < OGM-GE & $O(N \cdot E + N \cdot M)$ & $O(\theta)$ \\
-%DIFDELCMD < \textbf{MFC (Proposed)} & $O(N \cdot E)$ & $O(\theta + M \cdot H)$ \\ \bottomrule
-%DIFDELCMD < \end{tabularx}
-%DIFDELCMD < \end{table}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{figure*}[t]
+\DIFdelbegin \DIFdel{In order to test MFC on real multimodal data beyond synthetic tests, we tested MFC on }\DIFdelend \DIFaddbegin \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{images/robustness.png}
 \caption{\textbf{Robustness to Gaussian noise on the first stream} (test set, mean $\pm$ std over 10 seeds). Panels: synthetic, CREMA-D audio--video, AVE and spectrogram-view control (noise on the first-stream features).}
 \label{fig:rob}
 \end{figure*}
-\DIFaddend 
 
-\DIFdelbegin \subsection{\DIFdel{Qualitative Observations}}
-%DIFAUXCMD
-\addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdel{During the baseline runs }\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Computational cost}}
-\DIFadd{Table~\ref{tab:cost} breaks the cost of each method into controller arithmetic, monitoring passes and method-specific work (probe training for Gradient Blending, per-batch gradient processing for OGM-GE and MMPareto). Times are single-thread CPU measurements averaged over ten runs (synthetic runs on a laptop CPU, CREMA-D runs on a 24-core workstation, so times are comparable within, not across, datasets); FLOPs are computed analytically from the layer sizes. We also measured memory (median of five fresh single-thread runs per method and dataset, with the allocator threshold fixed; per-method figures are released with the code). MFC-A's extra state is 1.27\,KB (its history buffer and weights)}\DIFaddend , \DIFdelbegin \DIFdel{the Audio OGR is held almost at 1.0 with the Vision OGR jumping to 1.5, which implies that the Audio encoder is virtually learning nothing (there are no gradients)and the Vision encoder is learning a lot (gradients are large). The weights $\lambda_a$ of the Audio in the MFC runs steadily increase}\DIFdelend \DIFaddbegin \DIFadd{0.06\% of the 2.18\,MB occupied by parameters, gradients and momentum buffers of the CREMA-D model; its traced Python heap grows by at most 0.005\,MB, and its peak resident memory lies within the run-to-run spread of the baseline on all four datasets. Of all methods, only MMPareto shows a measurable increase (1.7--2.7\,MB, from its transient per-step gradient copies). These measurements cover the fusion networks on frozen features, not the visual backbone. The controller arithmetic of MFC-A is negligible (a few milliseconds and 960 scalar operations per run). The monitoring passes are not negligible in FLOPs, at about 39\% of baseline training FLOPs on both models, because they run inference over the full training split every epoch. In wall-clock time}\DIFaddend , however, \DIFdelbegin \DIFdel{during the first 10 epochs (The ``Amplify'' rule active)reaching about 3.5, and then levels off.
-This effectively recreates the audio gradients and the model must utilize the spectrograms to extract the emotion cues instead of using facial expression in the CIFAR like images. }\DIFdelend \DIFaddbegin \DIFadd{they add only 6.1\% (synthetic) and 18.4\% (audio--video) to the training time, since inference passes are batched and need no backward pass. The running variant removes the training pass and costs 1.8\% and 3.6\% extra time and 7.9\% and 7.5\% extra FLOPs, respectively; its balance is comparable on audio--video but weaker on the synthetic data (Table~\ref{tab:ablation}). Among the baselines, Gradient Blending's probe adds 24--132\% time, MMPareto's per-encoder gradient processing adds 103--168\%, and OGM-GE adds 45--67\% time but only about 1\% FLOPs, because its per-tensor gradient scaling and noise generation are dominated by per-operation overhead rather than arithmetic.
+\subsection*{\DIFadd{Computational cost}}
+\DIFadd{Table~\ref{tab:cost} breaks the cost of each method into controller arithmetic, monitoring passes and method-specific work (probe training for Gradient Blending, per-batch gradient processing for OGM-GE and MMPareto). Times are single-thread CPU measurements averaged over ten runs (all on one 24-core workstation, with up to twenty runs in parallel, so absolute times include contention and are best compared within a dataset); FLOPs are computed analytically from the layer sizes. We also measured memory (median of five fresh single-thread runs per method and dataset, with the allocator threshold fixed; per-method figures are released with the code). MFC-A's extra state is 1.27\,KB (its history buffer and weights), 0.06\% of }\DIFaddend the \DIFaddbegin \DIFadd{2.18\,MB occupied by parameters, gradients and momentum buffers of the }\DIFaddend CREMA-D \DIFdelbegin \DIFdel{corpus~\mbox{%DIFAUXCMD
+\cite{cao2014crema}}\hskip0pt%DIFAUXCMD
+---7, 442 mel spectrogram images of 91 actors of 6 emotion categories (Anger, Disgust, Fear, Happy, Neutral, Sad)}\DIFdelend \DIFaddbegin \DIFadd{model; its traced Python heap grows by at most 0.005\,MB, and its peak resident memory lies within the run-to-run spread of the baseline on all four datasets. Of all methods, only MMPareto shows a measurable increase (1.7--2.7\,MB, from its transient per-step gradient copies)}\DIFaddend . \DIFdelbegin \DIFdel{Each spectrogram is used to create two asymmetric streams of features which are used to create realistic modality imbalance:
+}\DIFdelend \DIFaddbegin \DIFadd{These measurements cover the fusion networks on frozen features, not the visual backbone. The controller arithmetic of MFC-A is negligible (a few milliseconds and 960 scalar operations per run). The monitoring passes are not negligible in FLOPs, at about 39\% of baseline training FLOPs on both models, because they run inference over the full training split every epoch. In wall-clock time, however, they add only 10.1\% (synthetic) and 18.4\% (audio--video) to the training time, since inference passes are batched and need no backward pass. The running variant removes the training pass and costs 2.0\% and 3.6\% extra time and 7.9\% and 7.5\% extra FLOPs, respectively; its balance is comparable on audio--video but weaker on the synthetic data (Table~\ref{tab:ablation}). Among the baselines, Gradient Blending's probe adds 16--24\% time, MMPareto's per-encoder gradient processing adds 141--168\%, and OGM-GE adds 45--46\% time but only about 1\% FLOPs, because its per-tensor gradient scaling and noise generation are dominated by per-operation overhead rather than arithmetic.
 }\DIFaddend 
 
-\DIFdelbegin \subsection{\DIFdel{Limitations and Future Work}}
-%DIFAUXCMD
-\addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdel{Although promising, Proposed approach is based on the assumption that the separate validation set is a good indicator of the generalization ability on the target distribution. The OGR signal can be misleading in case the validation set is biased.
-Besides, in the case of foundational models with billions of parameters the ``Generalization Gap'' could not be observed until very late in training, necessitating a special warm-up strategy. }\DIFdelend \DIFaddbegin \begin{table*}[t]
+\DIFdelbegin %DIFDELCMD < \begin{itemize}
+\begin{itemize}%DIFAUXCMD
+%DIFDELCMD <     \item %%%
+\item%DIFAUXCMD
+\textbf{\DIFdel{Spatial (visual) modality}}%DIFAUXCMD
+\DIFdel{: PCA features of 64 dimensions of the entire $224\times224$ spectrogram. These represent spatial texture throughout the globe and constitute higher-text stream. }%DIFDELCMD < \item %%%
+\item%DIFAUXCMD
+\textbf{\DIFdel{Band-stats (audio proxy) modality}}%DIFAUXCMD
+\DIFdel{: Hand-made statistics (mean, std, max) 48-dim (per 16 mel bands). Such coarser features are less discriminative by nature, which forms natural dominance of modalities. }
+\end{itemize}%DIFAUXCMD
+%DIFDELCMD < \end{itemize}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \begin{table*}[t]
 \caption{\textbf{Cost per training run} (mean over 10 seeds). Ctrl: controller arithmetic time; Monitor: inference passes consumed by the controller; Method: method-specific work; Extra time: (Ctrl+Monitor+Method)/baseline training time; Ctrl ops: scalar operations; Extra FLOPs: (monitor+method FLOPs)/baseline training FLOPs.}
 \label{tab:cost}
 \centering
@@ -1338,14 +1271,14 @@ Besides, in the case of foundational models with billions of parameters the ``Ge
 \begin{tabular}{@{}llrrrrrr@{}}
 \toprule
 \textbf{Data} & \textbf{Method} & \textbf{Ctrl (ms)} & \textbf{Monitor (s)} & \textbf{Method (s)} & \textbf{Extra time (\%)} & \textbf{Ctrl ops} & \textbf{Extra FLOPs (\%)} \\ \midrule
-Synthetic & Baseline & 0.0 & 0.00 & 0.00 & 0.0 & 0 & 0.0 \\
-Synthetic & Gradient Blending & 0.0 & 0.00 & 1.78 & 131.5 & 0 & 21.6 \\
-Synthetic & Uncertainty weighting & 0.0 & 0.00 & 0.00 & 0.0 & 0 & 0.0 \\
-Synthetic & MMPareto & 0.3 & 0.00 & 1.40 & 103.0 & 0 & 63.2 \\
-Synthetic & OGM-GE & 0.0 & 0.00 & 0.91 & 66.7 & 0 & 1.2 \\
-Synthetic & MFC-T & 3.1 & 0.08 & 0.00 & 6.1 & 960 & 39.5 \\
-Synthetic & MFC-A (extra train pass) & 3.0 & 0.08 & 0.00 & 6.1 & 960 & 39.5 \\
-Synthetic & MFC-A (running loss) & 3.0 & 0.02 & 0.00 & 1.8 & 960 & 7.9 \\
+Synthetic & Baseline & 0.1 & 0.00 & 0.00 & 0.0 & 0 & 0.0 \\
+Synthetic & Gradient Blending & 0.1 & 0.00 & 0.34 & 15.8 & 0 & 21.6 \\
+Synthetic & Uncertainty weighting & 0.1 & 0.00 & 0.00 & 0.0 & 0 & 0.0 \\
+Synthetic & MMPareto & 0.2 & 0.00 & 3.07 & 141.4 & 0 & 63.2 \\
+Synthetic & OGM-GE & 0.3 & 0.00 & 1.01 & 46.4 & 0 & 1.2 \\
+Synthetic & MFC-T & 6.9 & 0.22 & 0.00 & 10.3 & 960 & 39.5 \\
+Synthetic & MFC-A (extra train pass) & 6.5 & 0.21 & 0.00 & 10.1 & 960 & 39.5 \\
+Synthetic & MFC-A (running loss) & 5.7 & 0.04 & 0.00 & 2.0 & 960 & 7.9 \\
 CREMA-D & Baseline & 0.1 & 0.00 & 0.00 & 0.0 & 0 & 0.0 \\
 CREMA-D & Gradient Blending & 0.1 & 0.00 & 3.50 & 24.1 & 0 & 16.2 \\
 CREMA-D & Uncertainty weighting & 0.2 & 0.00 & 0.00 & 0.0 & 0 & 0.0 \\
@@ -1359,49 +1292,112 @@ CREMA-D & MFC-A (running loss) & 12.1 & 0.51 & 0.00 & 3.6 & 1280 & 7.5 \\
 \end{table*}
 \DIFaddend 
 
-\DIFdelbegin \DIFdel{Future research will be concerned with:
+\DIFdelbegin %DIFDELCMD < \begin{table}[h]
+%DIFDELCMD < \caption{Real-Data Benchmark: CREMA-D Emotion Recognition. MFC achieves the highest test accuracy and the best robustness at $\sigma{=}1.0$. OGM-GE achieves the lowest OGR gap (5.91) through aggressive noise injection but suffers a $-$3.1\% accuracy penalty---confirming the over-correction problem. MFC reduces the OGR gap by 38.9\% over the Baseline with no accuracy cost.}
+%DIFDELCMD < \label{tab:crema}
+%DIFDELCMD < \centering
+%DIFDELCMD < \begin{tabular}{@{}lcccc@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < \textbf{Method} & \textbf{Test Acc} & \textbf{OGR Gap} $\downarrow$ & \textbf{Rob.\ ($\sigma{=}0.5$)} & \textbf{Rob.\ ($\sigma{=}1.0$)} $\uparrow$ \\ \midrule
+%DIFDELCMD < Baseline                             & 51.1\% & 36.32 & 46.5\% & 35.6\% \\
+%DIFDELCMD < OGM-GE \cite{peng2022balanced}                 & 48.0\% & \textbf{5.91}  & 45.3\% & 34.2\% \\
+%DIFDELCMD < \textbf{Proposed(MFC)}                  & \textbf{51.3\%} & 22.19 & 44.5\% & \textbf{37.6\%} \\
+%DIFDELCMD < \bottomrule
+%DIFDELCMD < \end{tabular}
+%DIFDELCMD < \end{table}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \section*{\DIFadd{Discussion}}
+\paragraph{\DIFadd{What the evidence supports.}} \DIFadd{Across four datasets, MFC-A does what it is designed to do: it detects the stream whose training loss is decoupling from its held-out loss and transfers auxiliary supervision away from it, whether that stream is the more accurate one (AVE) or not (CREMA-D). On AVE and on the synthetic benchmark it reduces imbalance (by 63\% and 38\%) without loss of accuracy, on AVE it also improves robustness, and the effect grows with the capacity of the dominant encoder, which is the regime in which gradient starvation is most damaging. On CREMA-D its effects point in the same direction but are not statistically significant, and its effect on clean accuracy is small everywhere. We consider this a realistic characterisation of a bounded scalar loss-weighting method that leaves the joint loss untouched.
+}\DIFaddend 
+
+\DIFdelbegin \DIFdel{The }\DIFdelend \DIFaddbegin \paragraph{\DIFadd{When to prefer alternatives.}} \DIFadd{No single method was best everywhere. OGM-GE was the strongest on vision-dominant AVE, where directly scaling down the visual encoder's gradients every mini-batch acts more strongly than reweighting auxiliary losses once per epoch, but on the synthetic benchmark its selected setting cost accuracy. Gradient Blending was the strongest on both }\DIFaddend CREMA-D \DIFdelbegin \DIFdel{outcomes support the main argument. The noiseinjection of }\DIFdelend \DIFaddbegin \DIFadd{settings; there its offline estimate pushed almost all auxiliary weight onto one stream ($\lambda_v{=}0$ on audio--video, $0.14$ on the spectrogram views), an extreme allocation that MFC-A's bounded, smoothed law cannot reach. The static-weight ablation suggests that the allocation, rather than its dynamics, drives most of the benefit; MFC-A's advantage is that it finds a direction in one run without a probe, at the price of being conservative. When an extra probe run is affordable, Gradient Blending is a strong choice. The follow-up variants suggest a division of labour: OGR is a good signal for }\emph{\DIFadd{when}} \DIFadd{a dominant modality is memorising, and per-batch gradient modulation is a strong mechanism for slowing it; combining the two (MFC-OG) matched the best method on AVE. }\DIFaddend OGM-GE \DIFdelbegin \DIFdel{has very good balance (OGR gap: 5.91) at the cost of the useful gradients of the predominating spatial modality, damaging accuracy by $-3.1\%$. MFC then discovers the Pareto optimum point: matching the Baseline performance (accuracy $+0.18\%$) }\DIFdelend \DIFaddbegin \DIFadd{can enforce balance more aggressively but trades accuracy for it, and its $\alpha$ must be tuned. MFC-A's advantages are that it runs in a single pass, uses the same smoothing hyper-parameters on every dataset, never reduced accuracy significantly at $p<0.05$ (the largest drop, $-0.9$ points on audio--video, has $p{=}0.05$), and exposes an interpretable signal ($\OGR_m(t)$}\DIFaddend , \DIFdelbegin \DIFdel{but narrowing the OGR difference by 38.9\% and increasing robustness at $\sigma{=}1.0$ by $+$2.0\% confirming that the throttle-and-amplify mechanism forces the band-stats encoder to develop genuinely independent discriminative features.
+}\DIFdelend \DIFaddbegin \DIFadd{$\lambda_m(t)$) that can be monitored even when it is not used for control.
+}\DIFaddend 
+
+\DIFdelbegin %DIFDELCMD < \begin{figure*}[tbp]
+%DIFDELCMD <     \centering
+%DIFDELCMD <     \includegraphics[width=0.85\textwidth]{images/crema_benchmark.png}
+%DIFDELCMD <     \caption{\textbf{CREMA-D Benchmark.} Top: validation curves and per-modality OGR trajectories. Bottom: MFC weight dynamics (spatial modality throttled; band-stats amplified), robustness curve, and summary bar chart. Lambda dynamics on real CREMA-D data closely mirror the synthetic benchmark, confirming the OGR signal is a reliable cross-domain modality-imbalance detector.}
+%DIFDELCMD <     \label{fig:crema}
+%DIFDELCMD < \end{figure*}
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \paragraph{\DIFadd{Why a ratio.}} \DIFadd{The scale-invariance argument (Proposition~\ref{prop:scale}) is the main reason to prefer OGR over the raw gap, and the signal ablation supports it: the raw-gap controller balances less on the two datasets with unequal loss scales and behaves like OGR on the spectrogram control, whose two views have similar loss scales. The differences are modest, however, and only the effect on the weak head's accuracy is significant, so we regard the empirical support as consistent with, rather than proof of, the theoretical argument.
+}\DIFaddend 
+
+\DIFdelbegin \section{\DIFdel{Discussion}}
+%DIFAUXCMD
+\addtocounter{section}{-1}%DIFAUXCMD
+\subsection{\DIFdel{Complexity Analysis}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdel{In Table\ref{tab:complexity}, we estimate Proposed approach in comparison to standard baselines in terms of asymptotic complexity. The MFC needs a small history buffer of size $H$ (Window size)of each modality. OGR computation is $O(1)$ per epoch. Gradient Blending on the contrary uses $M+1$ models(M the number of modalities) }\DIFdelend \DIFaddbegin \paragraph{\DIFadd{Limitations.}} \DIFadd{(i) MFC-A needs a held-out controller split. We kept it disjoint from both the tuning and the test data, which costs training data; in practice the standard validation set could serve as the controller split if model selection is done on another subset. (ii) Our models operate on fixed features with small MLP encoders; end-to-end training of large backbones, more than two modalities and larger audio--visual corpora (Kinetics-Sounds, VGGSound\mbox{%DIFAUXCMD
+\cite{chen2020vggsound}}\hskip0pt%DIFAUXCMD
+, AudioSet\mbox{%DIFAUXCMD
+\cite{gemmeke2017audio}}\hskip0pt%DIFAUXCMD
+) remain to be tested. Combining MFC-A's generalization signal with per-batch gradient modulation of the kind used by OGM-GE is a natural next step. (iii) Baselines are re-implementations in a shared late-fusion setting, some with documented adaptations (notably OLM without its transformer fusion block), and may not reproduce the absolute numbers of their original papers. (iv) Only the auxiliary unimodal losses are re-weighted, within fixed bounds; extending the controller to the joint term, }\DIFaddend to \DIFdelbegin \DIFdel{completely converge and estimate the best weights offline. }%DIFDELCMD < 
+
+%DIFDELCMD < \begin{table}[h]
+%DIFDELCMD < \caption{\textbf{Computational Complexity Comparison.} $N$: Samples, $E$: Epochs, $M$: Modalities, $H$: History Window. Proposed method maintains the linear time complexity of naive training.}
+%DIFDELCMD < \label{tab:complexity}
+%DIFDELCMD < \centering
+%DIFDELCMD < \begin{tabularx}{\columnwidth}{@{}Xcc@{}}
+%DIFDELCMD < \toprule
+%DIFDELCMD < \textbf{Algorithm} & \textbf{Time} & \textbf{Space} \\ \midrule
+%DIFDELCMD < Naive Joint Training & $O(N \cdot E)$ & $O(\theta)$ \\
+%DIFDELCMD < Gradient Blending & $O(N \cdot E \cdot M)$ & $O(\theta \cdot M)$ \\
+%DIFDELCMD < OGM-GE & $O(N \cdot E + N \cdot M)$ & $O(\theta)$ \\
+%DIFDELCMD < \textbf{MFC (Proposed)} & $O(N \cdot E)$ & $O(\theta + M \cdot H)$ \\ \bottomrule
+%DIFDELCMD < \end{tabularx}
+%DIFDELCMD < \end{table}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\subsection{\DIFdel{Qualitative Observations}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdel{During the baseline runs, the Audio OGR is held almost at 1.0 with the Vision OGR jumping to 1.5, which implies that the Audio encoder is virtually learning nothing (there are no gradients) and the Vision encoderis learning a lot (gradients are large). }\DIFdelend \DIFaddbegin \DIFadd{per-encoder learning rates or to attention-level gates, and allowing a modality's auxiliary weight to reach zero, is future work. (v) }\DIFaddend The \DIFdelbegin \DIFdel{weights $\lambda_a$ of the Audio in the MFC runs steadily increase, however, during the first 10 epochs (The ``Amplify'' rule active) reaching about 3.5, and then levels off. This effectively recreates the audio gradients and the model must utilize the spectrograms to extract the emotion cues instead of using facial expression in the CIFAR like images. }\DIFdelend \DIFaddbegin \DIFadd{pixel-level degradations are synthetic; generative adverse-condition data such as rain and night images\mbox{%DIFAUXCMD
+\cite{lan2025sustechgan} }\hskip0pt%DIFAUXCMD
+would provide a more realistic test. (vi) MFC-J and MFC-OG were designed after the main experiments and evaluated on the same datasets, so their results should be confirmed on further benchmarks. (vii) $\gamma$ is selected from three values per dataset; although the rule uses no test data, a larger candidate set would increase the risk of overfitting the tuning split.
+}\DIFaddend 
+
+\DIFdelbegin \subsection{\DIFdel{Limitations and Future Work}}
+%DIFAUXCMD
+\addtocounter{subsection}{-1}%DIFAUXCMD
+\DIFdel{Although promising, Proposed approach is based on the assumption that the separate validation set is a good indicator ofthe generalization ability on the target distribution.
+The OGR signal can be misleading in case the validation set is biased. Besides, in the case of foundational models with billions of parameters the ``Generalization Gap'' could not be observed until very late in training , necessitating a special warm-up strategy.
+}%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Future research will be concerned with:
 }%DIFDELCMD < \begin{itemize}
 \begin{itemize}%DIFAUXCMD
 %DIFDELCMD <     \item %%%
 \item%DIFAUXCMD
 \textbf{\DIFdel{High-Resolution Regimes}}%DIFAUXCMD
-\DIFdel{: ImageNet + AudioSet \mbox{%DIFAUXCMD
-\cite{gemmeke2017audio} }\hskip0pt%DIFAUXCMD
-validation of MFC.
-    }%DIFDELCMD < \item %%%
+\DIFdel{: ImageNet + AudioSet\mbox{%DIFAUXCMD
+\cite{gemmeke2017audio}}\hskip0pt%DIFAUXCMD
+validation of MFC. }%DIFDELCMD < \item %%%
 \item%DIFAUXCMD
 \textbf{\DIFdel{Transformer Integration}}%DIFAUXCMD
-\DIFdel{: Using MFC on attention headdropout rates in place ofglobal loss weights.
-}%DIFDELCMD < \item %%%
+\DIFdel{: Using MFC on attention head dropout rates in place of global loss weights. }%DIFDELCMD < \item %%%
 \item%DIFAUXCMD
 \textbf{\DIFdel{Real-Time Adaptation}}%DIFAUXCMD
-\DIFdel{: MFC can be applied in online learning contexts where the sets of data to be validated are not fixed. }
+\DIFdel{: MFC can be applied in online learning contexts where the sets of data to be validated are not fixed .
+}
 \end{itemize}%DIFAUXCMD
 %DIFDELCMD < \end{itemize}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \section*{\DIFadd{Discussion}}
-\paragraph{\DIFadd{What the evidence supports.}} \DIFadd{Across four datasets, MFC-A does what it is designed to do: it detects the stream whose training loss is decoupling from its held-out loss and transfers auxiliary supervision away from it, whether that stream is the more accurate one (AVE) or not (CREMA-D). On AVE and on the synthetic benchmark it meets the goal of reducing imbalance (by 63\% and 41\%) and improving robustness without loss of accuracy, and the effect grows with the capacity of the dominant encoder, which is the regime in which gradient starvation is most damaging. On CREMA-D its effects point in the same direction but are not statistically significant, and its effect on clean accuracy is small everywhere. We consider this a realistic characterisation of a bounded scalar loss-weighting method that leaves the joint loss untouched.
-}\DIFaddend 
+%DIFDELCMD < 
 
-\DIFdelbegin \section{\DIFdel{Conclusion}}
+%DIFDELCMD < %%%
+\section{\DIFdel{Conclusion}}
 %DIFAUXCMD
 \addtocounter{section}{-1}%DIFAUXCMD
-\DIFdel{In this paper, we presented a lightweight solution to the Gradient Starvation problem, the Modality Fairness Controller (MFC), a smart, lightweight solution. }\DIFdelend \DIFaddbegin \paragraph{\DIFadd{When to prefer alternatives.}} \DIFadd{No single method was best everywhere. OGM-GE was the strongest on vision-dominant AVE, where directly scaling down the visual encoder's gradients every mini-batch acts more strongly than reweighting auxiliary losses once per epoch, but on the synthetic benchmark its selected setting cost accuracy. Gradient Blending was the strongest on both CREMA-D settings; there its offline estimate pushed almost all auxiliary weight onto one stream ($\lambda_v{=}0$ on audio--video, $0.14$ on the spectrogram views), an extreme allocation that MFC-A's bounded, smoothed law cannot reach. The static-weight ablation suggests that the allocation, rather than its dynamics, drives most of the benefit; MFC-A's advantage is that it finds a direction in one run without a probe, at the price of being conservative. When an extra probe run is affordable, Gradient Blending is a strong choice. The follow-up variants suggest a division of labour: OGR is a good signal for }\emph{\DIFadd{when}} \DIFadd{a dominant modality is memorising, and per-batch gradient modulation is a strong mechanism for slowing it; combining the two (MFC-OG) matched the best method on AVE. OGM-GE can enforce balance more aggressively but trades accuracy for it, and its $\alpha$ must be tuned. MFC-A's advantages are that it runs in a single pass, uses the same smoothing hyper-parameters on every dataset, never reduced accuracy significantly at $p<0.05$ (the largest drop, $-0.9$ points on audio--video, has $p{=}0.05$), and exposes an interpretable signal ($\OGR_m(t)$, $\lambda_m(t)$) that can be monitored even when it is not used for control.
-}
+\DIFdel{In this paper, we presented a lightweight solution to the Gradient Starvation problem, the Modality Fairness Controller (MFC) , a smart, lightweight solution. The MFC also avoids one modality bullying the rest in the process of training by closely monitoring the }\DIFdelend \DIFaddbegin \section*{\DIFadd{Conclusion}}
+\DIFadd{We introduced the }\DIFaddend Overfitting-to-Generalization Ratio \DIFdelbegin \DIFdel{(OGR). It achieves this without pre-training or random noise injection which is costly.
+}%DIFDELCMD < 
 
-\paragraph{\DIFadd{Why a ratio.}} \DIFaddend The \DIFdelbegin \DIFdel{MFC also avoids one modality bullying the rest in the process of training by closely monitoring the Overfitting-to-Generalization Ratio (OGR) . It achieves this without pre-training or random noise injection which is costly}\DIFdelend \DIFaddbegin \DIFadd{scale-invariance argument (Proposition~\ref{prop:scale}) is the main reason to prefer OGR over the raw gap, and the signal ablation supports it: the raw-gap controller balances less on the two datasets with unequal loss scales and behaves like OGR on the spectrogram control, whose two views have similar loss scales. The differences are modest, however, and only the effect on the weak head's accuracy is significant, so we regard the empirical support as consistent with, rather than proof of, the theoretical argument.
-}
-
-\paragraph{\DIFadd{Limitations.}} \DIFadd{(i) MFC-A needs a held-out controller split. We kept it disjoint from both the tuning and the test data, which costs training data; in practice the standard validation set could serve as the controller split if model selection is done on another subset. (ii) Our models operate on fixed features with small MLP encoders; end-to-end training of large backbones, more than two modalities and larger audio--visual corpora (Kinetics-Sounds, VGGSound\mbox{%DIFAUXCMD
-\cite{chen2020vggsound}}\hskip0pt%DIFAUXCMD
-, AudioSet\mbox{%DIFAUXCMD
-\cite{gemmeke2017audio}}\hskip0pt%DIFAUXCMD
-) remain to be tested. Combining MFC-A's generalization signal with per-batch gradient modulation of the kind used by OGM-GE is a natural next step. (iii) Baselines are re-implementations in a shared late-fusion setting, some with documented adaptations (notably OLM without its transformer fusion block), and may not reproduce the absolute numbers of their original papers. (iv) Only the auxiliary unimodal losses are re-weighted, within fixed bounds; extending the controller to the joint term, to per-encoder learning rates or to attention-level gates, and allowing a modality's auxiliary weight to reach zero, is future work. (v) The pixel-level degradations are synthetic; generative adverse-condition data such as rain and night images\mbox{%DIFAUXCMD
-\cite{lan2025sustechgan} }\hskip0pt%DIFAUXCMD
-would provide a more realistic test. (vi) MFC-J and MFC-OG were designed after the main experiments and evaluated on the same datasets, so their results should be confirmed on further benchmarks. (vii) $\gamma$ is selected from three values per dataset; although the rule uses no test data, a larger candidate set would increase the risk of overfitting the tuning split}\DIFaddend .
-
-\DIFdelbegin \DIFdel{This method is proven by Proposed experiments with the synthetic benchmark and real world CREMA-D corpus. MFC at $\sigma{=}1.0$ - modality imbalance gap is reduced by 38.4\% and visual noise robustness is enhanced by $+4.7\%$ at $\sigma{=}0.5$ and $+2.3\%$ at $\sigma{=}1.0$ }\DIFdelend \DIFaddbegin \section*{\DIFadd{Conclusion}}
-\DIFadd{We introduced the Overfitting-to-Generalization Ratio as a scale-invariant per-modality diagnostic and MFC-A as a threshold-free, closed-loop controller that uses it to redistribute auxiliary loss weight during a single training run. Under a protocol with ten paired seeds, disjoint controller, tuning and test data, and eight baselines, MFC-A maintained accuracy on every dataset. On the real AVE benchmark it reduced the OGR-measured imbalance by 63\% and significantly improved robustness to noise, blur and low light; }\DIFaddend on the synthetic benchmark \DIFdelbegin \DIFdel{. On actual }\DIFdelend \DIFaddbegin \DIFadd{it reduced the imbalance by 41\%, and by up to 55\% for high-capacity dominant encoders. On }\DIFaddend CREMA-D \DIFdelbegin \DIFdel{data, MFC is more accurate by $+3.1\%$ percent over }\DIFdelend \DIFaddbegin \DIFadd{it identified the overfitting modality correctly, but its improvements were not significant. }\DIFaddend OGM-GE \DIFdelbegin \DIFdel{yet the reduction of the OGR gap is 38.9\% with no noise injection. More to the point, the system is predictable: it works as a thermostat, which cools the overheated modalities and heats the cold ones. Scaling analysis shows the benefit grows with model capacity, from $+0.7\%$ at 128-dim to $+3.1\%$ at 1024-dim, making MFC-A most valuable in large-model regimes}\DIFdelend \DIFaddbegin \DIFadd{(on AVE) and Gradient Blending (on CREMA-D) achieved larger gains at the cost of a tuned hyper-parameter or an extra probe run. Guided by the gradient evidence, an OGR-gated version of gradient modulation (MFC-OG) matched OGM-GE on AVE with a lower imbalance gap, indicating that OGR is most useful as a signal for when to intervene. Because the controller arithmetic is negligible, the cost of the method lies in its monitoring passes, which a running-loss variant largely removes. We release code, per-epoch logs and data-preparation scripts so that every number in this paper can be regenerated}\DIFaddend .
+%DIFDELCMD < %%%
+\DIFdel{This method is proven by Proposed experiments with the synthetic benchmark and real world CREMA-D corpus. MFC at $\sigma{=}1.0$ - modality imbalance gap is reduced by 38.4\% and visual noise robustness is enhanced by $+4.7\%$ at $\sigma{=}0.5$ and $+2.3\%$ at $\sigma{=}1.0$ }\DIFdelend \DIFaddbegin \DIFadd{as a scale-invariant per-modality diagnostic and MFC-A as a threshold-free, closed-loop controller that uses it to redistribute auxiliary loss weight during a single training run. Under a protocol with ten paired seeds, disjoint controller, tuning and test data, and eight baselines, MFC-A maintained accuracy on every dataset. On the real AVE benchmark it reduced the OGR-measured imbalance by 63\% and significantly improved robustness to noise, blur and low light; }\DIFaddend on the synthetic benchmark \DIFdelbegin \DIFdel{. On actual }\DIFdelend \DIFaddbegin \DIFadd{it reduced the imbalance by 38\%, and by up to 60\% for high-capacity dominant encoders. On }\DIFaddend CREMA-D \DIFdelbegin \DIFdel{data, MFC is more accurate by $+3.1\%$ percent over }\DIFdelend \DIFaddbegin \DIFadd{it identified the overfitting modality correctly, but its improvements were not significant. }\DIFaddend OGM-GE \DIFdelbegin \DIFdel{yet the reduction of the OGR gap is 38.9\% with no noise injection. More to the point, the system is predictable: it works as a thermostat, which cools the overheated modalities and heats the cold ones. Scaling analysis shows the benefit grows with model capacity, from $+0.7\%$ at 128-dim to $+3.1\%$ at 1024-dim, making MFC-A most valuable in large-model regimes}\DIFdelend \DIFaddbegin \DIFadd{(on AVE) and Gradient Blending (on CREMA-D) achieved larger gains at the cost of a tuned hyper-parameter or an extra probe run. Guided by the gradient evidence, an OGR-gated version of gradient modulation (MFC-OG) matched OGM-GE on AVE with a lower imbalance gap, indicating that OGR is most useful as a signal for when to intervene. Because the controller arithmetic is negligible, the cost of the method lies in its monitoring passes, which a running-loss variant largely removes. We release code, per-epoch logs and data-preparation scripts so that every number in this paper can be regenerated}\DIFaddend .
 
 \section*{Declarations}
 \DIFdelbegin %DIFDELCMD < \begin{itemize}
