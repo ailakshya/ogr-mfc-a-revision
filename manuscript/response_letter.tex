@@ -1,0 +1,163 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\newcommand{\rc}[1]{\par\noindent\colorbox{gray!12}{\parbox{\dimexpr\linewidth-2\fboxsep}{\small\textit{#1}}}\par}
+\newcommand{\resp}{\par\noindent\textbf{Response.} }
+\newcommand{\chg}{\par\noindent\textbf{Changes in the manuscript.} }
+\newcommand{\OGR}{\mathrm{OGR}}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries Response to the Reviewers}\\[4pt]
+\textit{OGR-Driven Dynamic Loss Balancing for Mitigating Gradient Starvation}\\[2pt]
+Lakshya, Amit Kumar Bairwa, Varun Tiwari
+\end{center}
+
+Dear Editor and Reviewers,
+
+We thank the three reviewers for their careful and constructive reports. Their comments led us to rebuild the experimental part of the paper from scratch, and we believe the manuscript is now considerably more rigorous. We first summarise the main changes and then answer every comment point by point. A version of the manuscript with all changes marked is provided in addition to the clean version.
+
+\section*{Summary of major changes}
+\begin{enumerate}[leftmargin=*]
+\item \textbf{New experimental protocol.} All experiments were re-run with \textbf{ten paired random seeds}, four \textbf{disjoint splits} (training / controller-validation / tuning / test), identical architectures, objectives, optimisers and seeds for every method, and \textbf{paired $t$-tests}. Every reported number is computed on a test set that never influences training, the controller or model selection.
+\item \textbf{Two genuinely paired audio--video benchmarks.} We added (i) \textbf{AVE} (Audio-Visual Event; 4,134 YouTube clips, 28 classes, official test split), the standard benchmark of the modality-imbalance literature, and (ii) \textbf{CREMA-D with real face video and the original audio of the same clips}, split \textbf{by actor}. AVE is vision-dominant and CREMA-D audio-dominant, so the method is tested in both regimes. The former spectrogram two-view experiment is kept only as a clearly labelled feature-view control.
+\item \textbf{Corrected description of the synthetic benchmark.} We must acknowledge an error in the first submission. The ``synthetic CIFAR-10/CREMA-D'' benchmark was in fact generated with scikit-learn's \texttt{make\_classification}; no CIFAR-10 images or CREMA-D audio were used, and the CIFAR-10/VGGish encoder description did not correspond to the code. The benchmark is now described exactly, with all generator parameters, and no cross-dataset pairing is involved. We apologise for this mistake.
+\item \textbf{More baselines and complete ablations.} Uncertainty weighting and MMPareto were added; OGM-GE was re-implemented faithfully (confidence-ratio gradient modulation with gradient enhancement, $\alpha$ tuned on the tuning split); Gradient Blending now uses the gain/overfitting rule of the original paper with its probe cost charged. A component ablation (OGR vs.\ raw gap, static vs.\ dynamic weights, throttle-only, amplify-only, no warm-up/EMA/window, running-loss variant), a sensitivity analysis on all datasets, and a ten-seed capacity study were added.
+\item \textbf{Consistent method description.} Algorithm~1 is now the pseudocode of MFC-A, which is the method used in every main experiment. The threshold controller of the first version is described separately as MFC-T and treated as a baseline. Notation was unified and the erroneous equation was corrected.
+\item \textbf{Control strength selected without test data.} The inverse-OGR law now has an exponent $\gamma$, selected per dataset from $\{1,2,3\}$ by a rule fixed in advance that uses only the controller and tuning splits (lowest OGR gap subject to tuning accuracy within 0.5 points of the baseline). The plain law ($\gamma{=}1$) is reported alongside.
+\item \textbf{Honest cost accounting.} The ``zero additional FLOPs'' claim was withdrawn. We now report controller arithmetic, monitoring passes and method-specific work separately, in both wall-clock time and FLOPs.
+\item \textbf{Revised claims.} Several claims of the first version did not survive multi-seed evaluation (e.g.\ a 38.4\% OGR-gap reduction and a +3.1-point accuracy gain at 1024 hidden units). They have been replaced by the new, statistically supported numbers, and the abstract, contributions and conclusion were rewritten accordingly.
+\item \textbf{Full language revision.} The manuscript was rewritten throughout.
+\item \textbf{Reproducibility.} Code, generated data, split indices and the per-epoch logs of all runs (OGR, loss weights and every split loss) are released.
+\end{enumerate}
+
+%=====================================================================
+\section*{Reviewer 1}
+
+\rc{1. The manuscript introduces both OGR and MFC-A, but their novelty and relationship are not always clearly distinguished. Please clearly explain what is fundamentally new compared with existing gradient modulation and loss-balancing methods.}
+\resp We now separate the two contributions explicitly. OGR is a \emph{measurement}, a per-modality, scale-invariant generalization diagnostic that can be logged in any training run. MFC-A is a \emph{controller} that consumes it. Compared with existing methods, the novelty lies in (i) the signal, which is generalization-based (held-out/training loss ratio), whereas OGM-GE, GradNorm and AGM use training-set confidence, gradient norms or training-loss rates, and MMPareto uses gradient directions; and (ii) the mechanism, a threshold-free inverse-OGR redistribution of a fixed loss-weight budget within one run, with no probe models (unlike Gradient Blending), no gradient surgery or noise (unlike OGM-GE and MMPareto), and no learned weights (unlike uncertainty weighting).
+\chg Introduction (contribution list); Related work, new paragraph after ``Dynamic modulation'' and new Table~1 (``Signal'', ``Online'', ``Generalization-aware'', ``Acts on'').
+
+\rc{2. Please add relevant work on deep-learning-based visual representation \ldots\ Vision-based human pose estimation via deep learning: A survey \ldots}
+\resp Added. We also explain that the strength of the visual backbone determines how dominant the visual stream becomes, and that in our new audio--video experiment a modest ImageNet ResNet-18 makes vision the \emph{weaker} stream.
+\chg Related work, ``Multimodal fusion and visual representation''.
+
+\rc{3. Please strengthen the related work on optimization and evolutionary learning \ldots\ ``Time efficiency in optimization with a Bayesian-Evolutionary algorithm'' \ldots}
+\resp Added in a new subsection. Following that work's argument that efficiency should be judged beyond the number of evaluations, we now report wall-clock time and FLOPs for every component of every method (Table~11).
+\chg Related work, new subsection ``Adaptive and evolutionary optimisation''; Results, ``Computational cost''.
+
+\rc{4. Please clarify the definition of OGR \ldots\ explain why this ratio is a better indicator of modality overfitting than the conventional generalization gap. A theoretical or empirical justification would strengthen the proposed metric.}
+\resp We give both. \emph{Theoretical:} Proposition~1 shows that OGR is invariant to a rescaling of a modality's losses, whereas the gap scales with it. This matters because the heads of an imbalanced model operate at very different loss levels: in our data the dominant head reaches a training loss of about 0.15 and the weak head about 1.55, so an identical raw gap of 0.3 means a 3$\times$ ratio for one and a 19\% excess for the other. We also note that $\log\OGR$ is the generalization gap in log-loss. \emph{Empirical:} a new signal ablation replaces OGR by the raw gap inside the controller while keeping everything else fixed (Table~7). With the raw gap, balancing is weaker on the three datasets whose modalities have different loss scales (OGR gap 23.5 vs.\ 14.5 on AVE, $p{=}0.05$; 5.96 vs.\ 5.11 on the synthetic benchmark; 3.63 vs.\ 2.98 on CREMA-D audio--video), and the weak modality's head accuracy is significantly lower on the synthetic data ($p{=}0.025$). On the spectrogram control, whose two views have similar loss scales, the two signals behave alike, as the proposition predicts. We state in the Discussion that these differences are modest and consistent with, rather than proof of, the theoretical argument.
+\chg Method, ``The Overfitting-to-Generalization Ratio'' (Eqs.~3--4, Proposition~1); Table~7; Discussion, ``Why a ratio''.
+
+\rc{5. Please check the mathematical notation carefully \ldots\ particularly around the definitions of $L^{val}$, $L^{train}$, and the generalization gap \ldots\ Equation (6) should be carefully checked and rewritten.}
+\resp Thank you; the old Eq.~(6) context contained the typo $\mathcal{L}^{val}=\mathcal{L}^{train}-\mathcal{L}^{train}$. The gap is now defined as $G_m(t)=\mathcal{L}^{cv}_m(t)-\mathcal{L}^{tr}_m(t)$ (Eq.~3), and $\OGR_m(t)=\mathcal{L}^{cv}_m/(\mathcal{L}^{tr}_m+\epsilon)=1+G_m/(\mathcal{L}^{tr}_m+\epsilon)$ (Eq.~4). All losses carry a split superscript (tr, cv, te) and a modality subscript, they are defined once in the ``Problem formulation'' section, and the same symbols are used in the text, the algorithm and the tables.
+\chg Problem formulation (``Data splits''); Method, Eqs.~1--7.
+
+\rc{6. Please clarify the MFC-A algorithm \ldots\ clearly distinguish these variants and explain which one is used in each experiment.}
+\resp Algorithm~1 is now the exact pseudocode of MFC-A (inverse-OGR target, EMA, warm-up and clipping), with equation references. The threshold controller is named MFC-T, described in one paragraph and used only as a baseline. The manuscript states that every result labelled MFC-A uses Algorithm~1, and MFC-T appears as its own row in all tables. We also found that the first submission's real-data experiment had used the threshold variant; all experiments have now been re-run.
+\chg Method, Algorithm~1 and paragraph ``Threshold variant (MFC-T)''.
+
+\rc{7. Please discuss robustness under difficult visual conditions \ldots\ SUSTechGAN \ldots}
+\resp On real video (AVE and CREMA-D) we now evaluate, besides additive noise, three pixel-level degradations applied to the frames before encoding (Gaussian blur, random occlusion and low light), each at three severity levels on AVE (new Table~10), and a missing-video condition. We state the outcome plainly: MFC-A is 1--2 points more robust than the baseline (significant for strong blur and mild/moderate low light), but OGM-GE is clearly more robust on AVE, so we no longer claim a general robustness advantage. We discuss SUSTechGAN, which synthesises rain and night driving images to improve detection, as a complementary, generative approach to adverse conditions and list such data as future work.
+\chg Related work, ``Robustness under adverse visual conditions''; Experimental setup, ``Metrics''; Tables~3--4; Results, ``Robustness to visual degradation''; Limitations (v).
+
+\rc{8. Please explain the choice of hyperparameters \ldots\ OGR window, EMA factor, warm-up period, and weight clipping range \ldots\ whether they are robust across datasets.}
+\resp The defaults ($W{=}5$, $\beta{=}0.7$, $T_w{=}3$, $[0.2,1.8]$) were fixed before the present experiments and are used unchanged on all datasets. A one-at-a-time sensitivity analysis on all four datasets (Table~8, ten seeds, with tuning-split accuracy) shows that test accuracy stays within 0.6 points of the default for every change of $W$, $\beta$, $T_w$ and the clipping range on every dataset, and none of these changes is statistically significant. Under the plain law the clipping range never binds and acts only as a safety bound. In the revision we also expose the control strength $\gamma$ (the exponent of the inverse OGR), which has the largest effect. It is chosen per dataset by a rule fixed in advance that uses only the controller and tuning splits: the smallest controller-split OGR gap subject to tuning accuracy within 0.5 points of the baseline. Results for every $\gamma$ are reported.
+\chg Experimental setup, ``Baselines'' (last paragraph); Results, ``Sensitivity to hyper-parameters'', Table~8.
+
+\rc{9. Please provide more complete ablation experiments \ldots\ separately evaluate the importance of the OGR metric, dynamic weighting, throttle rule, and amplify rule.}
+\resp Done (Table~7, on AVE, CREMA-D audio--video and the synthetic benchmark, ten seeds): raw gap instead of OGR; static weights fixed at MFC-A's average allocation (dynamic vs.\ static); throttle only; amplify only; no warm-up; no EMA; no window; and the running-loss variant. The findings are: (i) throttling the overfitting modality is the active ingredient, since throttle-only retains the full effect while amplify-only is weaker; (ii) OGR balances better than the raw gap when loss scales differ; (iii) a static allocation equal to MFC-A's average works as well as the dynamic one, so the benefit of the closed loop is that it finds this allocation within a single run without a probe; (iv) warm-up, EMA and window have no significant effect, and the running-loss variant performs comparably on audio--video at a fraction of the cost.
+\chg Results, ``Component ablation'', Table~7.
+
+\rc{10. Please strengthen the baseline comparison \ldots\ more recent multimodal imbalance methods \ldots\ comparable training budgets, model architectures, and optimization settings.}
+\resp We added uncertainty weighting and MMPareto (ICML 2024), re-implemented OGM-GE faithfully, and corrected Gradient Blending. All methods share the architecture, objective, optimiser, epochs, batch size, splits and seeds; the only method-specific hyper-parameter, OGM-GE's $\alpha$, is selected on the tuning split. AGM, PMR and OLM need perturbation passes, prototypes or logit-level changes that do not fit the shared objective; we selected one representative per family and state this as a limitation.
+\chg Experimental setup, ``Baselines''; Tables~3--6; Limitations (iii).
+
+\rc{11. Please expand the discussion of evolutionary/adaptive learning strategies \ldots\ ``Class binarization to neuroevolution for multiclass classification'' \ldots}
+\resp Added. That study evaluates class-binarization strategies for NEAT by accuracy, multiclass degradation, evolutionary efficiency and robustness; in the same spirit we report accuracy, modality balance, training cost and robustness rather than accuracy alone, and we contrast MFC-A's single-run closed-form adaptation with population-based search.
+\chg Related work, ``Adaptive and evolutionary optimisation''.
+
+\rc{12. Please report statistical significance \ldots\ multiple independent runs with different random seeds and report mean $\pm$ standard deviation or confidence intervals.}
+\resp All results are now means $\pm$ standard deviations over ten seeds (0--9). Each seed fixes the split, initialisation and batch order, and is shared by all methods, so we use two-sided paired $t$-tests against MFC-A ($^{*}$: $p<0.05$). Several earlier single-run differences turned out not to be significant, and we have revised the corresponding claims.
+\chg Experimental setup, ``Metrics and statistics''; all result tables.
+
+\rc{13. Please clarify the meaning of ``zero additional FLOPs.''}
+\resp We agree that the claim was misleading because it counted only the controller arithmetic. It has been removed. Table~11 now reports three components separately: controller arithmetic (960 scalar operations per run, a few ms), monitoring passes (about 39\% of baseline training FLOPs and 6--18\% wall-clock time, because the controller needs inference passes over the training and controller splits) and method-specific work for the baselines. We also introduce a running-loss variant that avoids the extra training-set pass (7.5--7.9\% extra FLOPs and 1.8--3.6\% extra time).
+\chg Method, ``Cost and complexity''; Results, ``Computational cost'', Table~11.
+
+\rc{14. Please recheck the complexity analysis \ldots\ precise explanation of the additional computation caused by validation-loss evaluation and OGR calculation.}
+\resp The analysis now states: training $T(3FN_{tr}+FN_{tune})$; monitoring $TF(N_{tr}+N_{cv})$ (or $TFN_{cv}$ for the running variant); controller $O(TMW)$ scalar operations; memory $O(MW)$. The total is $O(TF(N_{tr}+N_{cv}+N_{tune}))$, the same order as standard training with a larger constant.
+\chg Method, ``Cost and complexity''.
+
+\rc{15. The manuscript contains several grammatical problems \ldots\ A thorough English-language revision is recommended.}
+\resp The manuscript has been rewritten in full. Repeated passages (e.g.\ the duplicated ``Root Cause'' text) were removed, terminology was unified (``MFC-A'' for the method, ``OGR gap'' for the metric), and phrases such as ``Proposed experiments'' and ``the aproch'' were corrected.
+\chg Entire manuscript.
+
+%=====================================================================
+\section*{Reviewer 2}
+
+\rc{The definition of the generalization gap contains a mathematical typo that needs correcting.}
+\resp Corrected; see our answer to Reviewer~1, comment~5 (Eqs.~3--4).
+
+\rc{More importantly, the relationship between the pseudocode and the closed-loop inverse-ratio formulation used in the main experiments should be made explicit \ldots\ it is difficult to establish whether the algorithm presented is precisely the one evaluated.}
+\resp Algorithm~1 is now line-by-line the evaluated MFC-A, with references to Eqs.~5--7, and the code that produced every table is released. The former threshold algorithm is MFC-T, a separately labelled baseline. Please see also Reviewer~1, comment~6.
+
+\rc{I also found the construction of the synthetic benchmark unclear. How were object labels from the image data paired with emotion labels from the audio data \ldots}
+\resp We thank the reviewer for this question, which revealed an error in our first submission. The benchmark did not use CIFAR-10 images or CREMA-D audio and therefore involved no cross-dataset label pairing. It was generated with scikit-learn's \texttt{make\_classification}, and the earlier description was incorrect. The revised manuscript gives the complete recipe: 6,000 samples, 96 features (48 informative, 12 redundant), 6 classes, class separation 0.6, 5\% label noise, \texttt{random\_state}=42; the first 64 standardised features plus $\mathcal{N}(0,0.2^2)$ noise form the easy stream and the remaining 32 plus $\mathcal{N}(0,0.9^2)$ noise form the hard stream; both share the sample's label. This recipe reconstructs the dataset exactly. For a real multimodal test we added audio--video CREMA-D, where pairing and labels come from the recordings themselves.
+\chg Experimental setup, ``Datasets'' (synthetic benchmark and CREMA-D audio--video).
+
+\rc{The results need a clearer account of variability across runs \ldots\ specifying the number of runs \ldots}
+\resp Ten seeds, mean $\pm$ standard deviation, paired $t$-tests; see Reviewer~1, comment~12.
+
+\rc{The writing requires careful editing throughout.}
+\resp The manuscript was rewritten in full; see Reviewer~1, comment~15.
+
+\rc{Please consider adding these papers to the bibliography: 10.1109/EUROCON56442.2023.10198928; 10.1007/978-3-030-58542-6\_8; 10.3390/app131911110.}
+\resp Added and discussed: voice and facial-expression emotion recognition on IEMOCAP (Barra et al., 2023), which addresses the same task as our CREMA-D benchmark; acoustic images used as privileged information distilled into monaural audio networks (Sanguineti et al., 2020); and a simulation study showing that a compact 32-microphone array can approach the performance of a much larger one (Greco, 2023), as a route towards stronger, spatially resolved audio.
+\chg Related work, ``Multimodal fusion and visual representation''.
+
+%=====================================================================
+\section*{Reviewer 3}
+
+\rc{1. In the CREMA-D experiment, the proposed two streams are generated from the same mel-spectrogram \ldots\ should validate MFC-A on a genuinely paired multimodal dataset, such as audio-video data.}
+\resp We agree. The two spectrogram views are not separate modalities, and the manuscript now says so explicitly and keeps that experiment only as a feature-view control. We added two genuinely paired audio--video benchmarks. The first is \textbf{AVE}\,(Tian et al., ECCV 2018), the standard benchmark of the modality-imbalance literature: 4,134 ten-second YouTube clips in 28 event classes, each with the sound and video of the same recording, evaluated on the official test list. On AVE, MFC-A maintains accuracy (80.2 vs.\ 79.9\%) while reducing the OGR gap by 63\% ($p{=}0.03$) and significantly improving robustness to feature noise, blur and low light ($p<0.04$); OGM-GE achieves larger gains on this dataset, which we report. The second is \textbf{audio--video CREMA-D}: 7,439 clips from 91 actors, with the face video (eight frames, frozen ImageNet ResNet-18) and the original 16-kHz audio (log-mel statistics) of the \emph{same} recording, split by actor. Notably, audio is the dominant modality in this dataset, so the controller has to discover the dominant stream from the data. On this dataset MFC-A correctly identifies the video stream as the overfitting one (video OGR 16.8 vs.\ audio 4.1 for the baseline), throttles it, lowers its OGR to 10.4 and maintains accuracy. We report candidly that its improvements there are not statistically significant and that Gradient Blending, which removes the video auxiliary loss entirely, is the strongest method on this dataset; the Discussion analyses why.
+\chg Experimental setup, ``Datasets''; Results, Tables~3--4 and Figs.~1--2.
+
+\rc{2. MFC continuously observes modality-specific validation losses \ldots\ The authors should clearly distinguish training, controller-validation, hyperparameter-selection, and final-test data, and report performance on an independent test set that never influences the controller.}
+\resp This was a valid concern. We now use four disjoint splits (60/15/10/15\%): $\mathcal{D}_{tr}$ for training; $\mathcal{D}_{cv}$, the only held-out data read by any controller (MFC-A, MFC-T and Gradient Blending's probe); $\mathcal{D}_{tune}$ for checkpoint selection and hyper-parameter selection (e.g.\ OGM-GE's $\alpha$); and $\mathcal{D}_{te}$, evaluated once after training. All reported numbers, including robustness, are on $\mathcal{D}_{te}$. For audio--video CREMA-D the splits are actor-disjoint.
+\chg Problem formulation, ``Data splits''; Experimental setup, ``Models and training'' and ``Metrics''.
+
+\rc{3. Most reported differences are relatively small \ldots\ repeat each experiment across multiple random seeds and report mean $\pm$ standard deviation for accuracy, OGR gap, and robustness.}
+\resp Done (ten seeds, mean $\pm$ standard deviation and paired tests for accuracy, unimodal accuracies, OGR gap and all robustness measures). We agree with the reviewer's reading. With ten seeds MFC-A's clean-accuracy differences from the baseline are not significant; its consistent effects are a lower OGR gap and small robustness gains. On real AVE data MFC-A maintains accuracy (80.2 vs.\ 79.9\%, $p{=}0.46$) while reducing the OGR gap by 63\% ($p{=}0.03$) and improving robustness ($\sigma{=}1$: $+1.1$, $p{=}0.01$; blur $+2.1$, $p{=}0.04$; low light $+1.4$, $p{=}0.03$). On the synthetic benchmark it maintains accuracy (84.3 vs.\ 84.1\%) while reducing the gap by 41\% ($p<0.001$); the reduction grows with encoder capacity ($-55\%$ at 1024 hidden units, $p{=}0.008$). On audio--video CREMA-D accuracy is maintained, but the improvements are not significant. The abstract and conclusions now state this plainly.
+\chg Abstract; Results; Discussion; Conclusion.
+
+\rc{4. The author may consider referring to studies such as ``Deepfake image detection using different combinations of vision transformers and CNNs'' \ldots}
+\resp Added in the discussion of visual backbones.
+\chg Related work, ``Multimodal fusion and visual representation''.
+
+\rc{5. The manuscript combines CIFAR-10 and CREMA-D-derived representations \ldots\ it is unclear how samples from these datasets are paired \ldots}
+\resp As explained in our answer to Reviewer~2, the first submission's description was wrong: the benchmark was synthetic (\texttt{make\_classification}) and no CIFAR-10 or CREMA-D samples were paired. The revised paper describes it exactly. In the new audio--video experiment both modalities come from the same clip (synchronised at clip level), the label is that clip's emotion, the datasets are not mixed, and the splits are actor-disjoint, so no unequal-size pairing arises. The same holds for AVE (video and soundtrack of the same YouTube clip, official test split). A new dataset-statistics table (Table~2) gives, for all four datasets, the pairing, sample counts, per-class counts and split rule, and the text walks through one complete paired training instance (CREMA-D clip \texttt{1001\_DFA\_ANG\_XX}: 512-d video vector, 256-d audio vector, label \emph{anger}; all 82 clips of that actor lie in the same split).
+\chg Experimental setup, ``Datasets''.
+
+\rc{6. \ldots\ explain why the selected baselines are sufficient and, where feasible, compare against additional recent modality-balancing methods using identical architectures, data splits, optimization settings, and random seeds.}
+\resp We now compare with five baselines (Gradient Blending, uncertainty weighting, MMPareto, OGM-GE and MFC-T), one per methodological family, on four datasets including the standard AVE benchmark, all under identical architectures, objectives, splits, optimisers and seeds. We report openly that OGM-GE is the strongest method on AVE and Gradient Blending on CREMA-D. We explain the choice and list the methods we could not include.
+\chg Experimental setup, ``Baselines''; Limitations (iii).
+
+\rc{7. The authors should provide the complete intermediate experimental evidence \ldots\ verifying that the proposed controller is actually responding to modality overfitting and gradient starvation \ldots}
+\resp Figures~1--3 show, averaged over ten seeds and for CREMA-D, AVE and the synthetic benchmark, the per-epoch OGR of each modality on the controller split together with MFC-A's and MFC-T's loss weights. On the synthetic benchmark the dominant stream's OGR rises several-fold while that of the weak stream stays near 1.2, and MFC-A lowers $\lambda_v$ and raises $\lambda_a$ correspondingly, tracking the measured overfitting. On AVE the baseline's video OGR grows to about 41, and MFC-A throttles the video stream and keeps it at about 14. On audio--video CREMA-D the controller throttles the video stream ($\lambda_v\approx0.26$ by mid-training) because its OGR rises much faster than that of audio, and the final video OGR is 10.4 instead of the baseline's 16.8. In addition, we now log per-modality gradient norms on a fixed training probe every epoch (new section ``Gradient-level evidence'' and Fig.~4). On AVE the audio encoder's share of the joint-loss gradient falls from 0.46 to about 0.23 in the baseline, i.e.\ it is partly starved. MFC-A reduces the effective auxiliary gradient reaching the overfitting video encoder by 54\% and increases that reaching the audio encoder by 66\% ($p<10^{-7}$; $-55\%$/$+45\%$ on CREMA-D), confirming that the controller responds as designed, while leaving the joint-loss gradient share almost unchanged. We report this openly, as it explains why the accuracy effect is modest. Rerunning all 160 main-comparison runs with this logging reproduced every reported number exactly. The complete per-epoch logs of all runs (every split loss, both OGRs, both weights and the gradient norms) are released as CSV/JSON files with the code.
+\chg Results, ``Training dynamics'', Figs.~1--3; Data and code availability.
+
+\bigskip
+We thank the reviewers again for comments that substantially improved the paper.
+
+Sincerely,\\
+Lakshya, Amit Kumar Bairwa and Varun Tiwari
+\end{document}
