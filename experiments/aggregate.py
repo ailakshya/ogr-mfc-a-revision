@@ -89,6 +89,17 @@ def best_ogm(ds):
     return max(c, key=lambda t: ms(ds, t, "tune")[0]) if c else None
 
 
+def best_of(ds, prefix):
+    """Hyper-parameter of a baseline chosen on tune-split mean accuracy (never on test)."""
+    c = [t for (d, t) in R if d == ds and t.split("__")[0] == prefix]
+    return max(c, key=lambda t: ms(ds, t, "tune")[0]) if c else None
+
+
+def hp(tag):
+    return ", ".join(x.replace("alpha", "$\\alpha$").replace("mu", "$\\mu$").replace("eta", "$\\eta$")
+                     for x in tag.split("__")[1:]) if tag else "?"
+
+
 def selected(ds):
     """gamma chosen without test data (see select_gamma.py)."""
     def st(tag):
@@ -110,6 +121,9 @@ def gname(tag):
 MAIN = lambda ds: [("Baseline", "baseline"), ("Gradient Blending", "grad_blend"),
                    ("Uncertainty weighting", "uncertainty"), ("MMPareto", "mmpareto"),
                    (f"OGM-GE ($\\alpha$={best_ogm(ds).split('=')[-1] if best_ogm(ds) else '?'})", best_ogm(ds)),
+                   (f"AGM ({hp(best_of(ds, 'agm'))})", best_of(ds, "agm")),
+                   (f"PMR ({hp(best_of(ds, 'pmr'))})", best_of(ds, "pmr")),
+                   (f"OLM ({hp(best_of(ds, 'olm'))})", best_of(ds, "olm")),
                    ("MFC-T (threshold)", "mfc_t"), ("MFC-A ($\\gamma$=1)", "mfc_a"),
                    (f"\\textbf{{MFC-A}} ($\\gamma$={gname(selected(ds))}, selected)", selected(ds))]
 
@@ -258,7 +272,8 @@ open(os.path.join(OUT, "tables", "cost.tex"), "w").write("\n".join(lines) + "\n"
 
 # ── figures ─────────────────────────────────────────────────────────────────
 COL = {"baseline": "#7a7a7a", "grad_blend": "#4c78a8", "uncertainty": "#72b7b2", "mmpareto": "#54a24b",
-       "ogm": "#f58518", "mfc_t": "#b279a2", "mfc_a": "#e45756"}
+       "ogm": "#f58518", "mfc_t": "#b279a2", "mfc_a": "#e45756", "agm": "#9d755d", "pmr": "#bab0ac",
+       "olm": "#eeca3b"}
 
 
 def col(tag, ds=None):
@@ -266,7 +281,7 @@ def col(tag, ds=None):
         return COL["ogm"]
     if tag.startswith("mfc_a"):
         return COL["mfc_a"] if ds is None or tag == selected(ds) else "#f2a6a6"
-    return COL[tag]
+    return COL[tag.split("__")[0]]
 
 
 def curve(ds, tag, key):

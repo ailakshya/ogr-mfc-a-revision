@@ -1,0 +1,401 @@
+# AGM / PMR / OLM baselines (shared protocol); per-dataset HP selected on tune split
+synthetic agm 0 alpha=0.1
+synthetic agm 1 alpha=0.1
+synthetic agm 2 alpha=0.1
+synthetic agm 3 alpha=0.1
+synthetic agm 4 alpha=0.1
+synthetic agm 5 alpha=0.1
+synthetic agm 6 alpha=0.1
+synthetic agm 7 alpha=0.1
+synthetic agm 8 alpha=0.1
+synthetic agm 9 alpha=0.1
+synthetic agm 0 alpha=0.5
+synthetic agm 1 alpha=0.5
+synthetic agm 2 alpha=0.5
+synthetic agm 3 alpha=0.5
+synthetic agm 4 alpha=0.5
+synthetic agm 5 alpha=0.5
+synthetic agm 6 alpha=0.5
+synthetic agm 7 alpha=0.5
+synthetic agm 8 alpha=0.5
+synthetic agm 9 alpha=0.5
+synthetic agm 0 alpha=1.0
+synthetic agm 1 alpha=1.0
+synthetic agm 2 alpha=1.0
+synthetic agm 3 alpha=1.0
+synthetic agm 4 alpha=1.0
+synthetic agm 5 alpha=1.0
+synthetic agm 6 alpha=1.0
+synthetic agm 7 alpha=1.0
+synthetic agm 8 alpha=1.0
+synthetic agm 9 alpha=1.0
+synthetic pmr 0 alpha=1.0 mu=0.001
+synthetic pmr 1 alpha=1.0 mu=0.001
+synthetic pmr 2 alpha=1.0 mu=0.001
+synthetic pmr 3 alpha=1.0 mu=0.001
+synthetic pmr 4 alpha=1.0 mu=0.001
+synthetic pmr 5 alpha=1.0 mu=0.001
+synthetic pmr 6 alpha=1.0 mu=0.001
+synthetic pmr 7 alpha=1.0 mu=0.001
+synthetic pmr 8 alpha=1.0 mu=0.001
+synthetic pmr 9 alpha=1.0 mu=0.001
+synthetic pmr 0 alpha=1.0 mu=0.01
+synthetic pmr 1 alpha=1.0 mu=0.01
+synthetic pmr 2 alpha=1.0 mu=0.01
+synthetic pmr 3 alpha=1.0 mu=0.01
+synthetic pmr 4 alpha=1.0 mu=0.01
+synthetic pmr 5 alpha=1.0 mu=0.01
+synthetic pmr 6 alpha=1.0 mu=0.01
+synthetic pmr 7 alpha=1.0 mu=0.01
+synthetic pmr 8 alpha=1.0 mu=0.01
+synthetic pmr 9 alpha=1.0 mu=0.01
+synthetic pmr 0 alpha=2.0 mu=0.001
+synthetic pmr 1 alpha=2.0 mu=0.001
+synthetic pmr 2 alpha=2.0 mu=0.001
+synthetic pmr 3 alpha=2.0 mu=0.001
+synthetic pmr 4 alpha=2.0 mu=0.001
+synthetic pmr 5 alpha=2.0 mu=0.001
+synthetic pmr 6 alpha=2.0 mu=0.001
+synthetic pmr 7 alpha=2.0 mu=0.001
+synthetic pmr 8 alpha=2.0 mu=0.001
+synthetic pmr 9 alpha=2.0 mu=0.001
+synthetic pmr 0 alpha=2.0 mu=0.01
+synthetic pmr 1 alpha=2.0 mu=0.01
+synthetic pmr 2 alpha=2.0 mu=0.01
+synthetic pmr 3 alpha=2.0 mu=0.01
+synthetic pmr 4 alpha=2.0 mu=0.01
+synthetic pmr 5 alpha=2.0 mu=0.01
+synthetic pmr 6 alpha=2.0 mu=0.01
+synthetic pmr 7 alpha=2.0 mu=0.01
+synthetic pmr 8 alpha=2.0 mu=0.01
+synthetic pmr 9 alpha=2.0 mu=0.01
+synthetic olm 0 eta=0.01
+synthetic olm 1 eta=0.01
+synthetic olm 2 eta=0.01
+synthetic olm 3 eta=0.01
+synthetic olm 4 eta=0.01
+synthetic olm 5 eta=0.01
+synthetic olm 6 eta=0.01
+synthetic olm 7 eta=0.01
+synthetic olm 8 eta=0.01
+synthetic olm 9 eta=0.01
+synthetic olm 0 eta=0.1
+synthetic olm 1 eta=0.1
+synthetic olm 2 eta=0.1
+synthetic olm 3 eta=0.1
+synthetic olm 4 eta=0.1
+synthetic olm 5 eta=0.1
+synthetic olm 6 eta=0.1
+synthetic olm 7 eta=0.1
+synthetic olm 8 eta=0.1
+synthetic olm 9 eta=0.1
+synthetic olm 0 eta=1.0
+synthetic olm 1 eta=1.0
+synthetic olm 2 eta=1.0
+synthetic olm 3 eta=1.0
+synthetic olm 4 eta=1.0
+synthetic olm 5 eta=1.0
+synthetic olm 6 eta=1.0
+synthetic olm 7 eta=1.0
+synthetic olm 8 eta=1.0
+synthetic olm 9 eta=1.0
+crema_av agm 0 alpha=0.1
+crema_av agm 1 alpha=0.1
+crema_av agm 2 alpha=0.1
+crema_av agm 3 alpha=0.1
+crema_av agm 4 alpha=0.1
+crema_av agm 5 alpha=0.1
+crema_av agm 6 alpha=0.1
+crema_av agm 7 alpha=0.1
+crema_av agm 8 alpha=0.1
+crema_av agm 9 alpha=0.1
+crema_av agm 0 alpha=0.5
+crema_av agm 1 alpha=0.5
+crema_av agm 2 alpha=0.5
+crema_av agm 3 alpha=0.5
+crema_av agm 4 alpha=0.5
+crema_av agm 5 alpha=0.5
+crema_av agm 6 alpha=0.5
+crema_av agm 7 alpha=0.5
+crema_av agm 8 alpha=0.5
+crema_av agm 9 alpha=0.5
+crema_av agm 0 alpha=1.0
+crema_av agm 1 alpha=1.0
+crema_av agm 2 alpha=1.0
+crema_av agm 3 alpha=1.0
+crema_av agm 4 alpha=1.0
+crema_av agm 5 alpha=1.0
+crema_av agm 6 alpha=1.0
+crema_av agm 7 alpha=1.0
+crema_av agm 8 alpha=1.0
+crema_av agm 9 alpha=1.0
+crema_av pmr 0 alpha=1.0 mu=0.001
+crema_av pmr 1 alpha=1.0 mu=0.001
+crema_av pmr 2 alpha=1.0 mu=0.001
+crema_av pmr 3 alpha=1.0 mu=0.001
+crema_av pmr 4 alpha=1.0 mu=0.001
+crema_av pmr 5 alpha=1.0 mu=0.001
+crema_av pmr 6 alpha=1.0 mu=0.001
+crema_av pmr 7 alpha=1.0 mu=0.001
+crema_av pmr 8 alpha=1.0 mu=0.001
+crema_av pmr 9 alpha=1.0 mu=0.001
+crema_av pmr 0 alpha=1.0 mu=0.01
+crema_av pmr 1 alpha=1.0 mu=0.01
+crema_av pmr 2 alpha=1.0 mu=0.01
+crema_av pmr 3 alpha=1.0 mu=0.01
+crema_av pmr 4 alpha=1.0 mu=0.01
+crema_av pmr 5 alpha=1.0 mu=0.01
+crema_av pmr 6 alpha=1.0 mu=0.01
+crema_av pmr 7 alpha=1.0 mu=0.01
+crema_av pmr 8 alpha=1.0 mu=0.01
+crema_av pmr 9 alpha=1.0 mu=0.01
+crema_av pmr 0 alpha=2.0 mu=0.001
+crema_av pmr 1 alpha=2.0 mu=0.001
+crema_av pmr 2 alpha=2.0 mu=0.001
+crema_av pmr 3 alpha=2.0 mu=0.001
+crema_av pmr 4 alpha=2.0 mu=0.001
+crema_av pmr 5 alpha=2.0 mu=0.001
+crema_av pmr 6 alpha=2.0 mu=0.001
+crema_av pmr 7 alpha=2.0 mu=0.001
+crema_av pmr 8 alpha=2.0 mu=0.001
+crema_av pmr 9 alpha=2.0 mu=0.001
+crema_av pmr 0 alpha=2.0 mu=0.01
+crema_av pmr 1 alpha=2.0 mu=0.01
+crema_av pmr 2 alpha=2.0 mu=0.01
+crema_av pmr 3 alpha=2.0 mu=0.01
+crema_av pmr 4 alpha=2.0 mu=0.01
+crema_av pmr 5 alpha=2.0 mu=0.01
+crema_av pmr 6 alpha=2.0 mu=0.01
+crema_av pmr 7 alpha=2.0 mu=0.01
+crema_av pmr 8 alpha=2.0 mu=0.01
+crema_av pmr 9 alpha=2.0 mu=0.01
+crema_av olm 0 eta=0.01
+crema_av olm 1 eta=0.01
+crema_av olm 2 eta=0.01
+crema_av olm 3 eta=0.01
+crema_av olm 4 eta=0.01
+crema_av olm 5 eta=0.01
+crema_av olm 6 eta=0.01
+crema_av olm 7 eta=0.01
+crema_av olm 8 eta=0.01
+crema_av olm 9 eta=0.01
+crema_av olm 0 eta=0.1
+crema_av olm 1 eta=0.1
+crema_av olm 2 eta=0.1
+crema_av olm 3 eta=0.1
+crema_av olm 4 eta=0.1
+crema_av olm 5 eta=0.1
+crema_av olm 6 eta=0.1
+crema_av olm 7 eta=0.1
+crema_av olm 8 eta=0.1
+crema_av olm 9 eta=0.1
+crema_av olm 0 eta=1.0
+crema_av olm 1 eta=1.0
+crema_av olm 2 eta=1.0
+crema_av olm 3 eta=1.0
+crema_av olm 4 eta=1.0
+crema_av olm 5 eta=1.0
+crema_av olm 6 eta=1.0
+crema_av olm 7 eta=1.0
+crema_av olm 8 eta=1.0
+crema_av olm 9 eta=1.0
+ave agm 0 alpha=0.1
+ave agm 1 alpha=0.1
+ave agm 2 alpha=0.1
+ave agm 3 alpha=0.1
+ave agm 4 alpha=0.1
+ave agm 5 alpha=0.1
+ave agm 6 alpha=0.1
+ave agm 7 alpha=0.1
+ave agm 8 alpha=0.1
+ave agm 9 alpha=0.1
+ave agm 0 alpha=0.5
+ave agm 1 alpha=0.5
+ave agm 2 alpha=0.5
+ave agm 3 alpha=0.5
+ave agm 4 alpha=0.5
+ave agm 5 alpha=0.5
+ave agm 6 alpha=0.5
+ave agm 7 alpha=0.5
+ave agm 8 alpha=0.5
+ave agm 9 alpha=0.5
+ave agm 0 alpha=1.0
+ave agm 1 alpha=1.0
+ave agm 2 alpha=1.0
+ave agm 3 alpha=1.0
+ave agm 4 alpha=1.0
+ave agm 5 alpha=1.0
+ave agm 6 alpha=1.0
+ave agm 7 alpha=1.0
+ave agm 8 alpha=1.0
+ave agm 9 alpha=1.0
+ave pmr 0 alpha=1.0 mu=0.001
+ave pmr 1 alpha=1.0 mu=0.001
+ave pmr 2 alpha=1.0 mu=0.001
+ave pmr 3 alpha=1.0 mu=0.001
+ave pmr 4 alpha=1.0 mu=0.001
+ave pmr 5 alpha=1.0 mu=0.001
+ave pmr 6 alpha=1.0 mu=0.001
+ave pmr 7 alpha=1.0 mu=0.001
+ave pmr 8 alpha=1.0 mu=0.001
+ave pmr 9 alpha=1.0 mu=0.001
+ave pmr 0 alpha=1.0 mu=0.01
+ave pmr 1 alpha=1.0 mu=0.01
+ave pmr 2 alpha=1.0 mu=0.01
+ave pmr 3 alpha=1.0 mu=0.01
+ave pmr 4 alpha=1.0 mu=0.01
+ave pmr 5 alpha=1.0 mu=0.01
+ave pmr 6 alpha=1.0 mu=0.01
+ave pmr 7 alpha=1.0 mu=0.01
+ave pmr 8 alpha=1.0 mu=0.01
+ave pmr 9 alpha=1.0 mu=0.01
+ave pmr 0 alpha=2.0 mu=0.001
+ave pmr 1 alpha=2.0 mu=0.001
+ave pmr 2 alpha=2.0 mu=0.001
+ave pmr 3 alpha=2.0 mu=0.001
+ave pmr 4 alpha=2.0 mu=0.001
+ave pmr 5 alpha=2.0 mu=0.001
+ave pmr 6 alpha=2.0 mu=0.001
+ave pmr 7 alpha=2.0 mu=0.001
+ave pmr 8 alpha=2.0 mu=0.001
+ave pmr 9 alpha=2.0 mu=0.001
+ave pmr 0 alpha=2.0 mu=0.01
+ave pmr 1 alpha=2.0 mu=0.01
+ave pmr 2 alpha=2.0 mu=0.01
+ave pmr 3 alpha=2.0 mu=0.01
+ave pmr 4 alpha=2.0 mu=0.01
+ave pmr 5 alpha=2.0 mu=0.01
+ave pmr 6 alpha=2.0 mu=0.01
+ave pmr 7 alpha=2.0 mu=0.01
+ave pmr 8 alpha=2.0 mu=0.01
+ave pmr 9 alpha=2.0 mu=0.01
+ave olm 0 eta=0.01
+ave olm 1 eta=0.01
+ave olm 2 eta=0.01
+ave olm 3 eta=0.01
+ave olm 4 eta=0.01
+ave olm 5 eta=0.01
+ave olm 6 eta=0.01
+ave olm 7 eta=0.01
+ave olm 8 eta=0.01
+ave olm 9 eta=0.01
+ave olm 0 eta=0.1
+ave olm 1 eta=0.1
+ave olm 2 eta=0.1
+ave olm 3 eta=0.1
+ave olm 4 eta=0.1
+ave olm 5 eta=0.1
+ave olm 6 eta=0.1
+ave olm 7 eta=0.1
+ave olm 8 eta=0.1
+ave olm 9 eta=0.1
+ave olm 0 eta=1.0
+ave olm 1 eta=1.0
+ave olm 2 eta=1.0
+ave olm 3 eta=1.0
+ave olm 4 eta=1.0
+ave olm 5 eta=1.0
+ave olm 6 eta=1.0
+ave olm 7 eta=1.0
+ave olm 8 eta=1.0
+ave olm 9 eta=1.0
+crema_spec agm 0 alpha=0.1
+crema_spec agm 1 alpha=0.1
+crema_spec agm 2 alpha=0.1
+crema_spec agm 3 alpha=0.1
+crema_spec agm 4 alpha=0.1
+crema_spec agm 5 alpha=0.1
+crema_spec agm 6 alpha=0.1
+crema_spec agm 7 alpha=0.1
+crema_spec agm 8 alpha=0.1
+crema_spec agm 9 alpha=0.1
+crema_spec agm 0 alpha=0.5
+crema_spec agm 1 alpha=0.5
+crema_spec agm 2 alpha=0.5
+crema_spec agm 3 alpha=0.5
+crema_spec agm 4 alpha=0.5
+crema_spec agm 5 alpha=0.5
+crema_spec agm 6 alpha=0.5
+crema_spec agm 7 alpha=0.5
+crema_spec agm 8 alpha=0.5
+crema_spec agm 9 alpha=0.5
+crema_spec agm 0 alpha=1.0
+crema_spec agm 1 alpha=1.0
+crema_spec agm 2 alpha=1.0
+crema_spec agm 3 alpha=1.0
+crema_spec agm 4 alpha=1.0
+crema_spec agm 5 alpha=1.0
+crema_spec agm 6 alpha=1.0
+crema_spec agm 7 alpha=1.0
+crema_spec agm 8 alpha=1.0
+crema_spec agm 9 alpha=1.0
+crema_spec pmr 0 alpha=1.0 mu=0.001
+crema_spec pmr 1 alpha=1.0 mu=0.001
+crema_spec pmr 2 alpha=1.0 mu=0.001
+crema_spec pmr 3 alpha=1.0 mu=0.001
+crema_spec pmr 4 alpha=1.0 mu=0.001
+crema_spec pmr 5 alpha=1.0 mu=0.001
+crema_spec pmr 6 alpha=1.0 mu=0.001
+crema_spec pmr 7 alpha=1.0 mu=0.001
+crema_spec pmr 8 alpha=1.0 mu=0.001
+crema_spec pmr 9 alpha=1.0 mu=0.001
+crema_spec pmr 0 alpha=1.0 mu=0.01
+crema_spec pmr 1 alpha=1.0 mu=0.01
+crema_spec pmr 2 alpha=1.0 mu=0.01
+crema_spec pmr 3 alpha=1.0 mu=0.01
+crema_spec pmr 4 alpha=1.0 mu=0.01
+crema_spec pmr 5 alpha=1.0 mu=0.01
+crema_spec pmr 6 alpha=1.0 mu=0.01
+crema_spec pmr 7 alpha=1.0 mu=0.01
+crema_spec pmr 8 alpha=1.0 mu=0.01
+crema_spec pmr 9 alpha=1.0 mu=0.01
+crema_spec pmr 0 alpha=2.0 mu=0.001
+crema_spec pmr 1 alpha=2.0 mu=0.001
+crema_spec pmr 2 alpha=2.0 mu=0.001
+crema_spec pmr 3 alpha=2.0 mu=0.001
+crema_spec pmr 4 alpha=2.0 mu=0.001
+crema_spec pmr 5 alpha=2.0 mu=0.001
+crema_spec pmr 6 alpha=2.0 mu=0.001
+crema_spec pmr 7 alpha=2.0 mu=0.001
+crema_spec pmr 8 alpha=2.0 mu=0.001
+crema_spec pmr 9 alpha=2.0 mu=0.001
+crema_spec pmr 0 alpha=2.0 mu=0.01
+crema_spec pmr 1 alpha=2.0 mu=0.01
+crema_spec pmr 2 alpha=2.0 mu=0.01
+crema_spec pmr 3 alpha=2.0 mu=0.01
+crema_spec pmr 4 alpha=2.0 mu=0.01
+crema_spec pmr 5 alpha=2.0 mu=0.01
+crema_spec pmr 6 alpha=2.0 mu=0.01
+crema_spec pmr 7 alpha=2.0 mu=0.01
+crema_spec pmr 8 alpha=2.0 mu=0.01
+crema_spec pmr 9 alpha=2.0 mu=0.01
+crema_spec olm 0 eta=0.01
+crema_spec olm 1 eta=0.01
+crema_spec olm 2 eta=0.01
+crema_spec olm 3 eta=0.01
+crema_spec olm 4 eta=0.01
+crema_spec olm 5 eta=0.01
+crema_spec olm 6 eta=0.01
+crema_spec olm 7 eta=0.01
+crema_spec olm 8 eta=0.01
+crema_spec olm 9 eta=0.01
+crema_spec olm 0 eta=0.1
+crema_spec olm 1 eta=0.1
+crema_spec olm 2 eta=0.1
+crema_spec olm 3 eta=0.1
+crema_spec olm 4 eta=0.1
+crema_spec olm 5 eta=0.1
+crema_spec olm 6 eta=0.1
+crema_spec olm 7 eta=0.1
+crema_spec olm 8 eta=0.1
+crema_spec olm 9 eta=0.1
+crema_spec olm 0 eta=1.0
+crema_spec olm 1 eta=1.0
+crema_spec olm 2 eta=1.0
+crema_spec olm 3 eta=1.0
+crema_spec olm 4 eta=1.0
+crema_spec olm 5 eta=1.0
+crema_spec olm 6 eta=1.0
+crema_spec olm 7 eta=1.0
+crema_spec olm 8 eta=1.0
+crema_spec olm 9 eta=1.0
