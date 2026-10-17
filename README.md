@@ -26,6 +26,19 @@ raw per-seed logs and regenerated with one command.
 | `literature/` | Reading notes on related work (third-party PDFs are not redistributed) |
 | `legacy/first_submission/` | Material from the first submission (superseded; see "Legacy material") |
 
+## Visual examples (`experiments/out/media/`)
+
+| File | What it shows |
+|---|---|
+| `gradcam_crema_example.mp4` / `.gif` | One CREMA-D test clip (`1010_DFA_ANG_XX`, chosen by a fixed rule: the first anger clip of the seed-0 test split), frame by frame: \|Grad-CAM\| of the fused prediction through the ResNet-18 visual encoder for the baseline and for MFC-A on one shared colour scale, plus the attribution over the 64 audio mel bands. Both models are retrained with `bench.run` and reproduce their logged test accuracy exactly. A single clip illustrates behaviour; it is not evidence on its own. |
+| `degradations_crema_example.mp4` | The same clip clean, blurred, occluded and in low light, exactly as used in the robustness tests |
+| `dynamics_ave.mp4`, `dynamics_crema_av.mp4` (+ `.gif`) | Epoch-by-epoch animation of the video and audio OGR (baseline vs MFC-A) and of MFC-A's loss weights, mean of 10 seeds |
+| `heatmap_lambda_ave.png`, `heatmap_lambda_crema_av.png` | MFC-A's video-stream weight for every seed and epoch |
+| `heatmap_gains.png` | Difference to the baseline of every method on every dataset and metric, with paired-test significance |
+
+All are produced by `experiments/visualize.py` (`logs` mode from the logs; `gradcam` mode needs the raw CREMA-D videos).
+CREMA-D frames are shown under the dataset's research licence; AVE frames (YouTube content) are not redistributed.
+
 ## Using MFC-A in your own training
 
 ```python
