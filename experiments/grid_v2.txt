@@ -1,0 +1,160 @@
+crema_av baseline 0
+crema_av baseline 1
+crema_av baseline 2
+crema_av baseline 3
+crema_av baseline 4
+crema_av baseline 5
+crema_av baseline 6
+crema_av baseline 7
+crema_av baseline 8
+crema_av baseline 9
+crema_av grad_blend 0
+crema_av grad_blend 1
+crema_av grad_blend 2
+crema_av grad_blend 3
+crema_av grad_blend 4
+crema_av grad_blend 5
+crema_av grad_blend 6
+crema_av grad_blend 7
+crema_av grad_blend 8
+crema_av grad_blend 9
+crema_av uncertainty 0
+crema_av uncertainty 1
+crema_av uncertainty 2
+crema_av uncertainty 3
+crema_av uncertainty 4
+crema_av uncertainty 5
+crema_av uncertainty 6
+crema_av uncertainty 7
+crema_av uncertainty 8
+crema_av uncertainty 9
+crema_av mmpareto 0
+crema_av mmpareto 1
+crema_av mmpareto 2
+crema_av mmpareto 3
+crema_av mmpareto 4
+crema_av mmpareto 5
+crema_av mmpareto 6
+crema_av mmpareto 7
+crema_av mmpareto 8
+crema_av mmpareto 9
+crema_av ogm_ge 0 alpha=0.3
+crema_av ogm_ge 1 alpha=0.3
+crema_av ogm_ge 2 alpha=0.3
+crema_av ogm_ge 3 alpha=0.3
+crema_av ogm_ge 4 alpha=0.3
+crema_av ogm_ge 5 alpha=0.3
+crema_av ogm_ge 6 alpha=0.3
+crema_av ogm_ge 7 alpha=0.3
+crema_av ogm_ge 8 alpha=0.3
+crema_av ogm_ge 9 alpha=0.3
+crema_av mfc_t 0
+crema_av mfc_t 1
+crema_av mfc_t 2
+crema_av mfc_t 3
+crema_av mfc_t 4
+crema_av mfc_t 5
+crema_av mfc_t 6
+crema_av mfc_t 7
+crema_av mfc_t 8
+crema_av mfc_t 9
+crema_av mfc_a 0
+crema_av mfc_a 1
+crema_av mfc_a 2
+crema_av mfc_a 3
+crema_av mfc_a 4
+crema_av mfc_a 5
+crema_av mfc_a 6
+crema_av mfc_a 7
+crema_av mfc_a 8
+crema_av mfc_a 9
+crema_av mfc_a 0 gamma=2.0
+crema_av mfc_a 1 gamma=2.0
+crema_av mfc_a 2 gamma=2.0
+crema_av mfc_a 3 gamma=2.0
+crema_av mfc_a 4 gamma=2.0
+crema_av mfc_a 5 gamma=2.0
+crema_av mfc_a 6 gamma=2.0
+crema_av mfc_a 7 gamma=2.0
+crema_av mfc_a 8 gamma=2.0
+crema_av mfc_a 9 gamma=2.0
+ave baseline 0
+ave baseline 1
+ave baseline 2
+ave baseline 3
+ave baseline 4
+ave baseline 5
+ave baseline 6
+ave baseline 7
+ave baseline 8
+ave baseline 9
+ave grad_blend 0
+ave grad_blend 1
+ave grad_blend 2
+ave grad_blend 3
+ave grad_blend 4
+ave grad_blend 5
+ave grad_blend 6
+ave grad_blend 7
+ave grad_blend 8
+ave grad_blend 9
+ave uncertainty 0
+ave uncertainty 1
+ave uncertainty 2
+ave uncertainty 3
+ave uncertainty 4
+ave uncertainty 5
+ave uncertainty 6
+ave uncertainty 7
+ave uncertainty 8
+ave uncertainty 9
+ave mmpareto 0
+ave mmpareto 1
+ave mmpareto 2
+ave mmpareto 3
+ave mmpareto 4
+ave mmpareto 5
+ave mmpareto 6
+ave mmpareto 7
+ave mmpareto 8
+ave mmpareto 9
+ave ogm_ge 0 alpha=0.8
+ave ogm_ge 1 alpha=0.8
+ave ogm_ge 2 alpha=0.8
+ave ogm_ge 3 alpha=0.8
+ave ogm_ge 4 alpha=0.8
+ave ogm_ge 5 alpha=0.8
+ave ogm_ge 6 alpha=0.8
+ave ogm_ge 7 alpha=0.8
+ave ogm_ge 8 alpha=0.8
+ave ogm_ge 9 alpha=0.8
+ave mfc_t 0
+ave mfc_t 1
+ave mfc_t 2
+ave mfc_t 3
+ave mfc_t 4
+ave mfc_t 5
+ave mfc_t 6
+ave mfc_t 7
+ave mfc_t 8
+ave mfc_t 9
+ave mfc_a 0
+ave mfc_a 1
+ave mfc_a 2
+ave mfc_a 3
+ave mfc_a 4
+ave mfc_a 5
+ave mfc_a 6
+ave mfc_a 7
+ave mfc_a 8
+ave mfc_a 9
+ave mfc_a 0 gamma=3.0
+ave mfc_a 1 gamma=3.0
+ave mfc_a 2 gamma=3.0
+ave mfc_a 3 gamma=3.0
+ave mfc_a 4 gamma=3.0
+ave mfc_a 5 gamma=3.0
+ave mfc_a 6 gamma=3.0
+ave mfc_a 7 gamma=3.0
+ave mfc_a 8 gamma=3.0
+ave mfc_a 9 gamma=3.0

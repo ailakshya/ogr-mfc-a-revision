@@ -1,0 +1,10 @@
+ave static 0 la=1.52 lv=0.48
+ave static 1 la=1.52 lv=0.48
+ave static 2 la=1.52 lv=0.48
+ave static 3 la=1.52 lv=0.48
+ave static 4 la=1.52 lv=0.48
+ave static 5 la=1.52 lv=0.48
+ave static 6 la=1.52 lv=0.48
+ave static 7 la=1.52 lv=0.48
+ave static 8 la=1.52 lv=0.48
+ave static 9 la=1.52 lv=0.48

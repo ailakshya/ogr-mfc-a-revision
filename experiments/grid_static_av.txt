@@ -1,0 +1,10 @@
+crema_av static 0 la=1.37 lv=0.63
+crema_av static 1 la=1.37 lv=0.63
+crema_av static 2 la=1.37 lv=0.63
+crema_av static 3 la=1.37 lv=0.63
+crema_av static 4 la=1.37 lv=0.63
+crema_av static 5 la=1.37 lv=0.63
+crema_av static 6 la=1.37 lv=0.63
+crema_av static 7 la=1.37 lv=0.63
+crema_av static 8 la=1.37 lv=0.63
+crema_av static 9 la=1.37 lv=0.63

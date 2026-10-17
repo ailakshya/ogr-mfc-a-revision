@@ -1,0 +1,27 @@
+# environments / caches
+.venv/
+.venv_*/
+__pycache__/
+.DS_Store
+.claude/
+
+# LaTeX build products (PDFs of the manuscript are kept on purpose)
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.blg
+*.spl
+*.bbl
+
+# archives and raw datasets (regenerate / download; see README)
+*.zip
+*.tar.gz
+legacy/first_submission/data/
+legacy/first_submission/springer_format/
+
+# third-party papers (copyrighted PDFs; notes in literature/*.md are kept)
+literature/**/*.pdf
+legacy/first_submission/Presentation_Materials/Base_Papers/

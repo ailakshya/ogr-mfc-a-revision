@@ -1,0 +1,250 @@
+crema_av baseline 0
+crema_av baseline 1
+crema_av baseline 2
+crema_av baseline 3
+crema_av baseline 4
+crema_av baseline 5
+crema_av baseline 6
+crema_av baseline 7
+crema_av baseline 8
+crema_av baseline 9
+crema_av grad_blend 0
+crema_av grad_blend 1
+crema_av grad_blend 2
+crema_av grad_blend 3
+crema_av grad_blend 4
+crema_av grad_blend 5
+crema_av grad_blend 6
+crema_av grad_blend 7
+crema_av grad_blend 8
+crema_av grad_blend 9
+crema_av uncertainty 0
+crema_av uncertainty 1
+crema_av uncertainty 2
+crema_av uncertainty 3
+crema_av uncertainty 4
+crema_av uncertainty 5
+crema_av uncertainty 6
+crema_av uncertainty 7
+crema_av uncertainty 8
+crema_av uncertainty 9
+crema_av mmpareto 0
+crema_av mmpareto 1
+crema_av mmpareto 2
+crema_av mmpareto 3
+crema_av mmpareto 4
+crema_av mmpareto 5
+crema_av mmpareto 6
+crema_av mmpareto 7
+crema_av mmpareto 8
+crema_av mmpareto 9
+crema_av ogm_ge 0 alpha=0.1
+crema_av ogm_ge 1 alpha=0.1
+crema_av ogm_ge 2 alpha=0.1
+crema_av ogm_ge 3 alpha=0.1
+crema_av ogm_ge 4 alpha=0.1
+crema_av ogm_ge 5 alpha=0.1
+crema_av ogm_ge 6 alpha=0.1
+crema_av ogm_ge 7 alpha=0.1
+crema_av ogm_ge 8 alpha=0.1
+crema_av ogm_ge 9 alpha=0.1
+crema_av ogm_ge 0 alpha=0.3
+crema_av ogm_ge 1 alpha=0.3
+crema_av ogm_ge 2 alpha=0.3
+crema_av ogm_ge 3 alpha=0.3
+crema_av ogm_ge 4 alpha=0.3
+crema_av ogm_ge 5 alpha=0.3
+crema_av ogm_ge 6 alpha=0.3
+crema_av ogm_ge 7 alpha=0.3
+crema_av ogm_ge 8 alpha=0.3
+crema_av ogm_ge 9 alpha=0.3
+crema_av ogm_ge 0 alpha=0.8
+crema_av ogm_ge 1 alpha=0.8
+crema_av ogm_ge 2 alpha=0.8
+crema_av ogm_ge 3 alpha=0.8
+crema_av ogm_ge 4 alpha=0.8
+crema_av ogm_ge 5 alpha=0.8
+crema_av ogm_ge 6 alpha=0.8
+crema_av ogm_ge 7 alpha=0.8
+crema_av ogm_ge 8 alpha=0.8
+crema_av ogm_ge 9 alpha=0.8
+crema_av mfc_t 0
+crema_av mfc_t 1
+crema_av mfc_t 2
+crema_av mfc_t 3
+crema_av mfc_t 4
+crema_av mfc_t 5
+crema_av mfc_t 6
+crema_av mfc_t 7
+crema_av mfc_t 8
+crema_av mfc_t 9
+crema_av mfc_a 0
+crema_av mfc_a 1
+crema_av mfc_a 2
+crema_av mfc_a 3
+crema_av mfc_a 4
+crema_av mfc_a 5
+crema_av mfc_a 6
+crema_av mfc_a 7
+crema_av mfc_a 8
+crema_av mfc_a 9
+crema_av mfc_a 0 signal=gap
+crema_av mfc_a 1 signal=gap
+crema_av mfc_a 2 signal=gap
+crema_av mfc_a 3 signal=gap
+crema_av mfc_a 4 signal=gap
+crema_av mfc_a 5 signal=gap
+crema_av mfc_a 6 signal=gap
+crema_av mfc_a 7 signal=gap
+crema_av mfc_a 8 signal=gap
+crema_av mfc_a 9 signal=gap
+crema_av mfc_a 0 mode=throttle
+crema_av mfc_a 1 mode=throttle
+crema_av mfc_a 2 mode=throttle
+crema_av mfc_a 3 mode=throttle
+crema_av mfc_a 4 mode=throttle
+crema_av mfc_a 5 mode=throttle
+crema_av mfc_a 6 mode=throttle
+crema_av mfc_a 7 mode=throttle
+crema_av mfc_a 8 mode=throttle
+crema_av mfc_a 9 mode=throttle
+crema_av mfc_a 0 mode=amplify
+crema_av mfc_a 1 mode=amplify
+crema_av mfc_a 2 mode=amplify
+crema_av mfc_a 3 mode=amplify
+crema_av mfc_a 4 mode=amplify
+crema_av mfc_a 5 mode=amplify
+crema_av mfc_a 6 mode=amplify
+crema_av mfc_a 7 mode=amplify
+crema_av mfc_a 8 mode=amplify
+crema_av mfc_a 9 mode=amplify
+crema_av mfc_a 0 running=True
+crema_av mfc_a 1 running=True
+crema_av mfc_a 2 running=True
+crema_av mfc_a 3 running=True
+crema_av mfc_a 4 running=True
+crema_av mfc_a 5 running=True
+crema_av mfc_a 6 running=True
+crema_av mfc_a 7 running=True
+crema_av mfc_a 8 running=True
+crema_av mfc_a 9 running=True
+crema_av mfc_a 0 warmup=0
+crema_av mfc_a 1 warmup=0
+crema_av mfc_a 2 warmup=0
+crema_av mfc_a 3 warmup=0
+crema_av mfc_a 4 warmup=0
+crema_av mfc_a 5 warmup=0
+crema_av mfc_a 6 warmup=0
+crema_av mfc_a 7 warmup=0
+crema_av mfc_a 8 warmup=0
+crema_av mfc_a 9 warmup=0
+crema_av mfc_a 0 ema=0.0
+crema_av mfc_a 1 ema=0.0
+crema_av mfc_a 2 ema=0.0
+crema_av mfc_a 3 ema=0.0
+crema_av mfc_a 4 ema=0.0
+crema_av mfc_a 5 ema=0.0
+crema_av mfc_a 6 ema=0.0
+crema_av mfc_a 7 ema=0.0
+crema_av mfc_a 8 ema=0.0
+crema_av mfc_a 9 ema=0.0
+crema_av mfc_a 0 window=1
+crema_av mfc_a 1 window=1
+crema_av mfc_a 2 window=1
+crema_av mfc_a 3 window=1
+crema_av mfc_a 4 window=1
+crema_av mfc_a 5 window=1
+crema_av mfc_a 6 window=1
+crema_av mfc_a 7 window=1
+crema_av mfc_a 8 window=1
+crema_av mfc_a 9 window=1
+crema_av mfc_a 0 window=3
+crema_av mfc_a 1 window=3
+crema_av mfc_a 2 window=3
+crema_av mfc_a 3 window=3
+crema_av mfc_a 4 window=3
+crema_av mfc_a 5 window=3
+crema_av mfc_a 6 window=3
+crema_av mfc_a 7 window=3
+crema_av mfc_a 8 window=3
+crema_av mfc_a 9 window=3
+crema_av mfc_a 0 window=10
+crema_av mfc_a 1 window=10
+crema_av mfc_a 2 window=10
+crema_av mfc_a 3 window=10
+crema_av mfc_a 4 window=10
+crema_av mfc_a 5 window=10
+crema_av mfc_a 6 window=10
+crema_av mfc_a 7 window=10
+crema_av mfc_a 8 window=10
+crema_av mfc_a 9 window=10
+crema_av mfc_a 0 ema=0.5
+crema_av mfc_a 1 ema=0.5
+crema_av mfc_a 2 ema=0.5
+crema_av mfc_a 3 ema=0.5
+crema_av mfc_a 4 ema=0.5
+crema_av mfc_a 5 ema=0.5
+crema_av mfc_a 6 ema=0.5
+crema_av mfc_a 7 ema=0.5
+crema_av mfc_a 8 ema=0.5
+crema_av mfc_a 9 ema=0.5
+crema_av mfc_a 0 ema=0.9
+crema_av mfc_a 1 ema=0.9
+crema_av mfc_a 2 ema=0.9
+crema_av mfc_a 3 ema=0.9
+crema_av mfc_a 4 ema=0.9
+crema_av mfc_a 5 ema=0.9
+crema_av mfc_a 6 ema=0.9
+crema_av mfc_a 7 ema=0.9
+crema_av mfc_a 8 ema=0.9
+crema_av mfc_a 9 ema=0.9
+crema_av mfc_a 0 warmup=5
+crema_av mfc_a 1 warmup=5
+crema_av mfc_a 2 warmup=5
+crema_av mfc_a 3 warmup=5
+crema_av mfc_a 4 warmup=5
+crema_av mfc_a 5 warmup=5
+crema_av mfc_a 6 warmup=5
+crema_av mfc_a 7 warmup=5
+crema_av mfc_a 8 warmup=5
+crema_av mfc_a 9 warmup=5
+crema_av mfc_a 0 clip=0.1,5.0
+crema_av mfc_a 1 clip=0.1,5.0
+crema_av mfc_a 2 clip=0.1,5.0
+crema_av mfc_a 3 clip=0.1,5.0
+crema_av mfc_a 4 clip=0.1,5.0
+crema_av mfc_a 5 clip=0.1,5.0
+crema_av mfc_a 6 clip=0.1,5.0
+crema_av mfc_a 7 clip=0.1,5.0
+crema_av mfc_a 8 clip=0.1,5.0
+crema_av mfc_a 9 clip=0.1,5.0
+crema_av mfc_a 0 clip=0.5,1.5
+crema_av mfc_a 1 clip=0.5,1.5
+crema_av mfc_a 2 clip=0.5,1.5
+crema_av mfc_a 3 clip=0.5,1.5
+crema_av mfc_a 4 clip=0.5,1.5
+crema_av mfc_a 5 clip=0.5,1.5
+crema_av mfc_a 6 clip=0.5,1.5
+crema_av mfc_a 7 clip=0.5,1.5
+crema_av mfc_a 8 clip=0.5,1.5
+crema_av mfc_a 9 clip=0.5,1.5
+crema_av mfc_a 0 gamma=2.0
+crema_av mfc_a 1 gamma=2.0
+crema_av mfc_a 2 gamma=2.0
+crema_av mfc_a 3 gamma=2.0
+crema_av mfc_a 4 gamma=2.0
+crema_av mfc_a 5 gamma=2.0
+crema_av mfc_a 6 gamma=2.0
+crema_av mfc_a 7 gamma=2.0
+crema_av mfc_a 8 gamma=2.0
+crema_av mfc_a 9 gamma=2.0
+crema_av mfc_a 0 gamma=3.0
+crema_av mfc_a 1 gamma=3.0
+crema_av mfc_a 2 gamma=3.0
+crema_av mfc_a 3 gamma=3.0
+crema_av mfc_a 4 gamma=3.0
+crema_av mfc_a 5 gamma=3.0
+crema_av mfc_a 6 gamma=3.0
+crema_av mfc_a 7 gamma=3.0
+crema_av mfc_a 8 gamma=3.0
+crema_av mfc_a 9 gamma=3.0
