@@ -1,1 +1,9 @@
 experiments/data/*.npz filter=lfs diff=lfs merge=lfs -text
+# GitHub language statistics: the paper sources are documentation, the first submission is archived material
+*.tex linguist-documentation
+*.bib linguist-documentation
+*.bst linguist-documentation
+*.cls linguist-documentation
+*.sty linguist-documentation
+*.ldf linguist-documentation
+legacy/** linguist-vendored

@@ -14,6 +14,7 @@ raw per-seed logs and regenerated with one command.
 
 | Path | Contents |
 |---|---|
+| `mfc/mfc_a.py` | **Standalone implementation of the method** (OGR + MFC-A controller, any number of modalities) for use in your own PyTorch training loop; verified to reproduce the weights of all 560 logged MFC-A runs |
 | `manuscript/` | Revised paper (`main.tex`, `main.pdf`), marked-up changes against the reviewed version (`main_diff.pdf`), response to reviewers (`response_letter.pdf`), the version the reviewers saw (`reviewed_manuscript.pdf`, source `main_reviewed_version.tex`) |
 | `experiments/` | All code for the revision: feature extraction, benchmark, aggregation, tests |
 | `experiments/data/` | Extracted features (`*.npz`, stored with Git LFS) |
@@ -25,6 +26,24 @@ raw per-seed logs and regenerated with one command.
 | `literature/` | Reading notes on related work (third-party PDFs are not redistributed) |
 | `legacy/first_submission/` | Material from the first submission (superseded; see "Legacy material") |
 
+## Using MFC-A in your own training
+
+```python
+from mfc.mfc_a import MFCA
+
+ctl = MFCA(num_modalities=2, gamma=3.0)      # defaults: window 5, EMA 0.7, warm-up 3, clip [0.2, 1.8]
+for epoch in range(epochs):
+    lam = ctl.weights
+    for xv, xa, y in train_loader:
+        out, logit_v, logit_a = model(xv, xa)
+        loss = ce(out, y) + lam[0] * ce(logit_v, y) + lam[1] * ce(logit_a, y)
+        ...
+    # mean unimodal losses on the training data and on a held-out controller split (never the test set)
+    ctl.step(train_losses=[Ltr_v, Ltr_a], heldout_losses=[Lcv_v, Lcv_a])
+```
+
+`python mfc/mfc_a.py` runs a self-check of the properties stated in the paper.
+
 ## Quick inspection (no training needed)
 
 ```bash
@@ -34,8 +53,9 @@ git lfs pull                                            # fetch experiments/data
 ```
 
 The test regenerates every table and figure from the raw logs, checks that each of the nine tables printed in the
-manuscript matches `manuscript/main.tex` line for line, checks that all 1,120 grid jobs have a log, and checks that
-the 160 gradient-norm reruns reproduce the reported results exactly. Expected output ends with `ALL CHECKS PASSED`.
+manuscript matches `manuscript/main.tex` line for line, checks that all 1,120 grid jobs have a log, checks that the standalone
+`mfc/mfc_a.py` reproduces the loss weights of every logged MFC-A run, and checks that the 160 gradient-norm reruns
+reproduce the reported results exactly. Expected output ends with `ALL CHECKS PASSED`.
 
 ## Where every table and figure comes from
 

@@ -47,6 +47,27 @@ def check_grids():
     print(f"logs: all {len(jobs)} grid jobs have a per-seed log")
 
 
+def check_reference_implementation():
+    """mfc/mfc_a.py must reproduce the loss weights logged by the benchmark, epoch by epoch."""
+    sys.path.insert(0, ROOT)
+    from mfc.mfc_a import MFCA
+    runs = worst = 0
+    for f in glob.glob(os.path.join(EXP, "results", "*", "mfc_a*", "seed*.json")):
+        d = json.load(open(f))
+        kw = d["kw"]
+        if "signal" in kw or "mode" in kw or "running" in kw:
+            continue            # ablation variants are not part of the reference rule
+        clip = tuple(float(x) for x in kw.get("clip", "0.2,1.8").strip("()").split(","))
+        c = MFCA(2, gamma=float(kw.get("gamma", 1)), window=int(kw.get("window", 5)),
+                 ema=float(kw.get("ema", 0.7)), warmup=int(kw.get("warmup", 3)), clip=clip)
+        for row in d["log"]:
+            worst = max(worst, abs(c.weights[0] - row["lam_v"]), abs(c.weights[1] - row["lam_a"]))
+            c.step([row["tr_lv"], row["tr_la"]], [row["cv_lv"], row["cv_la"]])
+        runs += 1
+    assert runs and worst < 1e-3, f"max weight difference {worst:.2e} over {runs} runs"
+    print(f"reference implementation: mfc/mfc_a.py reproduces the logged weights of {runs} runs (max diff {worst:.1e})")
+
+
 def check_determinism():
     n = bad = 0
     for f in glob.glob(os.path.join(EXP, "results_v2", "*", "*", "seed*.json")):
@@ -63,5 +84,6 @@ if __name__ == "__main__":
     regenerate()
     check_tables()
     check_grids()
+    check_reference_implementation()
     check_determinism()
     print("ALL CHECKS PASSED")
