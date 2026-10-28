@@ -1,7 +1,7 @@
 \documentclass[fleqn,10pt]{wlscirep}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL main_reviewed_version.tex   Sun Oct 18 00:22:07 2026
-%DIF ADD main.tex                    Wed Oct 28 18:44:52 2026
+%DIF ADD main.tex                    Wed Oct 28 19:16:36 2026
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{multirow}
@@ -240,13 +240,15 @@ Our results are deliberately reported with their variance. }\DIFaddend MFC-A \DI
 \addtocounter{subsection}{-1}%DIFAUXCMD
 \DIFdel{Multimodal learning has been documented on the imbalance problem. The first to propose the calculation of optimal weights off-line was }\DIFdelend \DIFaddbegin \section*{\DIFadd{Related work}}
 \subsection*{\DIFadd{Static and offline re-weighting}}
-\DIFaddend Gradient Blending\cite{wang2020makes} \DIFdelbegin \DIFdel{. They construct the weighting scheme in which unimodal and multimodal baselines are trained to converge to minimize the overfitting gap. Nevertheless, it is computationally prohibitive with large models, and scales in direct proportion to the number of combinations of modality. Other methods that are static such as UWGA (Uncertainty-Weighted Gradient Aggregation) \mbox{%DIFAUXCMD
+\DIFaddend Gradient Blending\cite{wang2020makes} \DIFdelbegin \DIFdel{. They construct the weighting scheme in which unimodal and multimodal baselines are trained to converge to minimize the overfitting gap. Nevertheless, it is computationally prohibitive with large models, and scales in direct proportion to }\DIFdelend \DIFaddbegin \DIFadd{showed that multimodal networks often underperform their best unimodal counterpart because they overfit, and derived blending weights proportional to }\DIFaddend the \DIFdelbegin \DIFdel{number of combinations of modality. Other methods that are static such as UWGA (Uncertainty-Weighted Gradient Aggregation) \mbox{%DIFAUXCMD
 \cite{kendall2018multi} }\hskip0pt%DIFAUXCMD
-are trying to make use of taskuncertainty, although they tend to fail when a single modality is inherently less noisy yet less informative (such as a black screen with perfect silence). Methods inspired by Focal Loss \mbox{%DIFAUXCMD
+are trying to make use of task uncertainty }\DIFdelend \DIFaddbegin \DIFadd{generalization gain divided by the squared growth of the overfitting gap}\DIFaddend , \DIFdelbegin \DIFdel{although they tend to fail when a single modality is inherently less noisy yet less informative (such as a black screen with perfect silence). Methods inspired by Focal Loss \mbox{%DIFAUXCMD
 \cite{lin2017focal} }\hskip0pt%DIFAUXCMD
-have also been implemented but they do not deal with modality imbalance, but deal with class imbalance }\DIFdelend \DIFaddbegin \DIFadd{showed that multimodal networks often underperform their best unimodal counterpart because they overfit, and derived blending weights proportional to the generalization gain divided by the squared growth of the overfitting gap, measured on unimodal and multimodal probe models. The weights are principled but are estimated from separate training runs and then fixed. Uncertainty weighting\mbox{%DIFAUXCMD
+have also been implemented but they do not deal with modality imbalance, but deal with class imbalance }\DIFdelend \DIFaddbegin \DIFadd{measured on unimodal and multimodal probe models. The weights are principled but are estimated from separate training runs and then fixed. Uncertainty weighting\mbox{%DIFAUXCMD
 \cite{kendall2018multi} }\hskip0pt%DIFAUXCMD
-learns one log-variance per task; it was designed for multi-task regression and classification and tends to down-weight high-loss objectives, which in the multimodal setting is usually the starved modality. Focal-style losses\mbox{%DIFAUXCMD
+learns one log-variance per task; it was designed for multi-task regression and classification and tends to down-weight high-loss objectives, which in the multimodal setting is usually the starved modality. Dynamic weight averaging\mbox{%DIFAUXCMD
+\cite{liu2019end} }\hskip0pt%DIFAUXCMD
+sets multi-task loss weights from the rate at which each training loss decreases; like uncertainty weighting, it uses training losses only. Focal-style losses\mbox{%DIFAUXCMD
 \cite{lin2017focal} }\hskip0pt%DIFAUXCMD
 address class imbalance rather than modality imbalance}\DIFaddend .
 
@@ -280,17 +282,18 @@ jointly modulates multiple loss terms to keep modality-specific gradientmagnitud
 proposes online logit modulationto equalize modal contributions at the prediction level rather than the gradient level. }\textbf{\DIFdel{MMPareto}} %DIFAUXCMD
 \DIFdel{\mbox{%DIFAUXCMD
 \cite{wei2024mmpareto} }\hskip0pt%DIFAUXCMD
-frames multimodal optimization as a Pareto problem, using unimodal assistance signals to prevent the joint loss surface from collapsing onto the dominant modality. }\textbf{\DIFdel{AMSA}} %DIFAUXCMD
+frames multimodal optimization as a Pareto problem, using unimodal assistance signals to prevent the joint loss surface from collapsing onto the dominant modality}\DIFdelend . \DIFdelbegin \textbf{\DIFdel{AMSA}} %DIFAUXCMD
 \DIFdel{\mbox{%DIFAUXCMD
 \cite{wang2023amsa} }\hskip0pt%DIFAUXCMD
-demonstrates adaptive loss modulation in the sentiment analysis domain. PMR (Progressive Modality Reinforcement) \mbox{%DIFAUXCMD
-\cite{xu2025balancebenchmark}}\hskip0pt%DIFAUXCMD
-, employs a momentum-based tracker to rampage the learningrate of the dominant modality. The alignment is modeled in MBPO\mbox{%DIFAUXCMD
-\cite{liu2025modality} }\hskip0pt%DIFAUXCMD
-as }\DIFdelend \DIFaddbegin \DIFadd{. AGM\mbox{%DIFAUXCMD
+demonstrates }\DIFdelend \DIFaddbegin \DIFadd{Multi-task learning has also been cast as multi-objective optimisation\mbox{%DIFAUXCMD
+\cite{sener2018multi}}\hskip0pt%DIFAUXCMD
+, as conflict-averse gradient descent\mbox{%DIFAUXCMD
+\cite{liu2021conflict} }\hskip0pt%DIFAUXCMD
+and as a bargaining game between task gradients (Nash-MTL)\mbox{%DIFAUXCMD
+\cite{navon2022multi}}\hskip0pt%DIFAUXCMD
+; these methods act on per-task gradients at every step. AGM\mbox{%DIFAUXCMD
 \cite{li2023boosting} }\hskip0pt%DIFAUXCMD
-estimates each modality's contribution with }\DIFaddend a \DIFdelbegin \DIFdel{preference maximization problemwhich employs the reinforcement learning to punish hallucinations which are modality specific.
-We are different in the sense that we offer a }\DIFdelend \DIFaddbegin \DIFadd{perturbation-based score and modulates its gradient. Multi-loss gradient modulation\mbox{%DIFAUXCMD
+estimates each modality's contribution with a perturbation-based score and modulates its gradient. Multi-loss gradient modulation\mbox{%DIFAUXCMD
 \cite{kontras2024improving} }\hskip0pt%DIFAUXCMD
 balances the magnitudes of several loss terms jointly, OLM\mbox{%DIFAUXCMD
 \cite{zong2024balancing} }\hskip0pt%DIFAUXCMD
@@ -298,16 +301,33 @@ modulates logits rather than gradients, and MMPareto\mbox{%DIFAUXCMD
 \cite{wei2024mmpareto} }\hskip0pt%DIFAUXCMD
 combines multimodal and unimodal gradients with a Pareto (MGDA\mbox{%DIFAUXCMD
 \cite{desideri2012mgda}}\hskip0pt%DIFAUXCMD
-) rule when they conflict. PMR\mbox{%DIFAUXCMD
-\cite{xu2025balancebenchmark} }\hskip0pt%DIFAUXCMD
+) rule when they conflict. Wu et al.\mbox{%DIFAUXCMD
+\cite{wu2022characterizing} }\hskip0pt%DIFAUXCMD
+describe multimodal training as greedy, relying on the modality that is learned fastest, and re-balance it using conditional utilisation rates; Du et al.\mbox{%DIFAUXCMD
+\cite{du2023unimodal} }\hskip0pt%DIFAUXCMD
+show that joint training under-learns uni-modal features and propose uni-modal ensembles and distillation. Later methods re-initialise the weaker encoder after diagnosing its learning state\mbox{%DIFAUXCMD
+\cite{wei2024diagnosing}}\hskip0pt%DIFAUXCMD
+, alternate uni-modal training steps through a shared head\mbox{%DIFAUXCMD
+\cite{zhang2024multimodal}}\hskip0pt%DIFAUXCMD
+, or modulate gradient magnitude and direction with guidance from each modality's classifier\mbox{%DIFAUXCMD
+\cite{guo2024classifier}}\hskip0pt%DIFAUXCMD
+. PMR\mbox{%DIFAUXCMD
+\cite{fan2023pmr} }\hskip0pt%DIFAUXCMD
 uses class prototypes to re-balance learning, and MBPO\mbox{%DIFAUXCMD
 \cite{liu2025modality} }\hskip0pt%DIFAUXCMD
 treats modality-specific hallucination as a preference-optimisation problem. AMSA\mbox{%DIFAUXCMD
 \cite{wang2023amsa} }\hskip0pt%DIFAUXCMD
-applies adaptive loss modulation to multimodal sentiment analysis.
+applies }\DIFaddend adaptive loss modulation \DIFdelbegin \DIFdel{in the sentiment analysisdomain.
+PMR (Progressive Modality Reinforcement) \mbox{%DIFAUXCMD
+\cite{xu2025balancebenchmark}}\hskip0pt%DIFAUXCMD
+, employs a momentum-based tracker to rampage the learning rate of the dominant modality. The alignment is modeled in MBPO \mbox{%DIFAUXCMD
+\cite{liu2025modality} }\hskip0pt%DIFAUXCMD
+as a preference maximization problem which employs the reinforcement learning to punish hallucinations which are modality specific. We are different in the sense that we offer a }\DIFdelend \DIFaddbegin \DIFadd{to multimodal sentiment analysis.
 }
 
-\DIFadd{MFC-A differs from these methods in the signal it observes and in where it acts. It observes the ratio of held-out to training loss for each modality, a generalization signal, whereas OGM-GE, GradNorm and AGM observe training-set confidence, gradient norms or training-loss rates, and MMPareto observes gradient directions. It acts only on two scalar loss weights per epoch, with no per-batch gradient manipulation, no noise and no extra models. Gradient Blending is the closest in spirit, since it also uses overfitting behaviour; MFC-A can be viewed as an online, }\DIFaddend closed-loop, \DIFdelbegin \DIFdel{parameter-free controller that is expressly on the basis of the Generalization Gap, which does not require the complexity of RL or is unstable in noise injection. }\DIFdelend \DIFaddbegin \DIFadd{single-run counterpart of that principle. Table~\ref{tab:relwork} summarises the positioning.
+\DIFadd{The comparison of held-out and training loss itself has a long history: Prechelt\mbox{%DIFAUXCMD
+\cite{prechelt1998early} }\hskip0pt%DIFAUXCMD
+defined early-stopping criteria from the validation loss relative to its minimum and from the training progress. Those criteria decide when to stop a single model; OGR is computed per modality and used continuously as a control signal while all modalities keep training. MFC-A differs from the methods above in the signal it observes and in where it acts. It observes the ratio of held-out to training loss for each modality, a generalization signal, whereas OGM-GE, GradNorm and AGM observe training-set confidence, gradient norms or training-loss rates, and MMPareto observes gradient directions. It acts only on two scalar loss weights per epoch, with no per-batch gradient manipulation, no noise and no extra models. Gradient Blending is the closest in spirit, since it also uses overfitting behaviour; MFC-A can be viewed as an online, }\DIFaddend closed-loop, \DIFdelbegin \DIFdel{parameter-free controller that is expressly on the basis of the Generalization Gap, which does not require the complexity of RL or is unstable in noise injection. }\DIFdelend \DIFaddbegin \DIFadd{single-run counterpart of that principle. Table~\ref{tab:relwork} summarises the positioning.
 }\DIFaddend 
 
 \DIFdelbegin %DIFDELCMD < \begin{table}[h]
@@ -408,25 +428,29 @@ as a deliberately modest visual encoder: on AVE it yields the dominant stream, w
 \DIFdel{The formalization of Gradient Starvation in multimodal settings was done by Pefrani }\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Adaptive and evolutionary optimisation}}
 \DIFadd{MFC-A adapts an optimisation hyper-parameter, the loss weights, during training, which places it within the broader study of adaptive optimisation. Lan }\DIFaddend et al.\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
 \cite{pezeshki2021gradient}}\hskip0pt%DIFAUXCMD
-. Suppose that there is a joint loss $\mathcal{L} = \mathcal{L}_v + \mathcal{L}_a$. In case the Hessian eigenvalue spectrum of the visual modality $\lambda^{max}$ is much larger than the audio modality $\lambda^{max}$, the gradient descent path will follow the visual valley more favourably. It is not a matter of the speed at which the convergence occurs but a matter of choice; the model gets stuck in a local minimum where audio features are overlooked (i.e. weights have not changed significantly)}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+. Suppose that there is a joint loss $\mathcal{L} = \mathcal{L}_v + \mathcal{L}_a$. In case the Hessian eigenvalue spectrum of the visual modality $\lambda^{max}$ is much larger than the audio modality $\lambda^{max}$, the gradient descent path will follow the visual valley more favourably. It is not a matter of the speed at which the convergence occurs but a matter of choice; the model gets stuck in a local minimum where audio features are overlooked (i.e. weights have not changed significantly).
+}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
 \cite{lan2022time} }\hskip0pt%DIFAUXCMD
 show that comparing optimisers by the number of function evaluations is misleading when their per-iteration overhead differs, and propose measuring efficiency as objective gain per unit of computation time, split into evaluation and overhead time. Following this, we report wall-clock time and FLOPs separately for the controller arithmetic, the monitoring passes and the method-specific work of every method (Table~\ref{tab:cost}). In a related spirit, Lan et al.\mbox{%DIFAUXCMD
 \cite{lan2022class} }\hskip0pt%DIFAUXCMD
 evaluate class-binarization strategies for neuroevolution (NEAT) not only by accuracy but also by multiclass degradation, evolutionary efficiency and robustness; we likewise report accuracy, modality balance (OGR gap), training cost and robustness rather than accuracy alone. Unlike population-based approaches, MFC-A adapts a single run with a closed-form rule, so it has no population cost, but it also cannot explore the weight space globally.
-}
-
-\subsection*{\DIFadd{Robustness under adverse visual conditions}}
-\DIFadd{Robustness to corrupted inputs is usually evaluated with synthetic corruptions such as noise, blur and occlusion\mbox{%DIFAUXCMD
-\cite{hendrycks2019benchmarking}}\hskip0pt%DIFAUXCMD
-. Generative augmentation goes further: SUSTechGAN\mbox{%DIFAUXCMD
-\cite{lan2025sustechgan} }\hskip0pt%DIFAUXCMD
-synthesises rain and night driving images with attention-based multi-scale generators, and adding them to the training set improves YOLOv5 detection under those conditions. Augmentation and modality balancing tackle visual degradation from opposite directions: the former makes the visual encoder itself robust, whereas balancing keeps a second modality informative for when the visual encoder fails. We evaluate the latter under additive noise and three pixel-level degradations (blur, occlusion and low light)}\DIFaddend .
+}\DIFaddend 
 
 \DIFdelbegin \subsection{\DIFdel{Optimal Blending Hypothesis}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdel{We hypothesize that the optimal blending weight $w_m^*$ for modality $m$ is inversely proportional to its ``ease of overfitting. '' Let $GenGap_m = \mathcal{L}^{val}_m - \mathcal{L}^{train}_m$. A modality that overfits quickly ($GenGap_m \gg 0$)provides a ``high-variance'' gradient estimate that should be down-weighted. Conversely, a modality with $GenGap_m \approx 0$ provides a reliable signal. Proposed metric is a dimensionless proxy for this relationship:
-}\DIFdelend \DIFaddbegin \section*{\DIFadd{Problem formulation}}
+\DIFdel{We hypothesize that the optimal blending weight $w_m^*$ for modality $m$ is inversely proportional to its ``ease of overfitting. '' Let $GenGap_m = \mathcal{L}^{val}_m - \mathcal{L}^{train}_m$. A modality that overfits quickly ($GenGap_m \gg 0$) provides a ``high-variance'' gradient estimate that should be down-weighted. Conversely, a modality with $GenGap_m \approx 0$ provides a reliable signal. Proposed metric is a dimensionless proxy for this relationship:
+}\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Robustness under adverse visual conditions}}
+\DIFadd{Robustness to corrupted inputs is usually evaluated with synthetic corruptions such as noise, blur and occlusion\mbox{%DIFAUXCMD
+\cite{hendrycks2019benchmarking}}\hskip0pt%DIFAUXCMD
+. Generative augmentation goes further: SUSTechGAN\mbox{%DIFAUXCMD
+\cite{lan2025sustechgan} }\hskip0pt%DIFAUXCMD
+synthesises rain and night driving images with attention-based multi-scale generators, and adding them to the training set improves YOLOv5 detection under those conditions. Augmentation and modality balancing tackle visual degradation from opposite directions: the former makes the visual encoder itself robust, whereas balancing keeps a second modality informative for when the visual encoder fails. We evaluate the latter under additive noise and three pixel-level degradations (blur, occlusion and low light). A missing modality is the extreme case; multimodal transformers have been shown to degrade sharply when one modality is absent at test time\mbox{%DIFAUXCMD
+\cite{ma2022multimodal}}\hskip0pt%DIFAUXCMD
+, and we report the missing-video case for every method.
+}
+
+\section*{\DIFadd{Problem formulation}}
 \DIFadd{We consider $M$ modalities indexed by $m\in\{1,\dots,M\}$; all experiments use $M{=}2$, written $v$ (``visual'' or first stream) and $a$ (``audio'' or second stream). A sample is $(\mathbf{x},y)$ with $\mathbf{x}=\{x^m\}_m$ and class label $y$. Each modality has an encoder $z_m=E_m(x^m;\theta_m)$ and a linear unimodal head $h_m$, and a fusion head $g$ acts on the concatenated embeddings (late fusion). We write
 }\DIFaddend \begin{equation}
 \DIFdelbegin \DIFdel{w}\DIFdelend \DIFaddbegin \DIFadd{\mathcal{L}_{\mathrm{joint}} = \ell}\big(\DIFadd{g(}[\DIFadd{z_v;z_a}]\DIFadd{),y}\big)\DIFadd{, \qquad \mathcal{L}}\DIFaddend _m\DIFdelbegin \DIFdel{^*}\DIFdelend \DIFaddbegin \DIFadd{=\ell}\big(\DIFadd{h_m}\DIFaddend (\DIFdelbegin \DIFdel{t}\DIFdelend \DIFaddbegin \DIFadd{z_m}\DIFaddend )\DIFdelbegin \DIFdel{\propto \frac{1}{\text{OGR}_m(t)^\beta}
@@ -899,13 +923,20 @@ MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 
 \DIFdel{has the highest peak accuracy }\DIFdelend \DIFaddbegin \emph{\DIFadd{Spectrogram-view control (Table~\ref{tab:main_spec}).}} \DIFadd{When both streams come from the same signal and are of similar strength (unimodal heads at 47 and 45\%), imbalance is mild (baseline gap 1.21), and MFC-A }\DIFaddend (\DIFdelbegin \DIFdel{83.3\%)but only due to the ability to freely overfit vision, i.e.its OGR Gap balloons to 7.89 so the vision encoder is memorizing training data at almost 8$\times$ the rate audio is generalizing. This dominance is made vulnerable when the visual input is subsequently corrupted with noise because the }\DIFdelend \DIFaddbegin \DIFadd{$\gamma{=}3$) stays close to the baseline (}\DIFaddend accuracy \DIFdelbegin \DIFdel{drops to 48.2\%. }\DIFdelend \DIFaddbegin \DIFadd{49.2 vs.\ 49.1\%, gap 1.12). Gradient Blending is the best method here: it improves accuracy by 1.5 points ($p{=}0.008$) and robustness at $\sigma{=}1$ by 3.3 points ($p{=}0.002$) over MFC-A. Its offline weights put almost all auxiliary weight on the band-statistics view ($\lambda_v\approx0.14$), a reallocation that MFC-A's ratio-based law does not reach when the OGRs of the two views are similar.
 }\DIFaddend 
 
-\DIFdelbegin \DIFdel{In fact, Gradient Blending negatively affects clean accuracy (82.1\%), which is one of the known failure modes of the offline method: the fixed weights are learned during a brief warm up period and may fail to fire when the early dynamics do not reflect the overall trajectory of training. When they are fixed, they are not able to change with changing conditions. }%DIFDELCMD < 
+\DIFdelbegin \DIFdel{In fact, Gradient Blending negatively affects clean accuracy (82.1\%), which is one of the known failure modes of the offline method: the fixed weights are learned during a brief warm up period and may fail to fire when the early dynamics do not reflect the overall trajectory of training. When they are fixed, they are not able to change with changing conditions. }\DIFdelend \DIFaddbegin \emph{\DIFadd{Per-class behaviour and examples.}} \DIFadd{Figure~\ref{fig:confusion} gives the test confusion matrices of the selected MFC-A, pooled over the ten seeds (the AVE test set is the same for every seed; on CREMA-D each seed contributes its own held-out actors). On CREMA-D, anger and happiness are recognised best and fear and disgust worst, with most errors among the negative emotions; on AVE, most classes exceed 0.7, and the main confusions are between acoustically or visually similar events (helicopter and fixed-wing aircraft, female and male speech, cat and rodents). Figure~\ref{fig:examples} shows the predictions of five methods on six AVE test clips. To avoid choosing favourable cases, the clips are drawn at random among the test clips on which the methods do not all agree (seed 0). In this draw MFC-OG is correct on five of the six clips and MFC-A on one, consistent with Tables~\ref{tab:main_ave} and~\ref{tab:variants}, where MFC-OG matches the strongest method on AVE and MFC-A does not change accuracy. Figure~\ref{fig:gradcam} shows, for the same clips, which image regions each model's prediction depends on. The two methods that scale down the dominant visual stream's gradients (OGM-GE and MFC-OG) produce weaker visual attributions and are mostly correct, whereas the baseline and MFC-A, which leaves the joint loss unchanged, concentrate strongly on parts of the frame and make the same errors; this agrees with the gradient-level analysis below. Six clips illustrate the behaviour and are not statistical evidence.
+}\DIFaddend 
+
+\DIFdelbegin \DIFdel{OGM-GE has the smallest OGR balance (difference of 1.05)through a vigorous throttling of vision using noise injection. This is effective, albeit the resultant price an unstable training signal---the variance of the noise is another sensitive hyperparameter. }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
-\DIFdel{OGM-GE has the smallest OGR balance (difference of 1.05)through a vigorous throttling of vision using noise injection. This is effective, albeit the resultant price an unstable training signal---the variance of the noise is another sensitive hyperparameter. }%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdel{The Modality Fairness Controller lays down upon a sensible compromise. It has a 38.4\% decrease in its OGR Gap (4.86)even without any auxiliary computation, or noise. More to the point, its visual degradation robustness (50.5\%)is equivalent to OGM-GE (49.9\%) which proves that the audio encoder acquired truly useful property as opposed to being a passenger that is dependent on the visual information during the entire process}\DIFdelend \DIFaddbegin \emph{\DIFadd{Per-class behaviour and examples.}} \DIFadd{Figure~\ref{fig:confusion} gives the test confusion matrices of the selected MFC-A, pooled over the ten seeds (the AVE test set is the same for every seed; on CREMA-D each seed contributes its own held-out actors). On CREMA-D, anger and happiness are recognised best and fear and disgust worst, with most errors among the negative emotions; on AVE, most classes exceed 0.7, and the main confusions are between acoustically or visually similar events (helicopter and fixed-wing aircraft, female and male speech, cat and rodents). Figure~\ref{fig:examples} shows the predictions of five methods on six AVE test clips. To avoid choosing favourable cases, the clips are drawn at random among the test clips on which the methods do not all agree (seed 0). In this draw MFC-OG is correct on five of the six clips and MFC-A on one, consistent with Tables~\ref{tab:main_ave} and~\ref{tab:variants}, where MFC-OG matches the strongest method on AVE and MFC-A does not change accuracy}\DIFaddend .
+\DIFdel{The Modality Fairness Controller lays down upon a sensible compromise. It has a 38.4\% decrease in its OGR Gap (4.86)even without any auxiliary computation, or noise. More to the point, its visual degradation robustness (50.5\%)is equivalent to OGM-GE (49.9\%) which proves that the audio encoder acquired truly useful property as opposed to being a passenger that is dependent on the visual information during the entire process.
+}\DIFdelend \DIFaddbegin \begin{figure*}[tbp]
+\centering
+\includegraphics[width=\textwidth]{images/confusion_mfca.png}
+\caption{\textbf{Confusion matrices of the proposed model (MFC-A with the selected $\gamma$)} on the test sets, row-normalised and pooled over 10 seeds: (a) CREMA-D audio--video (per-class mean accuracy 48.6\%), (b) AVE (79.2\%; only diagonal values are printed). Rows are true classes and columns predicted classes.}
+\label{fig:confusion}
+\end{figure*}
+\DIFaddend 
 
 \DIFdelbegin %DIFDELCMD < \begin{figure*}[tbp]
 %DIFDELCMD <     \centering
@@ -914,11 +945,11 @@ MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 
 %DIFDELCMD <     \label{fig:accuracy}
 %DIFDELCMD < \end{figure*}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \begin{figure*}[tbp]
+\DIFdelend \DIFaddbegin \begin{figure*}[p]
 \centering
-\includegraphics[width=\textwidth]{images/confusion_mfca.png}
-\caption{\textbf{Confusion matrices of the proposed model (MFC-A with the selected $\gamma$)} on the test sets, row-normalised and pooled over 10 seeds: (a) CREMA-D audio--video (per-class mean accuracy 48.6\%), (b) AVE (79.2\%; only diagonal values are printed). Rows are true classes and columns predicted classes.}
-\label{fig:confusion}
+\includegraphics[width=0.9\textwidth]{images/comparison_examples.png}
+\caption{\textbf{Predictions of different methods on AVE test clips} (seed 0; middle frame of each clip shown). (a) Ground-truth class; (b)--(f) fused prediction of the baseline, Gradient Blending, OGM-GE, MFC-A and MFC-OG. Green: correct; red: wrong. The six clips were drawn at random (fixed seed) among the 402 test clips on which the five methods do not all agree, so the figure is not selected in favour of any method. Pooled over 10 seeds, the accuracies are 79.9, 81.0, 82.4, 80.2 and 82.5\%.}
+\label{fig:examples}
 \end{figure*}
 \DIFaddend 
 
@@ -928,9 +959,9 @@ MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 
 \DIFdel{Figure~\ref{fig:accuracy} tells the full training story epoch by epoch.
 }\DIFdelend \DIFaddbegin \begin{figure*}[p]
 \centering
-\includegraphics[width=0.9\textwidth]{images/comparison_examples.png}
-\caption{\textbf{Predictions of different methods on AVE test clips} (seed 0; middle frame of each clip shown). (a) Ground-truth class; (b)--(f) fused prediction of the baseline, Gradient Blending, OGM-GE, MFC-A and MFC-OG. Green: correct; red: wrong. The six clips were drawn at random (fixed seed) among the 402 test clips on which the five methods do not all agree, so the figure is not selected in favour of any method. Pooled over 10 seeds, the accuracies are 79.9, 81.0, 82.4, 80.2 and 82.5\%.}
-\label{fig:examples}
+\includegraphics[width=0.9\textwidth]{images/gradcam_examples.png}
+\caption{\textbf{Input frames and visual heatmaps of five methods} (AVE test clips of Fig.~\ref{fig:examples}, seed 0). (a) Input frame and ground-truth class; (b)--(f) magnitude of Grad-CAM\cite{selvaraju2017grad} of each model's own fused prediction, computed through the frozen ResNet-18 at its last convolutional stage and shown on one colour scale per row, with the predicted class and its probability (green: correct; red: wrong). Each model is retrained with the benchmark and reproduces its logged test accuracy exactly, and every prediction shown equals the one in Fig.~\ref{fig:examples}.}
+\label{fig:gradcam}
 \end{figure*}
 \DIFaddend 
 
@@ -938,8 +969,7 @@ MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 
 %DIFDELCMD <     \item %%%
 \textbf{\DIFdel{Epochs 1--7 (Warm-up):}} %DIFAUXCMD
 \DIFdel{The speeds of learning are similar in all the methods. Vision OGR remains close at 1.0 to all methods , i.e. vision is generalizing in a clean manner. The MFC identifies that the two modalities are underfitting, and it increases both weights ($\lambda_v$, }\DIFdelend \DIFaddbegin \subsection*{\DIFadd{Training dynamics: does the controller respond to overfitting?}}
-\DIFadd{Figures~\ref{fig:dyn_av}--\ref{fig:dyn_syn} show the per-epoch traces averaged over seeds for CREMA-D, AVE and the synthetic benchmark. On AVE the baseline's video OGR rises to about 41 while the audio OGR stays near 2; MFC-A throttles the video stream and ends with a video OGR of 14.3 (20.5 under $\gamma{=}1$). On CREMA-D audio--video the video OGR on $\mathcal{D}_{\mathrm{cv}}$ rises steeply after the first few epochs while the audio OGR grows more slowly; after warm-up MFC-A lowers $\lambda_v$ to about 0.26 by mid-training and raises }\DIFaddend $\lambda_a$ \DIFdelbegin \DIFdel{increases in value until it reaches about }\DIFdelend \DIFaddbegin \DIFadd{to about 1.74, and the final video OGR is 10.4 instead of the baseline's 16.8, while the audio OGR rises slightly (4.65 vs.\ 4.08). This is the intended redistribution: the controller reacts to the measured overfitting of each stream and not to which stream is more accurate. In the synthetic benchmark the first stream's OGR rises from 1.0 to 7.1 under the plain law ($\gamma{=}1$) and to 5.2 under $\gamma{=}3$, while the second stream's stays near }\DIFaddend 1.2\DIFdelbegin \DIFdel{).
-}%DIFDELCMD < 
+\DIFadd{Figures~\ref{fig:dyn_av}--\ref{fig:dyn_syn} show the per-epoch traces averaged over seeds for CREMA-D, AVE and the synthetic benchmark. On AVE the baseline's video OGR rises to about 41 while the audio OGR stays near 2; MFC-A throttles the video stream and ends with a video OGR of 14.3 (20.5 under $\gamma{=}1$). On CREMA-D audio--video the video OGR on $\mathcal{D}_{\mathrm{cv}}$ rises steeply after the first few epochs while the audio OGR grows more slowly; after warm-up MFC-A lowers $\lambda_v$ to about 0.26 by mid-training and raises }\DIFaddend $\lambda_a$ \DIFdelbegin \DIFdel{increases in value until it reaches about }\DIFdelend \DIFaddbegin \DIFadd{to about 1.74, and the final video OGR is 10.4 instead of the baseline's 16.8, while the audio OGR rises slightly (4.65 vs.\ 4.08). This is the intended redistribution: the controller reacts to the measured overfitting of each stream and not to which stream is more accurate. In the synthetic benchmark the first stream's OGR rises from 1.0 to 7.1 under the plain law ($\gamma{=}1$) and to 5.2 under $\gamma{=}3$, while the second stream's stays near }\DIFaddend 1.2\DIFdelbegin \DIFdel{). }%DIFDELCMD < 
 
 %DIFDELCMD <     \item %%%
 \textbf{\DIFdel{Epochs 7--15 (Divergence onset):}} %DIFAUXCMD

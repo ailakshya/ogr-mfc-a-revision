@@ -148,9 +148,40 @@ def comparison_examples(frames, kind="clean", n=6):
     return [str(AVE["ids"][i]) for i in rows]
 
 
+def heatmap_examples(frames, cam_npz=os.path.join(HERE, "out", "gradcam", "gradcam_ave.npz")):
+    """Input frame and |Grad-CAM| of each method's own prediction (gradcam_ave.py), one shared scale per row."""
+    g = np.load(cam_npz)
+    clips, methods, cams = g["clips"], list(g["methods"]), g["cams"]
+    fig, ax = plt.subplots(len(clips), len(methods) + 1, figsize=(7.2, 1.3 * len(clips) + 0.55))
+    for r, vid in enumerate(clips):
+        img, y, row_max = frames[vid], int(g["y"][r]), cams[r].max()
+        for c in range(len(methods) + 1):
+            a = ax[r, c]
+            a.imshow(img)
+            a.set_xticks([]); a.set_yticks([])
+            if c == 0:
+                txt, colr = CLASSES[y].split(",")[0], "#1f6fb4"
+            else:
+                im = a.imshow(cams[r, c - 1] / row_max, cmap="jet", alpha=0.5, vmin=0, vmax=1)
+                p = int(g["pred"][r, c - 1])
+                txt = f"{CLASSES[p].split(',')[0]} ({g['prob'][r, c - 1]:.2f})"
+                colr = "#1a9850" if p == y else "#d73027"
+            a.text(0.03, 0.97, txt, transform=a.transAxes, fontsize=5.4, va="top", color="white",
+                   bbox=dict(boxstyle="square,pad=0.15", fc=colr, ec="none", alpha=0.92))
+            for s in a.spines.values():
+                s.set_edgecolor(colr); s.set_linewidth(1.6)
+            if r == len(clips) - 1:
+                a.set_xlabel("(a) Input frame" if c == 0 else f"({chr(97 + c)}) {methods[c - 1]}", fontsize=7)
+    fig.subplots_adjust(wspace=0.04, hspace=0.05, left=0.005, right=0.905, top=0.995, bottom=0.045)
+    cb = fig.colorbar(im, cax=fig.add_axes([0.915, 0.12, 0.012, 0.76]))
+    cb.ax.tick_params(labelsize=6); cb.set_label("|Grad-CAM|, shared scale per row", fontsize=6)
+    fig.savefig(os.path.join(IMG, "gradcam_examples.png"), dpi=200)
+
+
 if __name__ == "__main__":
     m = np.load(sys.argv[1])
     frames = dict(zip(m["ids"], m["frames"]))
     degradation_examples(frames)
     confusion_figure()
     print("comparison clips (seed 0, clean):", comparison_examples(frames))
+    heatmap_examples(frames)

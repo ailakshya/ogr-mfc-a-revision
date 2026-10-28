@@ -92,6 +92,7 @@ def load(dataset, seed):
             deg[k[4:]] = t((d[k][idx[3]] - mu_v) / sd_v).float()
     out["degraded"] = deg
     out["test_idx"] = idx[3]
+    out["norm"] = (mu_v, sd_v, mu_a, sd_a)
     out["n_classes"] = int(d["y"].max() + 1)
     return out
 

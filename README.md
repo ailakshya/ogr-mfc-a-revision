@@ -36,24 +36,30 @@ at random among the test clips on which the methods disagree, so the figure is n
 
 ![Figure 4](manuscript/images/comparison_examples.png)
 
-**Figures 5–7. Training dynamics** on CREMA-D, AVE and the synthetic benchmark: tune accuracy, per-modality OGR and the
+**Figure 5. Input frames and visual heatmaps** (same clips): magnitude of Grad-CAM of each model's own prediction
+through the frozen ResNet-18, one colour scale per row, with the predicted class and its probability. The models are
+retrained (`experiments/gradcam_ave.py`) and reproduce their logged accuracy and every prediction of Figure 4 exactly.
+
+![Figure 5](manuscript/images/gradcam_examples.png)
+
+**Figures 6–8. Training dynamics** on CREMA-D, AVE and the synthetic benchmark: tune accuracy, per-modality OGR and the
 loss weights of MFC-A and MFC-T (mean ± std over 10 seeds).
 
-![Figure 5](manuscript/images/dynamics_crema_av.png)
-![Figure 6](manuscript/images/dynamics_ave.png)
-![Figure 7](manuscript/images/dynamics_synthetic.png)
+![Figure 6](manuscript/images/dynamics_crema_av.png)
+![Figure 7](manuscript/images/dynamics_ave.png)
+![Figure 8](manuscript/images/dynamics_synthetic.png)
 
-**Figure 8. Gradient norms on AVE**: joint- and unimodal-loss gradients reaching each encoder.
+**Figure 9. Gradient norms on AVE**: joint- and unimodal-loss gradients reaching each encoder.
 
-![Figure 8](manuscript/images/gradnorm_ave.png)
+![Figure 9](manuscript/images/gradnorm_ave.png)
 
-**Figure 9. Pixel-level degradations** used in the robustness tests, on six AVE test clips.
+**Figure 10. Pixel-level degradations** used in the robustness tests, on six AVE test clips.
 
-![Figure 9](manuscript/images/degradation_examples.png)
+![Figure 10](manuscript/images/degradation_examples.png)
 
-**Figure 10. Robustness to Gaussian noise** on the first stream, all four datasets.
+**Figure 11. Robustness to Gaussian noise** on the first stream, all four datasets.
 
-![Figure 10](manuscript/images/robustness.png)
+![Figure 11](manuscript/images/robustness.png)
 
 ### Additional visual material (not in the paper)
 
@@ -149,10 +155,11 @@ reproduce the reported results exactly. Expected output ends with `ALL CHECKS PA
 | Figure 2 (internal structure) | `manuscript/images/architecture_detail.tex` (TikZ; PNG copy for this page) | — | layer sizes from `bench.py` (`Enc`, `Model`, `DATASETS`) and `extract_crema_av.py` |
 | Figure 3 (confusion matrices, MFC-A) | `manuscript/images/confusion_mfca.png` | `make_paper_figures.py` | `preds` field of `results_preds/{crema_av,ave}/mfc_a__*` |
 | Figure 4 (predictions of five methods, AVE) | `manuscript/images/comparison_examples.png` | `make_paper_figures.py` | `preds` field of `results_preds/ave/*/seed0.json` + decoded test frames |
-| Figures 5–7 (training dynamics) | `out/figs/dynamics_{crema_av,ave,synthetic}.png` | `aggregate.py` | per-epoch `log` rows: `tune_acc, ogr_v, ogr_a, lam_v, lam_a` |
-| Figure 8 (gradient norms, AVE) | `out/figs/gradnorm_ave.png` | `aggregate_v2.py` | per-epoch `gj_v, gj_a, gu_v, gu_a` in `results_v2/ave/*` |
-| Figure 9 (degradation examples, AVE) | `manuscript/images/degradation_examples.png` | `make_paper_figures.py` | decoded AVE test frames, same settings as `extract_ave.py` / `extract_jpeg.py` |
-| Figure 10 (robustness curves) | `out/figs/robustness.png` | `aggregate.py` | `robustness` field of `results/*/*` |
+| Figure 5 (input frames and Grad-CAM heatmaps, AVE) | `manuscript/images/gradcam_examples.png` | `gradcam_ave.py` (workstation) → `make_paper_figures.py` | `out/gradcam/gradcam_ave.npz` (heatmaps, predictions, probabilities) |
+| Figures 6–8 (training dynamics) | `out/figs/dynamics_{crema_av,ave,synthetic}.png` | `aggregate.py` | per-epoch `log` rows: `tune_acc, ogr_v, ogr_a, lam_v, lam_a` |
+| Figure 9 (gradient norms, AVE) | `out/figs/gradnorm_ave.png` | `aggregate_v2.py` | per-epoch `gj_v, gj_a, gu_v, gu_a` in `results_v2/ave/*` |
+| Figure 10 (degradation examples, AVE) | `manuscript/images/degradation_examples.png` | `make_paper_figures.py` | decoded AVE test frames, same settings as `extract_ave.py` / `extract_jpeg.py` |
+| Figure 11 (robustness curves) | `out/figs/robustness.png` | `aggregate.py` | `robustness` field of `results/*/*` |
 | Every number quoted in the text | `out/summary.md`, `out/summary_v2.md` | both | all of the above |
 
 Each log file `results/<dataset>/<method>[__<option>=<value>]/seed<k>.json` contains the configuration, the
