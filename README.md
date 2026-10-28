@@ -63,7 +63,7 @@ for epoch in range(epochs):
 ## Quick inspection (no training needed)
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install torch numpy scipy scikit-learn matplotlib
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 git lfs pull                                            # fetch experiments/data/*.npz
 .venv/bin/python experiments/tests/test_consistency.py
 ```

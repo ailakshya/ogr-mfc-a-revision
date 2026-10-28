@@ -1,7 +1,7 @@
 \documentclass[fleqn,10pt]{wlscirep}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL main_reviewed_version.tex   Sun Oct 18 00:22:07 2026
-%DIF ADD main.tex                    Sun Oct 18 02:33:58 2026
+%DIF ADD main.tex                    Wed Oct 28 11:27:01 2026
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{multirow}
@@ -189,18 +189,18 @@ learns loss weights from a homoscedastic noise model. With the exception of Grad
 \DIFdel{We propose the Modality Fairness Controller (MFC-A), built on a novel }\DIFdelend \DIFaddbegin \DIFadd{This paper studies whether a generalization-based signal, measured online and used in closed loop, is a practical alternative, and makes three contributions. The first is a diagnostic: we define the }\DIFaddend per-modality \DIFdelbegin \DIFdel{metric: the }\DIFdelend Overfitting-to-Generalization Ratio\DIFdelbegin \DIFdel{(OGR).
 }%DIFDELCMD < 
 
-%DIFDELCMD < \begin{equation}
-%DIFDELCMD <     OGR_m(t) = \frac{\mathcal{L}^{val}_m(t)}{\mathcal{L}^{train}_m(t) + \epsilon}
-%DIFDELCMD < \end{equation}
+%DIFDELCMD < %%%
+\begin{displaymath}
+    \DIFdel{OGR_m(t) = \frac{\mathcal{L}^{val}_m(t)}{\mathcal{L}^{train}_m(t) + \epsilon}
+}\end{displaymath}%DIFAUXCMD
 %DIFDELCMD < 
 
 %DIFDELCMD < %%%
 \DIFdel{When $OGR \approx 1$, a modality is generalizing. When $OGR \gg 1$, it is overfitting. Unlike raw generalization gaps, OGR is scale-invariant and directly comparable across }\DIFdelend \DIFaddbegin \DIFadd{, $\OGR_m=\Lcv_m/\Ltr_m$, and show that, unlike the raw generalization gap, it is invariant to the scale of each modality's loss, so that }\DIFaddend modalities with very different loss magnitudes \DIFdelbegin \DIFdel{. The }\DIFdelend \DIFaddbegin \DIFadd{can be compared directly (Proposition~\ref{prop:scale}); OGR is a measurement and can be logged in any training run, independently of the controller. The second is a controller, }\DIFaddend MFC-A\DIFdelbegin \DIFdel{monitors per-modality OGRs via an exponential moving average and adjusts each modality's loss weight $\lambda_m$: throttle when $OGR > \tau_{hi}$, amplify when underfitting.
 Proposed best variant, MFC-A, uses }\DIFdelend \DIFaddbegin \DIFadd{, a threshold-free control law that sets each unimodal loss weight to a smoothed, }\DIFaddend inverse-OGR \DIFdelbegin \DIFdel{weighting with no threshold parameters:
-}%DIFDELCMD < \begin{equation}
-%DIFDELCMD <       \lambda_m(t) = \frac{2 \cdot \frac{1}{OGR_m(t)}}{\frac{1}{OGR_v(t)} + \frac{1}{OGR_a(t)}}
-%DIFDELCMD <   \end{equation}
-%DIFDELCMD < %%%
+}\begin{displaymath}
+      \DIFdel{\lambda_m(t) = \frac{2 \cdot \frac{1}{OGR_m(t)}}{\frac{1}{OGR_v(t)} + \frac{1}{OGR_a(t)}}
+  }\end{displaymath}%DIFAUXCMD
 \DIFdel{No auxiliary networks, noise injection, or offline pre-computation are needed---overhead is $O(M \cdot H)$ scalars per epoch. }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
@@ -370,10 +370,9 @@ improves audio--visual emotion recognition }\DIFaddend without explicit loss \DI
 \subsection{\DIFdel{Problem Formulation}}
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
-\DIFdel{Given a multimodal learning task, whereby there are modalities $\mathcal{M} = \{1, \dots, M\}$ there are. Given a dataset $\mathcal{D} = \{(\mathbf{x}_i, y_i)^N\}$ where $\mathbf{x}_i = \{x^m\}_{m \in \mathcal{M}}$ and $x^m$ is a feature of the input (i.e. each image or audio waveform) on a specific modality (i.e. image or audio) and $y_i$ is the target label. The objective is to train a joint representation function $f_\theta(\mathbf{x})$ with parameters $\theta$ that has the lowest expected risk: }%DIFDELCMD < \begin{equation}
-%DIFDELCMD <     \theta^* = \arg\min_\theta \mathbb{E}_{(\mathbf{x}, y) \sim \mathcal{D}} [\mathcal{L}(f_\theta(\mathbf{x}), y)]
-%DIFDELCMD < \end{equation}
-%DIFDELCMD < %%%
+\DIFdel{Given a multimodal learning task, whereby there are modalities $\mathcal{M} = \{1, \dots, M\}$ there are. Given a dataset $\mathcal{D} = \{(\mathbf{x}_i, y_i)^N\}$ where $\mathbf{x}_i = \{x^m\}_{m \in \mathcal{M}}$ and $x^m$ is a feature of the input (i.e. each image or audio waveform) on a specific modality (i.e. image or audio) and $y_i$ is the target label. The objective is to train a joint representation function $f_\theta(\mathbf{x})$ with parameters $\theta$ that has the lowest expected risk: }\begin{displaymath}
+    \DIFdel{\theta^* = \arg\min_\theta \mathbb{E}_{(\mathbf{x}, y) \sim \mathcal{D}} }[\DIFdel{\mathcal{L}(f_\theta(\mathbf{x}), y)}]
+\DIFdel{}\end{displaymath}%DIFAUXCMD
 \DIFdel{In a late-fusion architecture, separate encoders $E_m$ process each modality to produce latent embeddings $z_m = E_m(x^m)$, which are then concatenated or fused via a mechanism $\Phi(\{z_m\})$}\DIFdelend \DIFaddbegin \DIFadd{re-weighting. Barra et al.\mbox{%DIFAUXCMD
 \cite{barra2023multimodal} }\hskip0pt%DIFAUXCMD
 combine voice analysis and facial-expression recognition for emotion recognition on IEMOCAP, targeting assistive healthcare settings; audio--visual emotion recognition is also the task of our CREMA-D benchmark. On the audio side, acoustic images, i.e.\ spatially resolved spectra from a microphone array aligned with the camera, have been used as training-time privileged information: Sanguineti et al.\mbox{%DIFAUXCMD
@@ -425,20 +424,18 @@ synthesises rain and night driving images with attention-based multi-scale gener
 %DIFAUXCMD
 \addtocounter{subsection}{-1}%DIFAUXCMD
 \DIFdel{We hypothesize that the optimal blending weight $w_m^*$ for modality $m$ is inversely proportional to its ``ease of overfitting. '' Let $GenGap_m = \mathcal{L}^{val}_m - \mathcal{L}^{train}_m$. A modality that overfits quickly ($GenGap_m \gg 0$)provides a ``high-variance'' gradient estimate that should be down-weighted. Conversely, a modality with $GenGap_m \approx 0$ provides a reliable signal. Proposed metric is a dimensionless proxy for this relationship:
-}%DIFDELCMD < \begin{equation}
-%DIFDELCMD <     w_m^*(t) \propto \frac{1}{\text{OGR}_m(t)^\beta}
-%DIFDELCMD < \end{equation}%%%
-\DIFdelend \DIFaddbegin \section*{\DIFadd{Problem formulation}}
+}\DIFdelend \DIFaddbegin \section*{\DIFadd{Problem formulation}}
 \DIFadd{We consider $M$ modalities indexed by $m\in\{1,\dots,M\}$; all experiments use $M{=}2$, written $v$ (``visual'' or first stream) and $a$ (``audio'' or second stream). A sample is $(\mathbf{x},y)$ with $\mathbf{x}=\{x^m\}_m$ and class label $y$. Each modality has an encoder $z_m=E_m(x^m;\theta_m)$ and a linear unimodal head $h_m$, and a fusion head $g$ acts on the concatenated embeddings (late fusion). We write
-}\begin{equation}
-\mathcal{L}_{\mathrm{joint}} = \ell\big(g([z_v;z_a]),y\big), \qquad \mathcal{L}_m=\ell\big(h_m(z_m),y\big),
-\end{equation}\DIFaddend 
+}\DIFaddend \begin{equation}
+\DIFdelbegin \DIFdel{w}\DIFdelend \DIFaddbegin \DIFadd{\mathcal{L}_{\mathrm{joint}} = \ell}\big(\DIFadd{g(}[\DIFadd{z_v;z_a}]\DIFadd{),y}\big)\DIFadd{, \qquad \mathcal{L}}\DIFaddend _m\DIFdelbegin \DIFdel{^*}\DIFdelend \DIFaddbegin \DIFadd{=\ell}\big(\DIFadd{h_m}\DIFaddend (\DIFdelbegin \DIFdel{t}\DIFdelend \DIFaddbegin \DIFadd{z_m}\DIFaddend )\DIFdelbegin \DIFdel{\propto \frac{1}{\text{OGR}_m(t)^\beta}
+}\DIFdelend \DIFaddbegin \DIFadd{,y}\big)\DIFadd{,
+}\DIFaddend \end{equation}
 where \DIFdelbegin \DIFdel{$\beta$ is a sensitivity hyperparameter. controller implements a discrete-time approximation of this continuous control law.
 }\DIFdelend \DIFaddbegin \DIFadd{$\ell$ is the cross-entropy. All methods in this paper minimise
 }\begin{equation}
-\mathcal{L}(t)=\mathcal{L}_{\mathrm{joint}}+\sum_{m}\lambda_m(t)\,\mathcal{L}_m ,
+\DIFadd{\mathcal{L}(t)=\mathcal{L}_{\mathrm{joint}}+\sum_{m}\lambda_m(t)\,\mathcal{L}_m ,
 \label{eq:objective}
-\end{equation}
+}\end{equation}
 \DIFadd{and differ only in how $\lambda_m(t)$ is chosen (or, for OGM-GE and MMPareto, in how gradients are post-processed). The baseline uses $\lambda_m\equiv1$. Because $\mathcal{L}_{\mathrm{joint}}$ is not re-weighted, the weights redistribute the }\emph{\DIFadd{auxiliary}} \DIFadd{unimodal supervision that each encoder receives.
 }\DIFaddend 
 
@@ -459,10 +456,9 @@ where \DIFdelbegin \DIFdel{$\beta$ is a sensitivity hyperparameter. controller i
 
 %DIFDELCMD < %%%
 \DIFdel{We propose a dynamic loss re-weighting mechanism. Let the total loss be:
-}%DIFDELCMD < \begin{equation}
-%DIFDELCMD <     \mathcal{L}_{total} = \sum_{m \in M} \lambda_m(t) \cdot \mathcal{L}_m
-%DIFDELCMD < \end{equation}
-%DIFDELCMD < %%%
+}\begin{displaymath}
+    \DIFdel{\mathcal{L}_{total} = \sum_{m \in M} \lambda_m(t) \cdot \mathcal{L}_m
+}\end{displaymath}%DIFAUXCMD
 \DIFdel{where $\lambda_m(t)$ is the dynamic weight for modality $m$ at epoch }\DIFdelend \DIFaddbegin \paragraph{\DIFadd{Data splits.}} \DIFadd{We use four disjoint subsets: $\mathcal{D}_{\mathrm{tr}}$ (training), $\mathcal{D}_{\mathrm{cv}}$ (controller validation, the only held-out data any controller may read), $\mathcal{D}_{\mathrm{tune}}$ (checkpoint and hyper-parameter selection) and $\mathcal{D}_{\mathrm{te}}$ (test, used once after training). For epoch }\DIFaddend $t$ \DIFaddbegin \DIFadd{we denote by $\Ltr_m(t)$ and $\Lcv_m(t)$ the mean loss of head $h_m$ over $\mathcal{D}_{\mathrm{tr}}$ and $\mathcal{D}_{\mathrm{cv}}$, evaluated in inference mode at the end of the epoch}\DIFaddend .
 
 \DIFdelbegin \subsection{\DIFdel{OGR Monitoring and Derivations}}
@@ -473,19 +469,16 @@ where \DIFdelbegin \DIFdel{$\beta$ is a sensitivity hyperparameter. controller i
 \DIFaddend The generalization gap \DIFdelbegin \DIFdel{normalised is
 what we call }\DIFdelend \DIFaddbegin \DIFadd{of modality $m$ is
 }\begin{equation}
-G_m(t)=\Lcv_m(t)-\Ltr_m(t).
+\DIFadd{G_m(t)=\Lcv_m(t)-\Ltr_m(t).
 \label{eq:gap}
-\end{equation}
+}\end{equation}
 \DIFadd{We define }\DIFaddend the Overfitting-to-Generalization Ratio \DIFdelbegin \DIFdel{(OGR). Where $\mathcal{L}^{val} = \mathcal{L}^{train} - \mathcal{L}^{train}$. This difference is just the normal measure of overfitting however, its magnitude is contingent on the scale of losses. We suggest a measure that is based on ratio :
-}%DIFDELCMD < \begin{equation}
-%DIFDELCMD <     OGR_m(t) = \frac{\mathcal{L}^{val}_m(t)}{\mathcal{L}^{train}_m(t) + \epsilon} = 1 + \frac{\Delta Gen}{\mathcal{L}^{train}_m + \epsilon}
-%DIFDELCMD < \end{equation}%%%
-\DIFdelend \DIFaddbegin \DIFadd{as
+}\DIFdelend \DIFaddbegin \DIFadd{as
 }\begin{equation}
-\OGR_m(t)=\frac{\Lcv_m(t)}{\Ltr_m(t)+\epsilon}=1+\frac{G_m(t)}{\Ltr_m(t)+\epsilon},
+\DIFadd{\OGR_m(t)=\frac{\Lcv_m(t)}{\Ltr_m(t)+\epsilon}=1+\frac{G_m(t)}{\Ltr_m(t)+\epsilon},
 \label{eq:ogr}
-\end{equation}\DIFaddend 
-\DIFdelbegin \DIFdel{When $\Delta Gen \approx 0$ (healthy learning) , $OGR \approx 1$. When overfitting is high ($\Delta Gen > 0$) }\DIFdelend \DIFaddbegin \DIFadd{with $\epsilon=10^{-8}$. $\OGR_m\approx1$ means that what modality $m$ has learned transfers to held-out data; $\OGR_m\gg1$ means that its training loss keeps falling without a matching fall in held-out loss, that is, it is memorising. Equivalently, $\log\OGR_m=\log\Lcv_m-\log\Ltr_m$ is the generalization gap measured in log-loss.
+}\end{equation}
+\DIFadd{with $\epsilon=10^{-8}$. $\OGR_m\approx1$ means that what modality $m$ has learned transfers to held-out data; $\OGR_m\gg1$ means that its training loss keeps falling without a matching fall in held-out loss, that is, it is memorising. Equivalently, $\log\OGR_m=\log\Lcv_m-\log\Ltr_m$ is the generalization gap measured in log-loss.
 }
 
 \begin{proposition}[Scale invariance]
@@ -502,19 +495,20 @@ G_m(t)=\Lcv_m(t)-\Ltr_m(t).
 \subsection*{\DIFadd{MFC-A: inverse-OGR closed-loop weighting}}
 \DIFadd{MFC-A updates the weights once per epoch from smoothed OGRs. Let $\mathcal{W}_t=\{\max(1,t-W+1),\dots,t\}$ be a window of the last $W$ epochs. The windowed ratio is
 }\begin{equation}
-\widetilde{\OGR}_m(t)=\frac{\frac{1}{|\mathcal{W}_t|}\sum_{k\in\mathcal{W}_t}\Lcv_m(k)}{\frac{1}{|\mathcal{W}_t|}\sum_{k\in\mathcal{W}_t}\Ltr_m(k)+\epsilon}.
+\DIFadd{\widetilde{\OGR}_m(t)=\frac{\frac{1}{|\mathcal{W}_t|}\sum_{k\in\mathcal{W}_t}\Lcv_m(k)}{\frac{1}{|\mathcal{W}_t|}\sum_{k\in\mathcal{W}_t}\Ltr_m(k)+\epsilon}.
 \label{eq:window}
-\end{equation}
+}\end{equation}
 \DIFadd{Each modality receives a target weight equal to its share of the inverse OGRs raised to a control strength $\gamma>0$, scaled so that the targets sum to $M$:
+}\DIFaddend \begin{equation}
+\DIFdelbegin \DIFdel{OGR}\DIFdelend \DIFaddbegin \DIFadd{\pi}\DIFaddend _m(t)=\DIFdelbegin \DIFdel{\frac{\mathcal{L}^{val}_m(t)}{\mathcal{L}^{train}_m(t) + \epsilon} = 1 + \frac{\Delta Gen}{\mathcal{L}^{train}_m + \epsilon}
+}\DIFdelend \DIFaddbegin \DIFadd{\frac{M\,\widetilde{\OGR}_m(t)^{-\gamma}}{\sum_{k=1}^{M}\widetilde{\OGR}_k(t)^{-\gamma}}.
+}\label{eq:target}
+\DIFaddend \end{equation}
+\DIFdelbegin \DIFdel{When $\Delta Gen \approx 0$ (healthy learning) , $OGR \approx 1$. When overfitting is high ($\Delta Gen > 0$) }\DIFdelend \DIFaddbegin \DIFadd{For $t<T_w$ (warm-up) all weights stay at 1. Afterwards the weights follow the targets through an exponential moving average and are clipped:
 }\begin{equation}
-\pi_m(t)=\frac{M\,\widetilde{\OGR}_m(t)^{-\gamma}}{\sum_{k=1}^{M}\widetilde{\OGR}_k(t)^{-\gamma}}.
-\label{eq:target}
-\end{equation}
-\DIFadd{For $t<T_w$ (warm-up) all weights stay at 1. Afterwards the weights follow the targets through an exponential moving average and are clipped:
-}\begin{equation}
-\lambda_m(t+1)=\operatorname{clip}\!\big(\beta\,\lambda_m(t)+(1-\beta)\,\pi_m(t),\;\lambda_{\min},\;\lambda_{\max}\big).
+\DIFadd{\lambda_m(t+1)=\operatorname{clip}\!\big(\beta\,\lambda_m(t)+(1-\beta)\,\pi_m(t),\;\lambda_{\min},\;\lambda_{\max}\big).
 \label{eq:update}
-\end{equation}
+}\end{equation}
 \paragraph{\DIFadd{Properties.}} \DIFadd{(i) If all modalities generalise equally ($\widetilde{\OGR}_m$ equal), }\DIFaddend then \DIFdelbegin \DIFdel{$OGR > 1$.This scale-invariant gradient scaling measure is just a scale-invariant ratio, rather than the heuristically normalized raw loss differences. To remove noise in the batches we have a running exponential moving average of the OGR on the single training run}\DIFdelend \DIFaddbegin \DIFadd{$\pi_m=1$ and MFC-A reduces to the baseline. (ii) Because $\sum_m\pi_m=M$ and $\lambda_m(0)=1$, induction on Eq.~(\ref{eq:update}) gives $\sum_m\lambda_m(t)=M$ whenever clipping is inactive, so MFC-A redistributes a fixed budget of auxiliary supervision rather than changing the overall loss scale. (iii) A modality with above-average OGR receives $\pi_m<1$ (it is }\emph{\DIFadd{throttled}}\DIFadd{), and the others receive $\pi_m>1$ (they are }\emph{\DIFadd{amplified}}\DIFadd{); the two ``rules'' of our first description are therefore the two sides of Eq.~(\ref{eq:target}). (iv) The update has no thresholds. $\gamma$ sets how sharply the budget is moved towards the better-generalising modality ($\gamma\to0$ recovers the baseline); $W$, $\beta$, $T_w$ and $[\lambda_{\min},\lambda_{\max}]$ only control smoothing, start time and safety bounds, and we show below that results are insensitive to them}\DIFaddend .
 
 \DIFdelbegin \subsection{\DIFdel{Approximation of Optimal Blending}}
@@ -1418,12 +1412,12 @@ validation of MFC. }%DIFDELCMD < \item %%%
 \cite{cao2014crema} }\hskip0pt%DIFAUXCMD
 is available at }\url{https://github.com/CheyneyComputerScience/CREMA-D}\DIFadd{, and the AVE (Audio-Visual Event) dataset\mbox{%DIFAUXCMD
 \cite{tian2018audio} }\hskip0pt%DIFAUXCMD
-at }\url{https://github.com/YapengTian/AVE-ECCV18}\DIFadd{. }\textbf{\DIFadd{Code availability:}} \DIFadd{the complete code (feature extraction, benchmark and aggregation), the generated synthetic data, the extracted features, the exact split definitions and the per-epoch logs of every run reported in this paper are held in a version-controlled repository that is available to the editor and reviewers on request and will be made public upon acceptance. }\textbf{\DIFadd{Author contributions:}} \DIFaddend Lakshya conducted the experiments and implemented the proposed methodology. A.\DIFdelbegin \DIFdel{K.}\DIFdelend \DIFaddbegin \DIFadd{~K.~}\DIFaddend Bairwa contributed to the conceptualization, methodological design and validation of the results. V.\DIFaddbegin \DIFadd{~}\DIFaddend Tiwari supervised the research and contributed to manuscript writing, critical review and final approval.
+at }\url{https://github.com/YapengTian/AVE-ECCV18}\DIFadd{. }\textbf{\DIFadd{Code availability:}} \DIFadd{the complete code (feature extraction, benchmark and aggregation), the generated synthetic data, the extracted features, the exact split definitions and the per-epoch logs of every run reported in this paper are publicly available at }\url{https://github.com/ailakshya/ogr-mfc-a-revision}\DIFadd{. }\textbf{\DIFadd{Author contributions:}} \DIFaddend Lakshya conducted the experiments and implemented the proposed methodology. A.\DIFdelbegin \DIFdel{K.}\DIFdelend \DIFaddbegin \DIFadd{~K.~}\DIFaddend Bairwa contributed to the conceptualization, methodological design and validation of the results. V.\DIFaddbegin \DIFadd{~}\DIFaddend Tiwari supervised the research and contributed to manuscript writing, critical review and final approval.
 \DIFdelbegin %DIFDELCMD < \end{itemize}
 %DIFDELCMD < %%%
 \DIFdelend 
 
-\DIFdelbegin %DIFDELCMD < \bibliography{references}
+\DIFdelbegin %DIFDELCMD < \bibliography{references_original}
 %DIFDELCMD < %%%
 \DIFdelend \DIFaddbegin \bibliography{references}
 \DIFaddend 
