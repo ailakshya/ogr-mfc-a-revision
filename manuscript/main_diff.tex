@@ -1,7 +1,7 @@
 \documentclass[fleqn,10pt]{wlscirep}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL main_reviewed_version.tex   Sun Oct 18 00:22:07 2026
-%DIF ADD main.tex                    Wed Oct 28 11:27:01 2026
+%DIF ADD main.tex                    Wed Oct 28 11:33:23 2026
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{multirow}
@@ -912,10 +912,9 @@ MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 
 
 %DIFDELCMD <     \item %%%
 \textbf{\DIFdel{Epochs 25--30 (Late convergence):}} %DIFAUXCMD
-\DIFdel{The training curve of the MFC is unstable at this range due to the continuous changes of the controller}\DIFdelend \DIFaddbegin \DIFadd{falls monotonically (to 0.36 for $\gamma{=}1$; to the lower bound 0.2 for $\gamma{=}3$) and $\lambda_a$ rises correspondingly, with $\lambda_v{+}\lambda_a{=}2$ whenever the bounds are inactive, as Property (ii) predicts. The response therefore tracks the measured overfitting with the lag set by $W$ and $\beta$}\DIFaddend . \DIFaddbegin \DIFadd{MFC-T moves in the same direction but saturates $\lambda_a$ at its upper bound and first }\emph{\DIFadd{increases}} \DIFadd{$\lambda_v$ during the early under-fitting phase. Throttling $\lambda_v$ slows, but does not stop, the growth of the visual OGR. }\DIFaddend This is \DIFdelbegin \DIFdel{an established trade-off of responsive control: a responsive scheme requires a few additional epochs to achieve stability than a fixed point scheme.
-}%DIFDELCMD < \end{itemize}
+\DIFdel{The training curve of the MFC is unstable at this range due to the continuous changes of the controller}\DIFdelend \DIFaddbegin \DIFadd{falls monotonically (to 0.36 for $\gamma{=}1$; to the lower bound 0.2 for $\gamma{=}3$) and $\lambda_a$ rises correspondingly, with $\lambda_v{+}\lambda_a{=}2$ whenever the bounds are inactive, as Property (ii) predicts. The response therefore tracks the measured overfitting with the lag set by $W$ and $\beta$}\DIFaddend . \DIFaddbegin \DIFadd{MFC-T moves in the same direction but saturates $\lambda_a$ at its upper bound and first }\emph{\DIFadd{increases}} \DIFadd{$\lambda_v$ during the early under-fitting phase. Throttling $\lambda_v$ slows, but does not stop, the growth of the visual OGR. }\DIFaddend This is \DIFdelbegin \DIFdel{an established trade-off of responsive control: a responsive scheme requires a few additional epochs to achieve stability than a fixed point scheme.}%DIFDELCMD < \end{itemize}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{expected, because the joint loss in Eq.~(\ref{eq:objective}) is not re-weighted and continues to fit the dominant stream; a stronger intervention would also have to modulate the joint term.
+\DIFdelend \DIFaddbegin \DIFadd{expected, because the joint loss in Eq.~(\ref{eq:objective}) is not re-weighted and continues to fit the dominant stream; a stronger intervention would also have to modulate the joint term. Animated versions of these traces, per-seed heatmaps of the loss weights, and example clips under each degradation are provided in the code repository (}\url{https://github.com/ailakshya/ogr-mfc-a-revision}\DIFadd{, folder }\texttt{\DIFadd{experiments/out/media}}\DIFadd{).
 }\DIFaddend 
 
 \DIFdelbegin \subsection{\DIFdel{Imbalance Analysis (OGR)}}
@@ -929,7 +928,7 @@ MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 
 \end{figure*}
 \DIFaddend 
 
-\DIFdelbegin \DIFdel{OGR measure is the diagnostic of the work. A close to 1.0 value indicates that the modality is generalizing the model learning on training samples to unseen examples. An increasing OGR is an indication of a modality that is overfitting: its training loss is decreasing, but not being matched by its validation loss. As Table~\ref{tab:results} indicates, OGR Gap at the Baseline is 7.89, which implies that }\DIFdelend \DIFaddbegin \begin{figure*}[t]
+\DIFdelbegin \DIFdel{OGR measure is }\DIFdelend \DIFaddbegin \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{images/dynamics_ave.png}
 \caption{\textbf{Intermediate evidence on AVE} (mean $\pm$ std over 10 seeds). Panels as in Fig.~\ref{fig:dyn_av}. The video OGR of the baseline grows to about 41; MFC-A ($\gamma{=}3$) moves the video weight to its lower bound within a few epochs after warm-up and keeps the video OGR at about 14.}
@@ -947,7 +946,8 @@ MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 
 \DIFadd{To test the mechanism directly, we logged at the end of every epoch, on a fixed probe of 512 training samples, the gradient norms that each encoder receives from the joint loss ($\|\nabla_{\theta_m}\mathcal{L}_{\mathrm{joint}}\|$) and from its own unimodal loss ($\|\nabla_{\theta_m}\mathcal{L}_m\|$). The probe uses inference mode and draws no random numbers, and rerunning all 160 main-comparison runs with this logging reproduced every previously reported result exactly. Figure~\ref{fig:grad} shows AVE.
 }
 
-\DIFadd{In the AVE baseline, the audio encoder's share of the joint-loss gradient, $\|\nabla_{\theta_a}\mathcal{L}_{\mathrm{joint}}\|/(\|\nabla_{\theta_v}\mathcal{L}_{\mathrm{joint}}\|+\|\nabla_{\theta_a}\mathcal{L}_{\mathrm{joint}}\|)$, falls from 0.46 in the first epoch to about 0.23 from epoch 20 onwards: the audio encoder is partly, though not completely, starved by the joint loss. MFC-A acts where it was designed to act. After warm-up, }\DIFaddend the \DIFdelbegin \DIFdel{vision is approximately 7 points overfitted at the end of training compared to audio. }\DIFdelend \DIFaddbegin \DIFadd{effective auxiliary gradient $\lambda_m\|\nabla_{\theta_m}\mathcal{L}_m\|$ reaching the video encoder is 54\% lower than in the baseline and that reaching the audio encoder is 66\% higher (both $p<10^{-7}$); on CREMA-D the corresponding changes are $-55\%$ and $+45\%$ ($p<10^{-8}$). The joint-loss gradient share, however, is almost unchanged on AVE (0.229 vs.\ 0.236), because }\DIFaddend MFC-A \DIFdelbegin \DIFdel{reduces this gap to 4.86 which is not a perfect gap but a significant and parameter free gap gain in one pass. }%DIFDELCMD < 
+\DIFadd{In the AVE baseline, the audio encoder's share of the joint-loss gradient, $\|\nabla_{\theta_a}\mathcal{L}_{\mathrm{joint}}\|/(\|\nabla_{\theta_v}\mathcal{L}_{\mathrm{joint}}\|+\|\nabla_{\theta_a}\mathcal{L}_{\mathrm{joint}}\|)$, falls from 0.46 in the first epoch to about 0.23 from epoch 20 onwards: the audio encoder is partly, though not completely, starved by the joint loss. MFC-A acts where it was designed to act. After warm-up, }\DIFaddend the \DIFdelbegin \DIFdel{diagnostic of the work.
+A close to 1.0 value indicates that the modality is generalizing the model learning on training samples to unseen examples. An increasing OGR is an indication of a modality that is overfitting: its training loss is decreasing, but not being matched by its validation loss. As Table~\ref{tab:results} indicates, OGR Gap at the Baseline is 7.89, which implies that the vision is approximately 7 points overfitted at the end of training compared to audio. }\DIFdelend \DIFaddbegin \DIFadd{effective auxiliary gradient $\lambda_m\|\nabla_{\theta_m}\mathcal{L}_m\|$ reaching the video encoder is 54\% lower than in the baseline and that reaching the audio encoder is 66\% higher (both $p<10^{-7}$); on CREMA-D the corresponding changes are $-55\%$ and $+45\%$ ($p<10^{-8}$). The joint-loss gradient share, however, is almost unchanged on AVE (0.229 vs.\ 0.236), because }\DIFaddend MFC-A \DIFdelbegin \DIFdel{reduces this gap to 4.86 which is not a perfect gap but a significant and parameter free gap gain in one pass. }%DIFDELCMD < 
 
 %DIFDELCMD < %%%
 \subsection{\DIFdel{Ablation Study}}
