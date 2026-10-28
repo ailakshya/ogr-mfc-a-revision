@@ -33,11 +33,12 @@ def check_tables():
 
 
 def check_grids():
-    """Every job of every grid file has its per-seed log (grid_vN.txt -> results_vN/, others -> results/)."""
+    """Every job of every grid file has its per-seed log (grid_vN.txt -> results_vN/, grid_preds.txt -> results_preds/,
+    others -> results/)."""
     n, absent = 0, []
     for g in glob.glob(os.path.join(EXP, "grid*.txt")):
         v = os.path.basename(g)[len("grid"):-len(".txt")]
-        res = os.path.join(EXP, "results" + (v if v in ("_v2", "_v4", "_v5") else ""))
+        res = os.path.join(EXP, "results" + (v if v in ("_v2", "_v4", "_v5", "_preds") else ""))
         for l in open(g):
             p = l.split()
             if not p or l.startswith("#"):
@@ -81,6 +82,19 @@ def check_determinism():
             a["robustness"]["gauss_1.0"] != b["robustness"]["gauss_1.0"]
     assert n and not bad, f"{bad}/{n} reruns differ"
     print(f"determinism: {n}/{n} reruns reproduce the reported results exactly")
+    # prediction reruns (figures): same metrics as the reported run, and the saved predictions give its accuracy
+    m = 0
+    for f in glob.glob(os.path.join(EXP, "results_preds", "*", "*", "seed*.json")):
+        rel = os.path.relpath(f, os.path.join(EXP, "results_preds"))
+        ref = next(os.path.join(EXP, r, rel) for r in ("results", "results_v4") if os.path.exists(os.path.join(EXP, r, rel)))
+        a, b = json.load(open(f)), json.load(open(ref))
+        p = a["preds"]
+        assert a["test_acc"] == b["test_acc"] and a["ogr_gap"] == b["ogr_gap"], rel
+        assert all(a["robustness"][k] == v for k, v in b["robustness"].items()), rel   # older logs have fewer keys
+        assert abs(sum(x == y for x, y in zip(p["clean"], p["y"])) / len(p["y"]) - a["test_acc"]) < 1e-6, rel
+        m += 1
+    assert m, "no prediction reruns"
+    print(f"determinism: {m}/{m} prediction reruns (figures) reproduce the reported results exactly")
 
 
 if __name__ == "__main__":

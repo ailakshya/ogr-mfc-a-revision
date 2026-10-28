@@ -1,0 +1,78 @@
+% Overall structure of the audio-video model trained with MFC-A (input frames: one AVE test clip).
+\begin{tikzpicture}[
+  font=\footnotesize, >=Stealth, node distance=4mm,
+  blk/.style={draw, rounded corners=2pt, align=center, minimum height=9mm, inner sep=2pt, fill=#1},
+  blk/.default=white,
+  grp/.style={draw, dashed, rounded corners=6pt, inner sep=5pt},
+  arr/.style={->, thick},
+  lab/.style={font=\scriptsize, inner sep=1pt}]
+
+% inputs
+\node[inner sep=0, draw=white] (f2) at (2.4mm,2.4mm) {\includegraphics[width=11mm]{images/arch_frame2.png}};
+\node[inner sep=0, draw=white] (f1) at (1.2mm,1.2mm) {\includegraphics[width=11mm]{images/arch_frame1.png}};
+\node[inner sep=0, draw=white] (f0) at (0,0) {\includegraphics[width=11mm]{images/arch_frame0.png}};
+\node[below=9mm of f0, minimum width=14mm, minimum height=9mm, draw, fill=white] (wave) {};
+\begin{scope}[shift={($(wave.west)+(1mm,0)$)}]
+  \draw[thick, blue!60!black] plot[domain=0:12, samples=120, smooth] ({\x*1mm}, {2.8mm*sin(\x*95)*exp(-0.03*(\x-6)^2)*cos(\x*31)});
+\end{scope}
+\node[lab, below=0.5mm of wave] {audio};
+\node[lab, below=1.2mm of f0.south] {8 video frames};
+\begin{scope}[on background layer]
+  \node[grp, fill=magenta!6, fit=(f0)(f2)(wave)] (inp) {};
+\end{scope}
+\node[lab, above=0.3mm of inp.north] {\textbf{Input clip}};
+
+% feature extraction (frozen)
+\node[blk=gray!12, right=10mm of f0, text width=21mm] (cnn) {ResNet-18\\(frozen, ImageNet)\\mean of 8 frames};
+\node[blk=gray!12, at={(cnn |- wave)}, text width=21mm] (mel) {64-band log-mel\\mean/std of values\\and deltas};
+\draw[arr] ($(f0.east)+(2.4mm,0)$) -- (cnn.west);
+\draw[arr] (wave.east) -- (mel.west);
+
+% encoders and heads
+\node[blk=orange!25, right=10mm of cnn, text width=17mm] (ev) {Video encoder\\$E_v$ (MLP)};
+\node[blk=orange!25, right=10mm of mel, text width=17mm] (ea) {Audio encoder\\$E_a$ (MLP)};
+\draw[arr] (cnn) -- node[lab, above] {512-d} (ev);
+\draw[arr] (mel) -- node[lab, above] {256-d} (ea);
+\node[blk=yellow!30, right=9mm of ev, text width=11mm] (hv) {Head\\$h_v$};
+\node[blk=yellow!30, right=9mm of ea, text width=11mm] (ha) {Head\\$h_a$};
+\node[blk=yellow!30, text width=13mm] (fu) at ($(hv)!0.5!(ha)$) {Fusion\\head $f$};
+\coordinate (zv) at ($(ev.east)+(4.5mm,0)$);
+\coordinate (za) at ($(ea.east)+(4.5mm,0)$);
+\draw[thick] (ev.east) -- node[lab, above, pos=0.5] {$z_v$} (zv);
+\draw[thick] (ea.east) -- node[lab, below, pos=0.5] {$z_a$} (za);
+\draw[arr] (zv) -- (hv.west);
+\draw[arr] (za) -- (ha.west);
+\draw[arr] (zv) |- ($(fu.west)+(0,1.2mm)$);
+\draw[arr] (za) |- ($(fu.west)+(0,-1.2mm)$);
+
+% losses
+\node[blk, right=7mm of hv, text width=11mm] (lv) {$\mathcal{L}_v$};
+\node[blk, right=7mm of ha, text width=11mm] (la) {$\mathcal{L}_a$};
+\node[blk, right=7mm of fu, text width=11mm] (lj) {$\mathcal{L}_{\mathrm{joint}}$};
+\draw[arr] (hv) -- (lv); \draw[arr] (ha) -- (la); \draw[arr] (fu) -- node[lab, above] {$\hat y$} (lj);
+\node[blk=green!12, right=8mm of lj, text width=27mm] (tot)
+  {$\mathcal{L}=\mathcal{L}_{\mathrm{joint}}$\\$+\,\lambda_v\mathcal{L}_v+\lambda_a\mathcal{L}_a$\\[1pt]\scriptsize SGD on $\mathcal{D}_{\mathrm{tr}}$};
+\draw[arr] (lv.east) -| ($(tot.north)+(-6mm,0)$);
+\draw[arr] (la.east) -| ($(tot.south)+(-6mm,0)$);
+\draw[arr] (lj) -- (tot);
+
+\begin{scope}[on background layer]
+  \node[grp, fill=orange!5, fit=(ev)(ea)(hv)(ha)(fu)(lv)(la)(lj)] (net) {};
+\end{scope}
+\node[lab, above=0.3mm of net.north] {\textbf{Multimodal network (trained)}};
+
+% MFC-A controller
+\node[blk=cyan!10, below=12mm of mel.south east, anchor=north west, text width=27mm, xshift=4mm] (c1)
+  {per-modality loss on\\$\mathcal{D}_{\mathrm{tr}}$ and $\mathcal{D}_{\mathrm{cv}}$\\(heads $h_v$, $h_a$)};
+\node[blk=cyan!10, right=5mm of c1, text width=27mm] (c2) {$\widetilde{\mathrm{OGR}}_m=\dfrac{\bar{\mathcal{L}}^{\mathrm{cv}}_m}{\bar{\mathcal{L}}^{\mathrm{tr}}_m}$\\[1pt]\scriptsize last $W$ epochs};
+\node[blk=cyan!10, right=5mm of c2, text width=31mm] (c3) {target $\pi_m\propto\widetilde{\mathrm{OGR}}_m^{-\gamma}$,\\$\textstyle\sum_m\pi_m=M$\\[1pt]\scriptsize memorising $\downarrow$, starved $\uparrow$};
+\node[blk=cyan!10, right=5mm of c3, text width=27mm] (c4) {EMA ($\beta$), clip to\\$[\lambda_{\min},\lambda_{\max}]$, after\\warm-up $T_w$};
+\draw[arr] (c1) -- (c2); \draw[arr] (c2) -- (c3); \draw[arr] (c3) -- (c4);
+\begin{scope}[on background layer]
+  \node[grp, fill=cyan!4, fit=(c1)(c4)] (ctl) {};
+\end{scope}
+\node[lab, below=0.3mm of ctl.south] {\textbf{MFC-A controller} (once per epoch, never uses $\mathcal{D}_{\mathrm{te}}$)};
+
+\draw[arr, densely dashed, cyan!50!black] (net.south -| c1) -- (c1.north);
+\draw[arr, densely dashed, cyan!50!black] (c4.north) |- node[lab, above, pos=0.75] {new $\lambda_v,\lambda_a$} ($(tot.south)+(0,-9mm)$) -- (tot.south);
+\end{tikzpicture}

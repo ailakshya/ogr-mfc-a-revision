@@ -1,0 +1,100 @@
+ave baseline 0
+ave grad_blend 0
+ave ogm_ge 0 alpha=0.8
+ave mfc_a 0 gamma=3.0
+ave mfc_og 0 alpha=0.8 gamma=3.0
+crema_av baseline 0
+crema_av grad_blend 0
+crema_av ogm_ge 0 alpha=0.3
+crema_av mfc_a 0 gamma=2.0
+crema_av mfc_og 0 alpha=0.8 gamma=3.0
+ave baseline 1
+ave grad_blend 1
+ave ogm_ge 1 alpha=0.8
+ave mfc_a 1 gamma=3.0
+ave mfc_og 1 alpha=0.8 gamma=3.0
+crema_av baseline 1
+crema_av grad_blend 1
+crema_av ogm_ge 1 alpha=0.3
+crema_av mfc_a 1 gamma=2.0
+crema_av mfc_og 1 alpha=0.8 gamma=3.0
+ave baseline 2
+ave grad_blend 2
+ave ogm_ge 2 alpha=0.8
+ave mfc_a 2 gamma=3.0
+ave mfc_og 2 alpha=0.8 gamma=3.0
+crema_av baseline 2
+crema_av grad_blend 2
+crema_av ogm_ge 2 alpha=0.3
+crema_av mfc_a 2 gamma=2.0
+crema_av mfc_og 2 alpha=0.8 gamma=3.0
+ave baseline 3
+ave grad_blend 3
+ave ogm_ge 3 alpha=0.8
+ave mfc_a 3 gamma=3.0
+ave mfc_og 3 alpha=0.8 gamma=3.0
+crema_av baseline 3
+crema_av grad_blend 3
+crema_av ogm_ge 3 alpha=0.3
+crema_av mfc_a 3 gamma=2.0
+crema_av mfc_og 3 alpha=0.8 gamma=3.0
+ave baseline 4
+ave grad_blend 4
+ave ogm_ge 4 alpha=0.8
+ave mfc_a 4 gamma=3.0
+ave mfc_og 4 alpha=0.8 gamma=3.0
+crema_av baseline 4
+crema_av grad_blend 4
+crema_av ogm_ge 4 alpha=0.3
+crema_av mfc_a 4 gamma=2.0
+crema_av mfc_og 4 alpha=0.8 gamma=3.0
+ave baseline 5
+ave grad_blend 5
+ave ogm_ge 5 alpha=0.8
+ave mfc_a 5 gamma=3.0
+ave mfc_og 5 alpha=0.8 gamma=3.0
+crema_av baseline 5
+crema_av grad_blend 5
+crema_av ogm_ge 5 alpha=0.3
+crema_av mfc_a 5 gamma=2.0
+crema_av mfc_og 5 alpha=0.8 gamma=3.0
+ave baseline 6
+ave grad_blend 6
+ave ogm_ge 6 alpha=0.8
+ave mfc_a 6 gamma=3.0
+ave mfc_og 6 alpha=0.8 gamma=3.0
+crema_av baseline 6
+crema_av grad_blend 6
+crema_av ogm_ge 6 alpha=0.3
+crema_av mfc_a 6 gamma=2.0
+crema_av mfc_og 6 alpha=0.8 gamma=3.0
+ave baseline 7
+ave grad_blend 7
+ave ogm_ge 7 alpha=0.8
+ave mfc_a 7 gamma=3.0
+ave mfc_og 7 alpha=0.8 gamma=3.0
+crema_av baseline 7
+crema_av grad_blend 7
+crema_av ogm_ge 7 alpha=0.3
+crema_av mfc_a 7 gamma=2.0
+crema_av mfc_og 7 alpha=0.8 gamma=3.0
+ave baseline 8
+ave grad_blend 8
+ave ogm_ge 8 alpha=0.8
+ave mfc_a 8 gamma=3.0
+ave mfc_og 8 alpha=0.8 gamma=3.0
+crema_av baseline 8
+crema_av grad_blend 8
+crema_av ogm_ge 8 alpha=0.3
+crema_av mfc_a 8 gamma=2.0
+crema_av mfc_og 8 alpha=0.8 gamma=3.0
+ave baseline 9
+ave grad_blend 9
+ave ogm_ge 9 alpha=0.8
+ave mfc_a 9 gamma=3.0
+ave mfc_og 9 alpha=0.8 gamma=3.0
+crema_av baseline 9
+crema_av grad_blend 9
+crema_av ogm_ge 9 alpha=0.3
+crema_av mfc_a 9 gamma=2.0
+crema_av mfc_og 9 alpha=0.8 gamma=3.0

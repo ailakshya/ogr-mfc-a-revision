@@ -22,6 +22,7 @@ raw per-seed logs and regenerated with one command.
 | `experiments/results_v2/` | 160 reruns with per-modality gradient-norm logging and multi-severity degradations |
 | `experiments/results_v4/` | 440 runs of the follow-up variants MFC-J / MFC-OG and same-machine references (workstation) |
 | `experiments/results_v5/` | 480 runs with the weight bounds widened to [0, 2] (`analyze_v5.py`, `out/summary_v5.md`) |
+| `experiments/results_preds/` | 100 reruns (AVE and CREMA-D, five methods, 10 seeds) that also save each test clip's prediction; they reproduce the logged runs exactly and feed Figures 2, 3 (`grid_preds.txt`, `make_paper_figures.py`) |
 | `experiments/results_v3/` | 160 reruns with JPEG-compression degradations; memory measurements in `out/memory.json` |
 | `experiments/out/` | Generated tables (`tables/*.tex`), figures (`figs/*.png`) and full numeric summaries (`summary.md`, `summary_v2.md`) |
 | `experiments/grid*.txt` | The exact job lists that produced every log |
@@ -89,9 +90,13 @@ reproduce the reported results exactly. Expected output ends with `ALL CHECKS PA
 | Table 12 (JPEG compression) | `out/tables/jpeg_joint.tex` | `aggregate_v3.py` | `results_v3/{crema_av,ave}/*` |
 | Memory figures quoted in the cost section | `out/tables/memory.tex`, `out/memory.json` | `measure_memory.py` | fresh measurement runs |
 | Table 13 (cost) | `out/tables/cost.tex` | `aggregate.py` | `time` and `flops` fields of `results/{synthetic,crema_av}/*` |
-| Figures 1–3 (training dynamics) | `out/figs/dynamics_{crema_av,ave,synthetic}.png` | `aggregate.py` | per-epoch `log` rows: `tune_acc, ogr_v, ogr_a, lam_v, lam_a` |
-| Figure 4 (gradient norms, AVE) | `out/figs/gradnorm_ave.png` | `aggregate_v2.py` | per-epoch `gj_v, gj_a, gu_v, gu_a` in `results_v2/ave/*` |
-| Figure 5 (robustness curves) | `out/figs/robustness.png` | `aggregate.py` | `robustness` field of `results/*/*` |
+| Figure 1 (model and controller diagram) | `manuscript/images/architecture.tex` (TikZ) | — | frames: one AVE test clip |
+| Figure 2 (confusion matrices, MFC-A) | `manuscript/images/confusion_mfca.png` | `make_paper_figures.py` | `preds` field of `results_preds/{crema_av,ave}/mfc_a__*` |
+| Figure 3 (predictions of five methods, AVE) | `manuscript/images/comparison_examples.png` | `make_paper_figures.py` | `preds` field of `results_preds/ave/*/seed0.json` + decoded test frames |
+| Figures 4–6 (training dynamics) | `out/figs/dynamics_{crema_av,ave,synthetic}.png` | `aggregate.py` | per-epoch `log` rows: `tune_acc, ogr_v, ogr_a, lam_v, lam_a` |
+| Figure 7 (gradient norms, AVE) | `out/figs/gradnorm_ave.png` | `aggregate_v2.py` | per-epoch `gj_v, gj_a, gu_v, gu_a` in `results_v2/ave/*` |
+| Figure 8 (degradation examples, AVE) | `manuscript/images/degradation_examples.png` | `make_paper_figures.py` | decoded AVE test frames, same settings as `extract_ave.py` / `extract_jpeg.py` |
+| Figure 9 (robustness curves) | `out/figs/robustness.png` | `aggregate.py` | `robustness` field of `results/*/*` |
 | Every number quoted in the text | `out/summary.md`, `out/summary_v2.md` | both | all of the above |
 
 Each log file `results/<dataset>/<method>[__<option>=<value>]/seed<k>.json` contains the configuration, the

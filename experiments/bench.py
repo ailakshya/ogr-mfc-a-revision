@@ -91,6 +91,7 @@ def load(dataset, seed):
         if k.startswith("vis_"):
             deg[k[4:]] = t((d[k][idx[3]] - mu_v) / sd_v).float()
     out["degraded"] = deg
+    out["test_idx"] = idx[3]
     out["n_classes"] = int(d["y"].max() + 1)
     return out
 
@@ -641,6 +642,12 @@ def run(dataset, method, seed, **kw):
                test_acc_a=te["acc_a"], ogr_v=ogr_v, ogr_a=ogr_a, ogr_gap=abs(ogr_v - ogr_a),
                robustness=robustness(model, D["test"], D["degraded"], seed), time=t, flops=flops,
                params=sum(p.numel() for p in model.parameters()), log=log)
+    if os.environ.get("SAVE_PREDS"):    # per-clip test predictions for confusion matrices and example figures
+        with torch.no_grad():
+            xv, xa, yt = D["test"]
+            res["preds"] = dict(idx=D["test_idx"].tolist(), y=yt.tolist(),
+                                clean=model(xv, xa)[0].argmax(1).tolist(),
+                                **{k: model(dv, xa)[0].argmax(1).tolist() for k, dv in D["degraded"].items()})
     return res
 
 
