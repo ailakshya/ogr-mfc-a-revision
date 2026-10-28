@@ -1,7 +1,7 @@
 \documentclass[fleqn,10pt]{wlscirep}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL main_reviewed_version.tex   Sun Oct 18 00:22:07 2026
-%DIF ADD main.tex                    Wed Oct 28 11:33:23 2026
+%DIF ADD main.tex                    Wed Oct 28 11:35:50 2026
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{multirow}
@@ -914,7 +914,7 @@ MFC-A ($\gamma$=1) & 48.8$\pm$1.7 & 47.2$\pm$1.4 & 44.8$\pm$1.7 & 1.35$\pm$0.76 
 \textbf{\DIFdel{Epochs 25--30 (Late convergence):}} %DIFAUXCMD
 \DIFdel{The training curve of the MFC is unstable at this range due to the continuous changes of the controller}\DIFdelend \DIFaddbegin \DIFadd{falls monotonically (to 0.36 for $\gamma{=}1$; to the lower bound 0.2 for $\gamma{=}3$) and $\lambda_a$ rises correspondingly, with $\lambda_v{+}\lambda_a{=}2$ whenever the bounds are inactive, as Property (ii) predicts. The response therefore tracks the measured overfitting with the lag set by $W$ and $\beta$}\DIFaddend . \DIFaddbegin \DIFadd{MFC-T moves in the same direction but saturates $\lambda_a$ at its upper bound and first }\emph{\DIFadd{increases}} \DIFadd{$\lambda_v$ during the early under-fitting phase. Throttling $\lambda_v$ slows, but does not stop, the growth of the visual OGR. }\DIFaddend This is \DIFdelbegin \DIFdel{an established trade-off of responsive control: a responsive scheme requires a few additional epochs to achieve stability than a fixed point scheme.}%DIFDELCMD < \end{itemize}
 %DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin \DIFadd{expected, because the joint loss in Eq.~(\ref{eq:objective}) is not re-weighted and continues to fit the dominant stream; a stronger intervention would also have to modulate the joint term. Animated versions of these traces, per-seed heatmaps of the loss weights, and example clips under each degradation are provided in the code repository (}\url{https://github.com/ailakshya/ogr-mfc-a-revision}\DIFadd{, folder }\texttt{\DIFadd{experiments/out/media}}\DIFadd{).
+\DIFdelend \DIFaddbegin \DIFadd{expected, because the joint loss in Eq.~(\ref{eq:objective}) is not re-weighted and continues to fit the dominant stream; a stronger intervention would also have to modulate the joint term. Animated versions of these traces, per-seed heatmaps of the loss weights, and example clips under each degradation are provided in the code repository (}\url{https://github.com/ailakshya/ogr-mfc-a-revision/tree/main/experiments/out/media}\DIFadd{).
 }\DIFaddend 
 
 \DIFdelbegin \subsection{\DIFdel{Imbalance Analysis (OGR)}}
