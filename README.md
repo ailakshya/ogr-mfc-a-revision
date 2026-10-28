@@ -10,6 +10,59 @@ audio–visual network by the inverse of each modality's smoothed OGR.
 This repository is organised so that every number, table and figure in the revised manuscript can be traced to
 raw per-seed logs and regenerated with one command.
 
+## Figures
+
+All figures of the revised paper, in paper order. Each is regenerated from the logs (see "Where every table and figure
+comes from" below).
+
+**Figure 1. Overall structure of the audio–video model trained with MFC-A.** Frozen feature extractors, the trained
+network with two unimodal heads and a fusion head, and the controller that returns new loss weights once per epoch.
+
+![Figure 1](manuscript/images/architecture.png)
+
+**Figure 2. Internal structure of the model.** (a) ResNet-18 stages for each video frame and the log-mel statistics
+for the soundtrack (both frozen); (b) the trained network layer by layer, with parameter counts.
+
+![Figure 2](manuscript/images/architecture_detail.png)
+
+**Figure 3. Confusion matrices of MFC-A** on the CREMA-D and AVE test sets (row-normalised, pooled over 10 seeds).
+
+![Figure 3](manuscript/images/confusion_mfca.png)
+
+**Figure 4. Predictions of five methods on AVE test clips** (seed 0; green correct, red wrong). The six clips are drawn
+at random among the test clips on which the methods disagree, so the figure is not selected in favour of any method.
+
+![Figure 4](manuscript/images/comparison_examples.png)
+
+**Figures 5–7. Training dynamics** on CREMA-D, AVE and the synthetic benchmark: tune accuracy, per-modality OGR and the
+loss weights of MFC-A and MFC-T (mean ± std over 10 seeds).
+
+![Figure 5](manuscript/images/dynamics_crema_av.png)
+![Figure 6](manuscript/images/dynamics_ave.png)
+![Figure 7](manuscript/images/dynamics_synthetic.png)
+
+**Figure 8. Gradient norms on AVE**: joint- and unimodal-loss gradients reaching each encoder.
+
+![Figure 8](manuscript/images/gradnorm_ave.png)
+
+**Figure 9. Pixel-level degradations** used in the robustness tests, on six AVE test clips.
+
+![Figure 9](manuscript/images/degradation_examples.png)
+
+**Figure 10. Robustness to Gaussian noise** on the first stream, all four datasets.
+
+![Figure 10](manuscript/images/robustness.png)
+
+### Additional visual material (not in the paper)
+
+| Grad-CAM of baseline vs MFC-A (CREMA-D clip) | OGR and weights during training (AVE) |
+|---|---|
+| ![Grad-CAM](experiments/out/media/gradcam_crema_example.gif) | ![AVE dynamics](experiments/out/media/dynamics_ave.gif) |
+
+| MFC-A video weight per seed and epoch (AVE) | Gain over the baseline, every method, dataset and metric |
+|---|---|
+| ![weights heatmap](experiments/out/media/heatmap_lambda_ave.png) | ![gains heatmap](experiments/out/media/heatmap_gains.png) |
+
 ## Repository layout
 
 | Path | Contents |
@@ -22,7 +75,7 @@ raw per-seed logs and regenerated with one command.
 | `experiments/results_v2/` | 160 reruns with per-modality gradient-norm logging and multi-severity degradations |
 | `experiments/results_v4/` | 440 runs of the follow-up variants MFC-J / MFC-OG and same-machine references (workstation) |
 | `experiments/results_v5/` | 480 runs with the weight bounds widened to [0, 2] (`analyze_v5.py`, `out/summary_v5.md`) |
-| `experiments/results_preds/` | 100 reruns (AVE and CREMA-D, five methods, 10 seeds) that also save each test clip's prediction; they reproduce the logged runs exactly and feed Figures 2, 3 (`grid_preds.txt`, `make_paper_figures.py`) |
+| `experiments/results_preds/` | 100 reruns (AVE and CREMA-D, five methods, 10 seeds) that also save each test clip's prediction; they reproduce the logged runs exactly and feed Figures 3 and 4 (`grid_preds.txt`, `make_paper_figures.py`) |
 | `experiments/results_v3/` | 160 reruns with JPEG-compression degradations; memory measurements in `out/memory.json` |
 | `experiments/out/` | Generated tables (`tables/*.tex`), figures (`figs/*.png`) and full numeric summaries (`summary.md`, `summary_v2.md`) |
 | `experiments/grid*.txt` | The exact job lists that produced every log |
@@ -41,7 +94,7 @@ raw per-seed logs and regenerated with one command.
 | `heatmap_gains.png` | Difference to the baseline of every method on every dataset and metric, with paired-test significance |
 
 All are produced by `experiments/visualize.py` (`logs` mode from the logs; `gradcam` mode needs the raw CREMA-D videos).
-CREMA-D frames are shown under the dataset's research licence; AVE frames (YouTube content) are not redistributed.
+CREMA-D frames are shown under the dataset's research licence. AVE (YouTube content) appears only as single frames inside the paper figures; the videos themselves are not redistributed.
 
 ## Using MFC-A in your own training
 
@@ -90,13 +143,14 @@ reproduce the reported results exactly. Expected output ends with `ALL CHECKS PA
 | Table 12 (JPEG compression) | `out/tables/jpeg_joint.tex` | `aggregate_v3.py` | `results_v3/{crema_av,ave}/*` |
 | Memory figures quoted in the cost section | `out/tables/memory.tex`, `out/memory.json` | `measure_memory.py` | fresh measurement runs |
 | Table 13 (cost) | `out/tables/cost.tex` | `aggregate.py` | `time` and `flops` fields of `results/{synthetic,crema_av}/*` |
-| Figure 1 (model and controller diagram) | `manuscript/images/architecture.tex` (TikZ) | — | frames: one AVE test clip |
-| Figure 2 (confusion matrices, MFC-A) | `manuscript/images/confusion_mfca.png` | `make_paper_figures.py` | `preds` field of `results_preds/{crema_av,ave}/mfc_a__*` |
-| Figure 3 (predictions of five methods, AVE) | `manuscript/images/comparison_examples.png` | `make_paper_figures.py` | `preds` field of `results_preds/ave/*/seed0.json` + decoded test frames |
-| Figures 4–6 (training dynamics) | `out/figs/dynamics_{crema_av,ave,synthetic}.png` | `aggregate.py` | per-epoch `log` rows: `tune_acc, ogr_v, ogr_a, lam_v, lam_a` |
-| Figure 7 (gradient norms, AVE) | `out/figs/gradnorm_ave.png` | `aggregate_v2.py` | per-epoch `gj_v, gj_a, gu_v, gu_a` in `results_v2/ave/*` |
-| Figure 8 (degradation examples, AVE) | `manuscript/images/degradation_examples.png` | `make_paper_figures.py` | decoded AVE test frames, same settings as `extract_ave.py` / `extract_jpeg.py` |
-| Figure 9 (robustness curves) | `out/figs/robustness.png` | `aggregate.py` | `robustness` field of `results/*/*` |
+| Figure 1 (model and controller diagram) | `manuscript/images/architecture.tex` (TikZ; PNG copy for this page) | — | frames: one AVE test clip |
+| Figure 2 (internal structure) | `manuscript/images/architecture_detail.tex` (TikZ; PNG copy for this page) | — | layer sizes from `bench.py` (`Enc`, `Model`, `DATASETS`) and `extract_crema_av.py` |
+| Figure 3 (confusion matrices, MFC-A) | `manuscript/images/confusion_mfca.png` | `make_paper_figures.py` | `preds` field of `results_preds/{crema_av,ave}/mfc_a__*` |
+| Figure 4 (predictions of five methods, AVE) | `manuscript/images/comparison_examples.png` | `make_paper_figures.py` | `preds` field of `results_preds/ave/*/seed0.json` + decoded test frames |
+| Figures 5–7 (training dynamics) | `out/figs/dynamics_{crema_av,ave,synthetic}.png` | `aggregate.py` | per-epoch `log` rows: `tune_acc, ogr_v, ogr_a, lam_v, lam_a` |
+| Figure 8 (gradient norms, AVE) | `out/figs/gradnorm_ave.png` | `aggregate_v2.py` | per-epoch `gj_v, gj_a, gu_v, gu_a` in `results_v2/ave/*` |
+| Figure 9 (degradation examples, AVE) | `manuscript/images/degradation_examples.png` | `make_paper_figures.py` | decoded AVE test frames, same settings as `extract_ave.py` / `extract_jpeg.py` |
+| Figure 10 (robustness curves) | `out/figs/robustness.png` | `aggregate.py` | `robustness` field of `results/*/*` |
 | Every number quoted in the text | `out/summary.md`, `out/summary_v2.md` | both | all of the above |
 
 Each log file `results/<dataset>/<method>[__<option>=<value>]/seed<k>.json` contains the configuration, the

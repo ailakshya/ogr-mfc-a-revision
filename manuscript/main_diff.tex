@@ -1,7 +1,7 @@
 \documentclass[fleqn,10pt]{wlscirep}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL main_reviewed_version.tex   Sun Oct 18 00:22:07 2026
-%DIF ADD main.tex                    Wed Oct 28 18:32:30 2026
+%DIF ADD main.tex                    Wed Oct 28 18:40:05 2026
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{multirow}
@@ -572,7 +572,14 @@ use a different functional form, namely generalization gain divided by the squar
 \DIFaddend 
 
 \DIFdelbegin \DIFdel{Following the }\textbf{\DIFdel{BalanceBenchmark}} %DIFAUXCMD
-\DIFdel{guidelines, we conduct a rigorous comparative analysis}\DIFdelend \DIFaddbegin \begin{algorithm}[t]
+\DIFdel{guidelines, we conduct a rigorous comparative analysis}\DIFdelend \DIFaddbegin \begin{figure*}[tbp]
+\centering
+\resizebox{\textwidth}{!}{\input{images/architecture_detail.tex}}
+\caption{\textbf{Internal structure of the model.} (a) Frozen feature extractors: every video frame passes through an ImageNet ResNet-18 with its classifier removed (a $7{\times}7$ stem convolution, max pooling, four stages of two residual blocks each and global average pooling; numbers on the arrows are spatial sizes), and the eight frame vectors are averaged; the soundtrack is turned into a 64-band log-mel spectrogram whose per-band mean and standard deviation, together with those of its temporal difference, give 256 values. (b) Trained network for CREMA-D and AVE, layer by layer, with parameter counts. Only part (b) is trained; MFC-A changes only the weights $\lambda_v,\lambda_a$ of the two unimodal losses.}
+\label{fig:archdetail}
+\end{figure*}
+
+\begin{algorithm}[t]
 \caption{MFC-A (the method evaluated in all main experiments)}
 \label{alg:mfca}
 \begin{algorithmic}[1]
@@ -686,10 +693,10 @@ Spectrogram views & two features of one spectrogram & 7,442 & 6 & 1271 (neutral:
 \end{table}
 
 \subsection*{\DIFadd{Models and training}}
-\DIFadd{Each stream is encoded by a two-layer MLP (Linear--ReLU--Dropout--Linear--ReLU) followed by a linear unimodal head; a linear fusion head acts on the concatenated embeddings. Hidden and embedding widths (first stream / second stream / embedding) are 128/64/32 for the synthetic benchmark (17}\DIFaddend ,\DIFdelbegin \DIFdel{512) $\rightarrow$ ReLU $\rightarrow$ Dropout(0.2) $\rightarrow$ Linear(512}\DIFdelend \DIFaddbegin \DIFadd{426 parameters)}\DIFaddend , \DIFdelbegin \DIFdel{10)}%DIFDELCMD < ]%%%
+\DIFadd{Each stream is encoded by a two-layer MLP (Linear--ReLU--Dropout--Linear--ReLU) followed by a linear unimodal head; a linear fusion head acts on the concatenated embeddings (Fig.~\ref{fig:archdetail}). Hidden and embedding widths (first stream / second stream / embedding) are 128/64/32 for the synthetic benchmark (17}\DIFaddend ,\DIFdelbegin \DIFdel{512) $\rightarrow$ ReLU $\rightarrow$ Dropout(0.2) $\rightarrow$ Linear(512}\DIFdelend \DIFaddbegin \DIFadd{426 parameters)}\DIFaddend , \DIFdelbegin \DIFdel{10)}%DIFDELCMD < ]%%%
 \DIFdel{. }%DIFDELCMD < \item %%%
 \textbf{\DIFdel{Audio Encoder}}%DIFAUXCMD
-\DIFdel{: An MLP accepting 128-dimensional audio features (simulating VGGish embeddings) . Architecture: }%DIFDELCMD < [%%%
+\DIFdel{: An MLP accepting 128-dimensional audio features (simulating VGGish embeddings ). Architecture: }%DIFDELCMD < [%%%
 \DIFdel{Linear(}\DIFdelend \DIFaddbegin \DIFadd{256/}\DIFaddend 128\DIFaddbegin \DIFadd{/64 for CREMA-D audio--video and AVE (190}\DIFaddend ,\DIFaddbegin \DIFadd{482 and 196,180 parameters) and 128/}\DIFaddend 64\DIFdelbegin \DIFdel{) $\rightarrow$ ReLU $\rightarrow$ Linear(}\DIFdelend \DIFaddbegin \DIFadd{/}\DIFaddend 64 \DIFdelbegin \DIFdel{, 10)}%DIFDELCMD < ]%%%
 \DIFdel{. }%DIFDELCMD < \end{itemize}
 %DIFDELCMD < %%%

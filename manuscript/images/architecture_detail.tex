@@ -1,0 +1,94 @@
+% Internal structure of the feature extractors (frozen) and of the trained network (bench.py: Enc, Model).
+\begin{tikzpicture}[
+  font=\scriptsize, >=Stealth,
+  l/.style={draw, rounded corners=1.5pt, align=center, inner sep=2pt, minimum height=10mm, fill=#1},
+  l/.default=white,
+  grp/.style={draw, dashed, rounded corners=5pt, inner sep=4pt},
+  arr/.style={->, semithick},
+  dim/.style={font=\tiny, inner sep=1pt, above}]
+
+%──────────── (a) frozen feature extractors ────────────
+\node[font=\footnotesize\bfseries, anchor=west] at (-0.2, 1.35) {(a) Frozen feature extractors (not trained)};
+
+% video: ResNet-18 per frame
+\node[l=magenta!8, text width=10mm] (fr) at (0.4,0) {frame\\$224{\times}224{\times}3$};
+\node[l=gray!12, right=4mm of fr, text width=13mm] (c1) {conv $7{\times}7$, 64\\stride 2\\BN, ReLU};
+\node[l=gray!12, right=3mm of c1, text width=10mm] (mp) {max pool\\$3{\times}3$, /2};
+\node[l=blue!10, right=3mm of mp, text width=11mm] (s1) {stage 1\\$2{\times}$block\\64 ch};
+\node[l=blue!14, right=3mm of s1, text width=11mm] (s2) {stage 2\\$2{\times}$block\\128 ch, /2};
+\node[l=blue!18, right=3mm of s2, text width=11mm] (s3) {stage 3\\$2{\times}$block\\256 ch, /2};
+\node[l=blue!24, right=3mm of s3, text width=11mm] (s4) {stage 4\\$2{\times}$block\\512 ch, /2};
+\node[l=gray!12, right=3mm of s4, text width=11mm] (gap) {global\\average\\pool};
+\node[l=green!12, right=4mm of gap, text width=13mm] (mv) {mean over\\8 frames};
+\node[l=orange!20, right=4mm of mv, text width=9mm] (xv) {$x_v$\\512-d};
+\foreach \a/\b/\d in {fr/c1/, c1/mp/{112$^2$}, mp/s1/{56$^2$}, s1/s2/{56$^2$}, s2/s3/{28$^2$}, s3/s4/{14$^2$}, s4/gap/{7$^2$}, gap/mv/512, mv/xv/}
+  \draw[arr] (\a) -- node[dim] {\d} (\b);
+\begin{scope}[on background layer]
+  \node[grp, fill=blue!3, fit=(c1)(gap)] (rn) {};
+\end{scope}
+\node[font=\tiny, below=0.2mm of rn.south] {ResNet-18, ImageNet weights, classifier removed (11.18\,M parameters, frozen)};
+
+% residual block inset
+\node[l=blue!6, text width=31mm, minimum height=7mm, below=7mm of s2.south east, anchor=north] (blk)
+  {\textbf{block}: conv $3{\times}3$, BN, ReLU, conv $3{\times}3$, BN, $+$ shortcut, ReLU};
+\draw[densely dotted] (s1.south) -- (blk.north west);
+\draw[densely dotted] (s4.south) -- (blk.north east);
+
+% audio: log-mel statistics
+\node[l=magenta!8, text width=10mm, below=21mm of fr] (wv) {waveform\\16\,kHz mono};
+\node[l=gray!12, right=4mm of wv, text width=18mm] (st) {STFT, Hann 25\,ms\\hop 10\,ms, FFT 512\\power $|\cdot|^2$};
+\node[l=gray!12, right=3mm of st, text width=14mm] (mel) {64-band mel\\filterbank, log};
+\node[l=gray!12, right=3mm of mel, text width=14mm] (dl) {temporal\\difference $\Delta$};
+\node[l=gray!12, right=3mm of dl, text width=26mm] (stat) {mean and std over time\\of log-mel and of $\Delta$\\($4\times64$)};
+\node[l=orange!20, at={(xv |- stat)}, text width=9mm] (xa) {$x_a$\\256-d};
+\draw[arr] (wv) -- (st);
+\draw[arr] (st) -- node[dim] {$257{\times}T$} (mel);
+\draw[arr] (mel) -- node[dim] {$64{\times}T$} (dl);
+\draw[arr] (dl) -- (stat);
+\draw[arr] (stat) -- (xa);
+
+%──────────── (b) trained network ────────────
+\node[font=\footnotesize\bfseries, anchor=west] at (-0.2, -5.0) {(b) Trained multimodal network (CREMA-D and AVE)};
+\node[l=orange!20, text width=9mm] (iv) at (0.4,-6.4) {$x_v$\\512};
+\node[l=orange!20, text width=9mm, below=14mm of iv] (ia) {$x_a$\\256};
+\node[l=gray!8, right=3mm of iv, text width=13mm] (nv) {standardise\\(train stats)};
+\node[l=gray!8, right=3mm of ia, text width=13mm] (na) {standardise\\(train stats)};
+\node[l=yellow!25, right=3mm of nv, text width=12mm] (v1) {Linear\\$512{\to}256$};
+\node[l=yellow!25, right=3mm of na, text width=12mm] (a1) {Linear\\$256{\to}128$};
+\node[l=white, right=2mm of v1, text width=8mm] (v2) {ReLU};
+\node[l=white, right=2mm of a1, text width=8mm] (a2) {ReLU};
+\node[l=white, right=2mm of v2, text width=11mm] (v3) {Dropout\\$p{=}0.3$};
+\node[l=white, right=2mm of a2, text width=11mm] (a3) {Dropout\\$p{=}0.3$};
+\node[l=yellow!25, right=2mm of v3, text width=12mm] (v4) {Linear\\$256{\to}64$};
+\node[l=yellow!25, right=2mm of a3, text width=12mm] (a4) {Linear\\$128{\to}64$};
+\node[l=white, right=2mm of v4, text width=8mm] (v5) {ReLU};
+\node[l=white, right=2mm of a4, text width=8mm] (a5) {ReLU};
+\foreach \p in {v,a} {
+  \draw[arr] (i\p) -- (n\p); \draw[arr] (n\p) -- (\p1); \draw[arr] (\p1) -- (\p2);
+  \draw[arr] (\p2) -- (\p3); \draw[arr] (\p3) -- (\p4); \draw[arr] (\p4) -- (\p5); }
+\begin{scope}[on background layer]
+  \node[grp, fill=orange!5, fit=(v1)(v5)] (Ev) {};
+  \node[grp, fill=orange!5, fit=(a1)(a5)] (Ea) {};
+\end{scope}
+\node[font=\tiny, above=0.2mm of Ev.north] {video encoder $E_v$ (147,776 parameters)};
+\node[font=\tiny, below=0.2mm of Ea.south] {audio encoder $E_a$ (41,152 parameters)};
+
+\node[l=green!12, right=14mm of v5, text width=15mm] (hv) {head $h_v$\\Linear $64{\to}K$};
+\node[l=green!12, right=14mm of a5, text width=15mm] (ha) {head $h_a$\\Linear $64{\to}K$};
+\node[l=white, text width=10mm] (cat) at ($(v5)!0.5!(a5)+(7mm,0)$) {concat\\128};
+\node[l=green!12, at={(hv |- cat)}, text width=15mm] (fu) {fusion head $f$\\Linear $128{\to}K$};
+\draw[arr] (v5) -- node[dim, pos=0.68] {$z_v$, 64} (hv);
+\draw[arr] (a5) -- node[dim, below, pos=0.68] {$z_a$, 64} (ha);
+\draw[arr] ($(v5.east)+(3mm,0)$) |- ($(cat.north)+(0,2mm)$) -- (cat.north);
+\draw[arr] ($(a5.east)+(3mm,0)$) |- ($(cat.south)+(0,-2mm)$) -- (cat.south);
+\draw[arr] (cat) -- (fu);
+
+\node[l, right=5mm of hv, text width=21mm] (ov) {logits $\to$ $\mathcal{L}_v$, Acc$_v$\\weighted by $\lambda_v$};
+\node[l, right=5mm of ha, text width=21mm] (oa) {logits $\to$ $\mathcal{L}_a$, Acc$_a$\\weighted by $\lambda_a$};
+\node[l, at={(ov |- fu)}, text width=21mm] (oj) {prediction $\hat y$\\$\to\mathcal{L}_{\mathrm{joint}}$};
+\draw[arr] (hv) -- (ov); \draw[arr] (ha) -- (oa); \draw[arr] (fu) -- (oj);
+
+\node[align=left, font=\tiny, anchor=north west, text width=150mm] at ($(ia.south west)+(0,-5mm)$)
+  {$K$ = number of classes (6 for CREMA-D, 28 for AVE). Total trained parameters: 190,482 (CREMA-D), 196,180 (AVE).
+   Synthetic and spectrogram models use the same layout with widths 128/64/32 and 128/64/64.};
+\end{tikzpicture}
