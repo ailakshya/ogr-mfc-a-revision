@@ -1,8 +1,11 @@
-# Python 3.14; the versions the consistency test (experiments/tests/test_consistency.py) was last run with
-torch==2.14.1
-torchvision==0.29.1
-numpy==2.5.4
-scipy==1.18.1
+# Package versions of the workstation (Linux x86-64, Python 3.14.4) that produced every reported result.
+# torch / torchvision there were the PyTorch nightly builds 2.13.0.dev20260517+cu130 and
+# 0.28.0.dev20260518+cu130; those wheels are no longer on the nightly index, so the stable releases of the
+# same version line are pinned below. All training runs on CPU, single-threaded.
+torch==2.13.0
+torchvision==0.28.0
+numpy==2.4.4
+scipy==1.17.1
 scikit-learn==1.9.1
-matplotlib==3.11.2
-pillow==13.0.0
+matplotlib==3.10.7
+pillow==12.2.0

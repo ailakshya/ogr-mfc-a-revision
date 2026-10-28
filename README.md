@@ -130,10 +130,16 @@ git lfs pull                                            # fetch experiments/data
 .venv/bin/python experiments/tests/test_consistency.py
 ```
 
-The test regenerates every table and figure from the raw logs, checks that each of the nine tables printed in the
-manuscript matches `manuscript/main.tex` line for line, checks that all 1,120 grid jobs have a log, checks that the standalone
-`mfc/mfc_a.py` reproduces the loss weights of every logged MFC-A run, and checks that the 160 gradient-norm reruns
-reproduce the reported results exactly. Expected output ends with `ALL CHECKS PASSED`.
+`requirements.txt` pins the versions of the workstation that produced the results (Python 3.14.4). Its
+torch and torchvision were nightly builds (2.13.0.dev20260517, 0.28.0.dev20260518) that are no longer
+downloadable, so the stable 2.13.0 / 0.28.0 releases are pinned. The consistency test does not retrain and has
+been run with torch 2.14.1. Retraining reproduces the logged numbers bit-for-bit
+on the original build; other PyTorch builds may differ in the last floating-point digits.
+
+The test regenerates every table and figure from the raw logs, checks that each of the 11 tables printed in the
+manuscript matches `manuscript/main.tex` line for line, checks that all 4,640 grid jobs have a log, checks that the
+standalone `mfc/mfc_a.py` reproduces the loss weights of all 560 logged MFC-A runs, and checks that the 320 reruns in
+`results_v2/`, `results_v3/` and the 100 prediction reruns in `results_preds/` reproduce the reported results exactly. Expected output ends with `ALL CHECKS PASSED`.
 
 ## Where every table and figure comes from
 
