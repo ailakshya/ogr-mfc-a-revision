@@ -1,94 +1,96 @@
-% Internal structure of the feature extractors (frozen) and of the trained network (bench.py: Enc, Model).
+% Internal structure of the model, block-wise (bottom to top), in the style of the Transformer diagram.
+% Layer sizes: bench.py (Enc, Model, DATASETS) and extract_crema_av.py (ResNet-18 features, log-mel statistics).
 \begin{tikzpicture}[
-  font=\scriptsize, >=Stealth,
-  l/.style={draw, rounded corners=1.5pt, align=center, inner sep=2pt, minimum height=10mm, fill=#1},
-  l/.default=white,
-  grp/.style={draw, dashed, rounded corners=5pt, inner sep=4pt},
-  arr/.style={->, semithick},
-  dim/.style={font=\tiny, inner sep=1pt, above}]
+  font=\small, >=Stealth,
+  b/.style={draw, thick, rounded corners=3pt, minimum width=34mm, minimum height=6.2mm, inner sep=1.5pt,
+            align=center, fill=#1},
+  conv/.style={b=orange!30}, pool/.style={b=red!14}, norm/.style={b=yellow!35}, lin/.style={b=cyan!18},
+  soft/.style={b=green!22}, act/.style={b=yellow!18},
+  box/.style={draw, thick, rounded corners=7pt, fill=gray!9, inner xsep=4mm, inner ysep=2.6mm},
+  up/.style={->, thick},
+  side/.style={font=\footnotesize, align=center},
+  io/.style={font=\footnotesize, align=center}]
 
-%──────────── (a) frozen feature extractors ────────────
-\node[font=\footnotesize\bfseries, anchor=west] at (-0.2, 1.35) {(a) Frozen feature extractors (not trained)};
+\def\g{2.6mm}   % vertical gap between blocks
 
-% video: ResNet-18 per frame
-\node[l=magenta!8, text width=10mm] (fr) at (0.4,0) {frame\\$224{\times}224{\times}3$};
-\node[l=gray!12, right=4mm of fr, text width=13mm] (c1) {conv $7{\times}7$, 64\\stride 2\\BN, ReLU};
-\node[l=gray!12, right=3mm of c1, text width=10mm] (mp) {max pool\\$3{\times}3$, /2};
-\node[l=blue!10, right=3mm of mp, text width=11mm] (s1) {stage 1\\$2{\times}$block\\64 ch};
-\node[l=blue!14, right=3mm of s1, text width=11mm] (s2) {stage 2\\$2{\times}$block\\128 ch, /2};
-\node[l=blue!18, right=3mm of s2, text width=11mm] (s3) {stage 3\\$2{\times}$block\\256 ch, /2};
-\node[l=blue!24, right=3mm of s3, text width=11mm] (s4) {stage 4\\$2{\times}$block\\512 ch, /2};
-\node[l=gray!12, right=3mm of s4, text width=11mm] (gap) {global\\average\\pool};
-\node[l=green!12, right=4mm of gap, text width=13mm] (mv) {mean over\\8 frames};
-\node[l=orange!20, right=4mm of mv, text width=9mm] (xv) {$x_v$\\512-d};
-\foreach \a/\b/\d in {fr/c1/, c1/mp/{112$^2$}, mp/s1/{56$^2$}, s1/s2/{56$^2$}, s2/s3/{28$^2$}, s3/s4/{14$^2$}, s4/gap/{7$^2$}, gap/mv/512, mv/xv/}
-  \draw[arr] (\a) -- node[dim] {\d} (\b);
+%════════ video tower (x = 0) ════════
+\node[act] (v5) at (0,0) {ReLU};
+\node[lin, below=\g of v5] (v4) {Linear $256\to64$};
+\node[act, below=\g of v4] (v3) {Dropout $p{=}0.3$};
+\node[act, below=\g of v3] (v2) {ReLU};
+\node[lin, below=\g of v2] (v1) {Linear $512\to256$};
+\node[norm, below=6mm of v1] (vstd) {Standardise};
+\node[pool, below=\g of vstd] (vmean) {Mean over 8 frames};
+\node[pool, below=6mm of vmean] (vgap) {Global average pool};
+% residual block (repeated)
+\node[norm, below=6mm of vgap] (radd) {Add \& ReLU};
+\node[norm, below=\g of radd] (rbn2) {BatchNorm};
+\node[conv, below=\g of rbn2] (rc2) {Conv $3{\times}3$, $C$};
+\node[norm, below=\g of rc2] (rbn1) {BatchNorm \& ReLU};
+\node[conv, below=\g of rbn1] (rc1) {Conv $3{\times}3$, $C$};
+\node[pool, below=7mm of rc1] (vmp) {Max pool $3{\times}3$, /2};
+\node[conv, below=\g of vmp] (vstem) {Conv $7{\times}7$, 64, /2 \\ BatchNorm \& ReLU};
+\node[io, below=6mm of vstem] (vin) {Video frames\\$8\times224\times224\times3$};
+
+%════════ audio tower (x = 6.2 cm) ════════
+\node[act] (a5) at (6.2,0) {ReLU};
+\node[lin, below=\g of a5] (a4) {Linear $128\to64$};
+\node[act, below=\g of a4] (a3) {Dropout $p{=}0.3$};
+\node[act, below=\g of a3] (a2) {ReLU};
+\node[lin, below=\g of a2] (a1) {Linear $256\to128$};
+\node[norm, below=6mm of a1] (astd) {Standardise};
+\node[pool, below=\g of astd] (astat) {Mean \& std over time\\(log-mel and $\Delta$: $4{\times}64$)};
+\node[pool, below=6mm of astat] (adel) {Temporal difference $\Delta$};
+\node[conv, below=\g of adel] (amel) {Mel filterbank (64) \& log};
+\node[conv, below=\g of amel] (astft) {STFT (25\,ms, hop 10\,ms)\\power spectrum};
+\node[io, below=6mm of astft] (ain) {Audio waveform\\16\,kHz mono};
+
+%════════ containers ════════
 \begin{scope}[on background layer]
-  \node[grp, fill=blue!3, fit=(c1)(gap)] (rn) {};
+  \node[box, fit=(v1)(v5)] (Ev) {};
+  \node[box, fit=(a1)(a5)] (Ea) {};
+  \node[box, fit=(vstem)(vgap)(rc1)(radd), fill=gray!4, dashed, inner xsep=9mm, inner ysep=4mm] (rn) {};
+  \node[box, fit=(astft)(astat), fill=gray!4, dashed] (lm) {};
+  \node[box, fit=(rc1)(radd), fill=gray!16] (res) {};
 \end{scope}
-\node[font=\tiny, below=0.2mm of rn.south] {ResNet-18, ImageNet weights, classifier removed (11.18\,M parameters, frozen)};
+\node[side, left=2mm of Ev] {video\\encoder $E_v$\\[2pt]\footnotesize 147,776\\parameters};
+\node[side, right=2mm of Ea] {audio\\encoder $E_a$\\[2pt]\footnotesize 41,152\\parameters};
+\node[side, anchor=east] at (rn.west |- res) {$2\times$\\[3pt]per stage\\[3pt]$4$ stages,\\$C=64,128,$\\$256,512$};
+\node[side, left=1mm of rn.south west, anchor=south east, text width=20mm] {ResNet-18\\ImageNet\\(frozen),\\per frame};
+\node[side, right=2mm of lm, text width=18mm] {log-mel\\statistics\\(fixed)};
 
-% residual block inset
-\node[l=blue!6, text width=31mm, minimum height=7mm, below=7mm of s2.south east, anchor=north] (blk)
-  {\textbf{block}: conv $3{\times}3$, BN, ReLU, conv $3{\times}3$, BN, $+$ shortcut, ReLU};
-\draw[densely dotted] (s1.south) -- (blk.north west);
-\draw[densely dotted] (s4.south) -- (blk.north east);
+%════════ arrows inside towers ════════
+\foreach \a/\b in {vin/vstem, vstem/vmp, vmp/rc1, rc1/rbn1, rbn1/rc2, rc2/rbn2, rbn2/radd, radd/vgap, vgap/vmean,
+                   vmean/vstd, vstd/v1, v1/v2, v2/v3, v3/v4, v4/v5,
+                   ain/astft, astft/amel, amel/adel, adel/astat, astat/astd, astd/a1, a1/a2, a2/a3, a3/a4, a4/a5}
+  \draw[up] (\a) -- (\b);
+% residual (identity) connection
+\coordinate (sk) at ($(rc1.south)+(0,-2.8mm)$);
+\draw[up, rounded corners=4pt] (sk) -| ($(radd.east)+(7.5mm,0)$) -- (radd.east);
+\node[font=\scriptsize, rotate=90, anchor=south] at ($(rbn2.east)!0.5!(rc2.east)+(8.1mm,0)$) {identity};
+% feature sizes
+\node[font=\scriptsize, right=1mm] at ($(vmean.north)!0.5!(vstd.south)$) {512};
+\node[font=\scriptsize, right=1mm] at ($(astat.north)!0.5!(astd.south)$) {256};
 
-% audio: log-mel statistics
-\node[l=magenta!8, text width=10mm, below=21mm of fr] (wv) {waveform\\16\,kHz mono};
-\node[l=gray!12, right=4mm of wv, text width=18mm] (st) {STFT, Hann 25\,ms\\hop 10\,ms, FFT 512\\power $|\cdot|^2$};
-\node[l=gray!12, right=3mm of st, text width=14mm] (mel) {64-band mel\\filterbank, log};
-\node[l=gray!12, right=3mm of mel, text width=14mm] (dl) {temporal\\difference $\Delta$};
-\node[l=gray!12, right=3mm of dl, text width=26mm] (stat) {mean and std over time\\of log-mel and of $\Delta$\\($4\times64$)};
-\node[l=orange!20, at={(xv |- stat)}, text width=9mm] (xa) {$x_a$\\256-d};
-\draw[arr] (wv) -- (st);
-\draw[arr] (st) -- node[dim] {$257{\times}T$} (mel);
-\draw[arr] (mel) -- node[dim] {$64{\times}T$} (dl);
-\draw[arr] (dl) -- (stat);
-\draw[arr] (stat) -- (xa);
+%════════ heads (top) ════════
+\node[lin, above=8mm of v5, minimum width=28mm] (hv) {Linear $64\to K$};
+\node[soft, above=\g of hv, minimum width=28mm] (sv) {Softmax};
+\node[lin, above=8mm of a5, minimum width=28mm] (ha) {Linear $64\to K$};
+\node[soft, above=\g of ha, minimum width=28mm] (sa) {Softmax};
+\node[norm, minimum width=28mm] (cat) at ($(v5)!0.5!(a5)+(0,14.5mm)$) {Concat ($128$)};
+\node[lin, above=\g of cat, minimum width=28mm] (fl) {Linear $128\to K$};
+\node[soft, above=\g of fl, minimum width=28mm] (fs) {Softmax};
+\draw[up] (v5) -- node[font=\scriptsize, left] {$z_v$} (hv);
+\draw[up] (a5) -- node[font=\scriptsize, right] {$z_a$} (ha);
+\draw[up] (hv) -- (sv); \draw[up] (ha) -- (sa); \draw[up] (cat) -- (fl); \draw[up] (fl) -- (fs);
+\draw[up, rounded corners=4pt] ($(v5.north)+(0,3mm)$) -| ($(cat.south)+(-6mm,0)$);
+\draw[up, rounded corners=4pt] ($(a5.north)+(0,3mm)$) -| ($(cat.south)+(6mm,0)$);
 
-%──────────── (b) trained network ────────────
-\node[font=\footnotesize\bfseries, anchor=west] at (-0.2, -5.0) {(b) Trained multimodal network (CREMA-D and AVE)};
-\node[l=orange!20, text width=9mm] (iv) at (0.4,-6.4) {$x_v$\\512};
-\node[l=orange!20, text width=9mm, below=14mm of iv] (ia) {$x_a$\\256};
-\node[l=gray!8, right=3mm of iv, text width=13mm] (nv) {standardise\\(train stats)};
-\node[l=gray!8, right=3mm of ia, text width=13mm] (na) {standardise\\(train stats)};
-\node[l=yellow!25, right=3mm of nv, text width=12mm] (v1) {Linear\\$512{\to}256$};
-\node[l=yellow!25, right=3mm of na, text width=12mm] (a1) {Linear\\$256{\to}128$};
-\node[l=white, right=2mm of v1, text width=8mm] (v2) {ReLU};
-\node[l=white, right=2mm of a1, text width=8mm] (a2) {ReLU};
-\node[l=white, right=2mm of v2, text width=11mm] (v3) {Dropout\\$p{=}0.3$};
-\node[l=white, right=2mm of a2, text width=11mm] (a3) {Dropout\\$p{=}0.3$};
-\node[l=yellow!25, right=2mm of v3, text width=12mm] (v4) {Linear\\$256{\to}64$};
-\node[l=yellow!25, right=2mm of a3, text width=12mm] (a4) {Linear\\$128{\to}64$};
-\node[l=white, right=2mm of v4, text width=8mm] (v5) {ReLU};
-\node[l=white, right=2mm of a4, text width=8mm] (a5) {ReLU};
-\foreach \p in {v,a} {
-  \draw[arr] (i\p) -- (n\p); \draw[arr] (n\p) -- (\p1); \draw[arr] (\p1) -- (\p2);
-  \draw[arr] (\p2) -- (\p3); \draw[arr] (\p3) -- (\p4); \draw[arr] (\p4) -- (\p5); }
-\begin{scope}[on background layer]
-  \node[grp, fill=orange!5, fit=(v1)(v5)] (Ev) {};
-  \node[grp, fill=orange!5, fit=(a1)(a5)] (Ea) {};
-\end{scope}
-\node[font=\tiny, above=0.2mm of Ev.north] {video encoder $E_v$ (147,776 parameters)};
-\node[font=\tiny, below=0.2mm of Ea.south] {audio encoder $E_a$ (41,152 parameters)};
-
-\node[l=green!12, right=14mm of v5, text width=15mm] (hv) {head $h_v$\\Linear $64{\to}K$};
-\node[l=green!12, right=14mm of a5, text width=15mm] (ha) {head $h_a$\\Linear $64{\to}K$};
-\node[l=white, text width=10mm] (cat) at ($(v5)!0.5!(a5)+(7mm,0)$) {concat\\128};
-\node[l=green!12, at={(hv |- cat)}, text width=15mm] (fu) {fusion head $f$\\Linear $128{\to}K$};
-\draw[arr] (v5) -- node[dim, pos=0.68] {$z_v$, 64} (hv);
-\draw[arr] (a5) -- node[dim, below, pos=0.68] {$z_a$, 64} (ha);
-\draw[arr] ($(v5.east)+(3mm,0)$) |- ($(cat.north)+(0,2mm)$) -- (cat.north);
-\draw[arr] ($(a5.east)+(3mm,0)$) |- ($(cat.south)+(0,-2mm)$) -- (cat.south);
-\draw[arr] (cat) -- (fu);
-
-\node[l, right=5mm of hv, text width=21mm] (ov) {logits $\to$ $\mathcal{L}_v$, Acc$_v$\\weighted by $\lambda_v$};
-\node[l, right=5mm of ha, text width=21mm] (oa) {logits $\to$ $\mathcal{L}_a$, Acc$_a$\\weighted by $\lambda_a$};
-\node[l, at={(ov |- fu)}, text width=21mm] (oj) {prediction $\hat y$\\$\to\mathcal{L}_{\mathrm{joint}}$};
-\draw[arr] (hv) -- (ov); \draw[arr] (ha) -- (oa); \draw[arr] (fu) -- (oj);
-
-\node[align=left, font=\tiny, anchor=north west, text width=150mm] at ($(ia.south west)+(0,-5mm)$)
-  {$K$ = number of classes (6 for CREMA-D, 28 for AVE). Total trained parameters: 190,482 (CREMA-D), 196,180 (AVE).
-   Synthetic and spectrogram models use the same layout with widths 128/64/32 and 128/64/64.};
+\node[io, above=4mm of sv] (ov) {video head\\$\to\mathcal{L}_v$};
+\node[io, above=4mm of sa] (oa) {audio head\\$\to\mathcal{L}_a$};
+\node[io, above=4mm of fs] (oj) {Output probabilities $\hat y$\\$\to\mathcal{L}_{\mathrm{joint}}$};
+\draw[up] (sv) -- (ov); \draw[up] (sa) -- (oa); \draw[up] (fs) -- (oj);
+\node[draw, thick, rounded corners=3pt, fill=green!8, align=center, above=5mm of oj] (loss)
+  {$\mathcal{L}=\mathcal{L}_{\mathrm{joint}}+\lambda_v\mathcal{L}_v+\lambda_a\mathcal{L}_a$\\\footnotesize $\lambda_v,\lambda_a$ set by MFC-A once per epoch};
+\draw[up] (ov) |- (loss.west); \draw[up] (oa) |- (loss.east); \draw[up] (oj) -- (loss);
 \end{tikzpicture}

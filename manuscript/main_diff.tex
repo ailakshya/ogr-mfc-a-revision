@@ -1,7 +1,7 @@
 \documentclass[fleqn,10pt]{wlscirep}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL main_reviewed_version.tex   Sun Oct 18 00:22:07 2026
-%DIF ADD main.tex                    Wed Oct 28 18:40:05 2026
+%DIF ADD main.tex                    Wed Oct 28 18:44:52 2026
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{multirow}
@@ -572,10 +572,10 @@ use a different functional form, namely generalization gain divided by the squar
 \DIFaddend 
 
 \DIFdelbegin \DIFdel{Following the }\textbf{\DIFdel{BalanceBenchmark}} %DIFAUXCMD
-\DIFdel{guidelines, we conduct a rigorous comparative analysis}\DIFdelend \DIFaddbegin \begin{figure*}[tbp]
+\DIFdel{guidelines, we conduct a rigorous comparative analysis}\DIFdelend \DIFaddbegin \begin{figure*}[p]
 \centering
-\resizebox{\textwidth}{!}{\input{images/architecture_detail.tex}}
-\caption{\textbf{Internal structure of the model.} (a) Frozen feature extractors: every video frame passes through an ImageNet ResNet-18 with its classifier removed (a $7{\times}7$ stem convolution, max pooling, four stages of two residual blocks each and global average pooling; numbers on the arrows are spatial sizes), and the eight frame vectors are averaged; the soundtrack is turned into a 64-band log-mel spectrogram whose per-band mean and standard deviation, together with those of its temporal difference, give 256 values. (b) Trained network for CREMA-D and AVE, layer by layer, with parameter counts. Only part (b) is trained; MFC-A changes only the weights $\lambda_v,\lambda_a$ of the two unimodal losses.}
+\resizebox*{!}{0.84\textheight}{\input{images/architecture_detail.tex}}
+\caption{\textbf{Internal structure of the model, block by block} (read from bottom to top). Left: the video stream. Every frame passes through an ImageNet ResNet-18 with its classifier removed and frozen weights: a $7{\times}7$ stem convolution and max pooling, then four stages of two residual blocks each ($C$ = 64, 128, 256, 512 channels; the first block of stages 2--4 halves the spatial size), and global average pooling; the eight frame vectors are averaged to 512 values. Right: the audio stream, a 64-band log-mel spectrogram whose per-band mean and standard deviation, together with those of its temporal difference, give 256 values. Both feature vectors are standardised with training-split statistics and passed through a trained two-layer encoder ($E_v$, $E_a$). Top: two unimodal heads and a fusion head on the concatenated embeddings; their cross-entropy losses form the training objective, whose weights $\lambda_v,\lambda_a$ are set by MFC-A (Fig.~\ref{fig:arch}). Only the encoders and heads are trained (190,482 parameters on CREMA-D, 196,180 on AVE; $K$ = 6 and 28 classes).}
 \label{fig:archdetail}
 \end{figure*}
 

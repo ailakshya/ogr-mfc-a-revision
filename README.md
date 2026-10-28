@@ -20,8 +20,10 @@ network with two unimodal heads and a fusion head, and the controller that retur
 
 ![Figure 1](manuscript/images/architecture.png)
 
-**Figure 2. Internal structure of the model.** (a) ResNet-18 stages for each video frame and the log-mel statistics
-for the soundtrack (both frozen); (b) the trained network layer by layer, with parameter counts.
+**Figure 2. Internal structure of the model, block by block** (bottom to top, in the style of the Transformer
+diagram). Video: frozen ResNet-18 per frame (stem, four stages of 2 residual blocks, global pooling), mean over 8 frames.
+Audio: STFT, mel filterbank and log, temporal difference, mean and std statistics. Then standardisation, the trained
+encoders $E_v$ / $E_a$, two unimodal heads and the fusion head, and the MFC-A-weighted loss.
 
 ![Figure 2](manuscript/images/architecture_detail.png)
 
